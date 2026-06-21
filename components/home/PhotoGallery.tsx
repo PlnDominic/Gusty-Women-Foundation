@@ -13,7 +13,7 @@ export function PhotoGallery() {
     <section style={{ padding: 'clamp(56px,8vw,104px) clamp(16px,4vw,40px)', background: '#fff' }}>
       <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
         <SectionHeading eyebrow="Our Community" title="Moments in Motion" align="center" style={{ marginBottom: 36 }} />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 4 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 4 }} className="gallery-grid">
           {/* Row 1: wide left + tall right */}
           <div style={{ gridColumn: 'span 2', height: 340, overflow: 'hidden' }}>
             <img src="/assets/gwf-school-visit.jpg" alt="GWF school visit" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />

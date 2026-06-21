@@ -33,7 +33,7 @@ export function Footer() {
         }}
         className="footer-grid"
       >
-        <div>
+        <div className="footer-logo">
           <Image
             src="/assets/logo-lockup.png"
             alt="Gutsy Women Foundation"

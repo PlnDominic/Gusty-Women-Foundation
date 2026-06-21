@@ -70,7 +70,7 @@ export default function ProgramsPage() {
       <section style={{ padding: 'clamp(56px,8vw,104px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
         <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
           <SectionHeading eyebrow="Our Programs In Action" title="See What We Do" style={{ marginBottom: 36 }} />
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 3 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 3 }} className="gallery-grid">
             <div style={{ gridColumn: 'span 2', height: 320, overflow: 'hidden' }}>
               <img src="/assets/gwf-school-visit.jpg" alt="GWF school visit" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
             </div>

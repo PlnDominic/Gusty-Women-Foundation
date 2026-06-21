@@ -57,6 +57,7 @@ export function Newsletter() {
             ) : (
               <form
                 onSubmit={handleSubmit}
+                className="newsletter-form"
                 style={{
                   display: 'flex',
                   gap: 10,

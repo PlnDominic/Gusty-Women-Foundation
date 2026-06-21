@@ -44,7 +44,7 @@ export function WhatWeDo() {
         className="hero-grid"
       >
         {/* Left — photo */}
-        <div style={{ position: 'relative', minHeight: 560 }}>
+        <div style={{ position: 'relative', minHeight: 560 }} className="whatwedo-photo">
           <img
             src="/assets/gwf-mentorship-convo.jpg"
             alt="GWF mentorship in action"

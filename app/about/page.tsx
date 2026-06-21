@@ -107,7 +107,7 @@ export default function AboutPage() {
       <section style={{ padding: 'clamp(56px,7vw,96px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
         <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
           <SectionHeading eyebrow="In Action" title="Moments That Matter" align="center" style={{ marginBottom: 36 }} />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 3 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 3 }} className="gallery-grid">
             {/* Row 1: wide + narrow */}
             <div style={{ gridColumn: 'span 2', height: 300, overflow: 'hidden' }}>
               <img src={GALLERY[0].src} alt={GALLERY[0].alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
