@@ -64,10 +64,10 @@ export function CEOSection() {
 
             <div style={{ width: 48, height: 4, background: 'var(--gwf-gold-500)', margin: '20px 0' }} />
 
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: 0 }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: 0, textAlign: 'justify' }}>
               Hello, I am the Founder and Chief Executive of the Gutsy Women Foundation (GWF). An organisation which believes that every woman and girl deserves access to mentorship, training and networking that transforms ambition into achievement.
             </p>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: '16px 0 0' }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: '16px 0 0', textAlign: 'justify' }}>
               My vision has brought together hundreds of women, world-class mentors and committed sponsors under one roof, building a movement that goes far beyond a single event. My leadership of the GWF is based on purpose, passion and a deep commitment to leveling the playing field.
             </p>
 
