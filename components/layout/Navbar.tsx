@@ -11,6 +11,9 @@ const NAV = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Programs', href: '/programs' },
+  { label: 'Mentors', href: '/mentors' },
+  { label: 'Alumni', href: '/alumni' },
+  { label: 'Impact', href: '/impact' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ]
@@ -62,7 +65,7 @@ export function Navbar() {
         </Link>
 
         <nav
-          style={{ marginLeft: 'auto', display: 'flex', gap: 28, alignItems: 'center' }}
+          style={{ marginLeft: 'auto', display: 'flex', gap: 18, alignItems: 'center' }}
           className="desktop-nav"
         >
           {NAV.map((n) => (

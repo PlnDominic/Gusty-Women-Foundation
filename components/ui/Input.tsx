@@ -11,6 +11,7 @@ interface InputProps {
   onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   required?: boolean
   hint?: string
+  error?: string
   multiline?: boolean
   rows?: number
   style?: CSSProperties
@@ -29,6 +30,7 @@ export function Input({
   onChange,
   required = false,
   hint = '',
+  error = '',
   multiline = false,
   rows = 4,
   style = {},
@@ -48,8 +50,8 @@ export function Input({
     padding: '12px 16px',
     borderRadius: 'var(--radius-md)',
     background: '#fff',
-    border: `1.5px solid ${focus ? 'var(--gwf-purple-500)' : 'var(--border-subtle)'}`,
-    boxShadow: focus ? '0 0 0 4px rgba(91,45,142,0.12)' : 'none',
+    border: `1.5px solid ${error ? 'var(--gwf-magenta-600)' : focus ? 'var(--gwf-purple-500)' : 'var(--border-subtle)'}`,
+    boxShadow: error ? '0 0 0 4px rgba(194,24,91,0.12)' : focus ? '0 0 0 4px rgba(91,45,142,0.12)' : 'none',
     outline: 'none',
     transition: 'border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out)',
     resize: multiline ? 'vertical' : undefined,
@@ -75,6 +77,8 @@ export function Input({
           style={fieldStyle}
           name={name}
           id={id}
+          aria-invalid={Boolean(error)}
+          aria-describedby={error ? `${id || name || label}-error` : undefined}
         />
       ) : (
         <input
@@ -90,7 +94,14 @@ export function Input({
           id={id}
           min={min}
           max={max}
+          aria-invalid={Boolean(error)}
+          aria-describedby={error ? `${id || name || label}-error` : undefined}
         />
+      )}
+      {error && (
+        <span id={`${id || name || label}-error`} style={{ fontSize: 12.5, color: 'var(--gwf-magenta-600)', fontWeight: 600 }}>
+          {error}
+        </span>
       )}
       {hint && <span style={{ fontSize: 12.5, color: 'var(--gwf-ink-muted)' }}>{hint}</span>}
     </label>

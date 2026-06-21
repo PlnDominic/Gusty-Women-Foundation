@@ -20,7 +20,7 @@ export function TestimonialCarousel() {
       <div style={{ maxWidth: 880, margin: '0 auto', padding: '0 clamp(16px,4vw,40px)', textAlign: 'center' }}>
         <SectionHeading eyebrow="Voices" title="From Our Cohorts" align="center" onDark />
         <div style={{ position: 'relative', marginTop: 44 }}>
-          <span style={{ fontFamily: 'var(--font-display)', fontSize: 120, lineHeight: 0.6, color: 'var(--gwf-gold-500)', opacity: 0.5, display: 'block', height: 56 }}>"</span>
+          <span style={{ fontFamily: 'var(--font-display)', fontSize: 120, lineHeight: 0.6, color: 'var(--gwf-gold-500)', opacity: 0.5, display: 'block', height: 56 }}>&ldquo;</span>
           <p
             style={{
               fontFamily: 'var(--font-display)',

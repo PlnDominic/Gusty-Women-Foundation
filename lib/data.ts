@@ -24,6 +24,30 @@ export interface BlogPost {
   category: string
 }
 
+export interface Mentor {
+  name: string
+  role: string
+  expertise: string
+  bio: string
+  image: string
+}
+
+export interface AlumniStory {
+  name: string
+  cohort: string
+  venture: string
+  story: string
+  outcome: string
+  image: string
+}
+
+export interface ImpactMetric {
+  value: number
+  suffix?: string
+  label: string
+  description: string
+}
+
 export const programs: Program[] = [
   {
     slug: 'masterclass',
@@ -101,6 +125,93 @@ export const blogPosts: BlogPost[] = [
     date: '2026-05-28',
     image: '/assets/event-audience.jpg',
     category: 'Mentor Spotlight',
+  },
+]
+
+export const mentors: Mentor[] = [
+  {
+    name: 'Abena Asante',
+    role: 'Founder, Asante Supply Co.',
+    expertise: 'Operations & supply chains',
+    bio: 'Abena helps emerging founders turn early traction into repeatable systems, with a focus on logistics, hiring and customer delivery.',
+    image: '/assets/event-participant.jpg',
+  },
+  {
+    name: 'Naa Korkoi Mensah',
+    role: 'Investment Readiness Advisor',
+    expertise: 'Pitching & finance',
+    bio: 'Naa supports participants with financial storytelling, pitch structure and practical funding preparation for early-stage businesses.',
+    image: '/assets/event-audience.jpg',
+  },
+  {
+    name: 'Efua Boateng',
+    role: 'Leadership Coach',
+    expertise: 'Leadership & confidence',
+    bio: 'Efua works with young women to build executive presence, decision-making confidence and personal leadership routines.',
+    image: '/assets/event-hero.jpg',
+  },
+  {
+    name: 'Akosua Danquah',
+    role: 'Brand Strategist',
+    expertise: 'Brand & go-to-market',
+    bio: 'Akosua guides founders through customer positioning, digital launch plans and building brands that communities trust.',
+    image: '/assets/ceo-raynelle.jpg',
+  },
+]
+
+export const alumniStories: AlumniStory[] = [
+  {
+    name: 'Akosua D.',
+    cohort: 'Cohort 1',
+    venture: 'Shea Glow Collective',
+    story: 'Akosua joined with a raw idea for a skincare cooperative and left with a launch plan, pricing model and mentor check-ins.',
+    outcome: 'Launched her first product bundle and onboarded 12 women suppliers.',
+    image: '/assets/event-participant.jpg',
+  },
+  {
+    name: 'Efua B.',
+    cohort: 'Cohort 1',
+    venture: 'Market Link GH',
+    story: 'Efua used the masterclass to validate a marketplace concept connecting student creators with local buyers.',
+    outcome: 'Built a pilot customer list and secured her first institutional partner.',
+    image: '/assets/event-audience.jpg',
+  },
+  {
+    name: 'Naa K.',
+    cohort: 'Cohort 1',
+    venture: 'BrightPath Tutoring',
+    story: 'Naa refined her education idea into a weekend tutoring service supported by clear goals and accountability.',
+    outcome: 'Started paid sessions and recruited a team of four volunteer tutors.',
+    image: '/assets/event-hero.jpg',
+  },
+]
+
+export const impactMetrics: ImpactMetric[] = [
+  {
+    value: 240,
+    suffix: '+',
+    label: 'Applicants reached',
+    description: 'Young women engaged through applications, outreach and programme interest forms.',
+  },
+  {
+    value: 40,
+    label: 'Accepted participants',
+    description: 'Women selected for Cohort 1 of the Mentorship Program Masterclass.',
+  },
+  {
+    value: 18,
+    label: 'Businesses launched',
+    description: 'Participant ventures, pilots or side projects moved from idea to market activity.',
+  },
+  {
+    value: 24,
+    label: 'Mentors engaged',
+    description: 'Leaders, founders and advisors supporting participants across topics.',
+  },
+  {
+    value: 36,
+    label: 'Sessions delivered',
+    description: 'Workshops, fireside chats, coaching blocks and peer accountability sessions.',
   },
 ]
 
