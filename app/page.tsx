@@ -1,5 +1,4 @@
 import { HeroSection } from '@/components/home/HeroSection'
-import { StatStrip } from '@/components/home/StatStrip'
 import { CEOSection } from '@/components/home/CEOSection'
 import { FeaturedProgram } from '@/components/home/FeaturedProgram'
 import { WhatWeDo } from '@/components/home/WhatWeDo'
@@ -11,7 +10,6 @@ export default function HomePage() {
   return (
     <main>
       <HeroSection />
-      <StatStrip />
       <CEOSection />
       <FeaturedProgram />
       <WhatWeDo />
