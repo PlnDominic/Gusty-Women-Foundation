@@ -1,0 +1,25 @@
+<!-- @dsCard group="Colors" viewport="700x140" name="Neutrals & Text" subtitle="Ink, surfaces, hairline" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; font-family: var(--font-body); background: var(--surface-page); }
+  .row { display: flex; gap: 8px; padding: 18px; }
+  .sw { flex: 1; height: 84px; border-radius: 10px; display: flex; flex-direction: column; justify-content: flex-end; padding: 8px 10px; box-sizing: border-box; }
+  .sw b { font: var(--text-xs); font-weight: 700; }
+  .sw span { font: var(--text-xs); opacity: .8; }
+  .dark { color: #fff; } .light { color: var(--gwf-ink); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw dark" style="background:var(--gwf-ink)"><b>Ink</b><span>#1A1A2E</span></div>
+    <div class="sw dark" style="background:var(--gwf-ink-soft)"><b>Ink soft</b><span>#41415A</span></div>
+    <div class="sw dark" style="background:var(--gwf-ink-muted)"><b>Ink muted</b><span>#6E6E85</span></div>
+    <div class="sw light" style="background:var(--gwf-line)"><b>Hairline</b><span>#E7E0F2</span></div>
+    <div class="sw light" style="background:#fff;border:1px solid var(--border-subtle)"><b>White</b><span>#FFFFFF</span></div>
+  </div>
+</body>
+</html>

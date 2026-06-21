@@ -1,0 +1,33 @@
+/* Gutsy Women Foundation — Typography tokens */
+:root {
+  --font-display: 'Montserrat', system-ui, sans-serif; /* bold uppercase headings */
+  --font-body: 'Inter', system-ui, sans-serif;          /* body & UI */
+
+  /* Weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  --weight-black: 900;
+
+  /* Display scale (Montserrat, tight, often uppercase) */
+  --display-hero: 800 clamp(40px, 6vw, 76px)/0.98 var(--font-display);
+  --display-1: 800 clamp(34px, 4.4vw, 54px)/1.02 var(--font-display);
+  --display-2: 800 clamp(26px, 3vw, 38px)/1.06 var(--font-display);
+  --display-3: 800 22px/1.15 var(--font-display);
+
+  /* Body scale (Inter) */
+  --text-lead: 400 20px/1.55 var(--font-body);
+  --text-base: 400 16px/1.6 var(--font-body);
+  --text-sm: 400 14px/1.55 var(--font-body);
+  --text-xs: 500 12px/1.4 var(--font-body);
+
+  /* Eyebrow / label — uppercase tracked */
+  --label-eyebrow: 700 13px/1.2 var(--font-body);
+
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.08em;
+  --tracking-eyebrow: 0.14em;
+}

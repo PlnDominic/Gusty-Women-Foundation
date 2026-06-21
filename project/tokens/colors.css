@@ -1,0 +1,53 @@
+/* Gutsy Women Foundation — Color tokens */
+:root {
+  /* ---- Brand primitives ---- */
+  --gwf-purple-900: #2E1247; /* deepest, flyer background base */
+  --gwf-purple-800: #3D1A5E;
+  --gwf-purple-700: #4A2275;
+  --gwf-purple-600: #5B2D8E; /* PRIMARY deep purple */
+  --gwf-purple-500: #6F3DA6;
+  --gwf-purple-400: #8C5FC0;
+  --gwf-purple-300: #B193D8;
+  --gwf-purple-200: #D4C2EC;
+  --gwf-purple-100: #F3EEFF; /* light lavender background */
+
+  --gwf-gold-600: #C99A0E;
+  --gwf-gold-500: #F5C518; /* ACCENT yellow-gold */
+  --gwf-gold-300: #FADF73;
+  --gwf-gold-100: #FEF6D6;
+
+  --gwf-magenta-700: #9C1349;
+  --gwf-magenta-600: #C2185B; /* SECONDARY hot pink / magenta */
+  --gwf-magenta-400: #E0457F;
+  --gwf-magenta-100: #FBE3ED;
+
+  --gwf-ink: #1A1A2E;        /* dark charcoal text */
+  --gwf-ink-soft: #41415A;
+  --gwf-ink-muted: #6E6E85;
+  --gwf-white: #FFFFFF;
+  --gwf-line: #E7E0F2;       /* hairline on lavender */
+
+  /* ---- Semantic aliases ---- */
+  --color-primary: var(--gwf-purple-600);
+  --color-primary-strong: var(--gwf-purple-700);
+  --color-primary-soft: var(--gwf-purple-100);
+  --color-accent: var(--gwf-gold-500);
+  --color-secondary: var(--gwf-magenta-600);
+
+  --text-body: var(--gwf-ink);
+  --text-soft: var(--gwf-ink-soft);
+  --text-muted: var(--gwf-ink-muted);
+  --text-on-primary: var(--gwf-white);
+  --text-on-accent: var(--gwf-ink);
+
+  --surface-page: var(--gwf-white);
+  --surface-alt: var(--gwf-purple-100);
+  --surface-card: var(--gwf-white);
+  --surface-invert: var(--gwf-purple-600);
+  --surface-invert-deep: var(--gwf-purple-900);
+
+  --border-subtle: var(--gwf-line);
+  --border-strong: var(--gwf-purple-200);
+
+  --focus-ring: var(--gwf-gold-500);
+}

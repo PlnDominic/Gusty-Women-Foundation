@@ -1,0 +1,28 @@
+<!-- @dsCard group="Brand" viewport="700x180" name="Capsules & gold swoosh" subtitle="Signature pill + underline" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; font-family: var(--font-body); background: linear-gradient(135deg, var(--gwf-purple-600), var(--gwf-purple-900)); padding: 26px; display: flex; flex-direction: column; gap: 16px; }
+  .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .cap { border-radius: var(--radius-pill); padding: 9px 18px; font: var(--text-sm); font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+  .solid { background: var(--gwf-purple-400); color: #fff; }
+  .gold { background: var(--gwf-gold-500); color: var(--gwf-ink); }
+  .magenta { background: var(--gwf-magenta-600); color: #fff; }
+  .outline { border: 2px solid rgba(255,255,255,.7); color: #fff; }
+  .head { font: var(--display-2); text-transform: uppercase; color: #fff; position: relative; display: inline-block; margin: 0; }
+  .head::after { content:""; position:absolute; left:2px; right:30%; bottom:0px; height:7px; background:var(--gwf-gold-500); border-radius:7px; transform: rotate(-1.2deg); }
+</style>
+</head>
+<body>
+  <div class="head">Masterclass</div>
+  <div class="row">
+    <span class="cap solid">Cohort 2</span>
+    <span class="cap gold">8:00AM Each Day</span>
+    <span class="cap magenta">Apply Now</span>
+    <span class="cap outline">Yota East, Legon</span>
+  </div>
+</body>
+</html>

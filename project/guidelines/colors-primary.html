@@ -1,0 +1,27 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Primary — Purple" subtitle="Deep purple anchor + ramp" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; font-family: var(--font-body); background: var(--surface-page); }
+  .row { display: flex; gap: 0; padding: 18px; }
+  .sw { flex: 1; height: 96px; border-radius: 10px; margin-right: 8px; display: flex; flex-direction: column; justify-content: flex-end; padding: 8px 10px; box-sizing: border-box; }
+  .sw:last-child { margin-right: 0; }
+  .sw b { font: var(--text-xs); font-weight: 700; letter-spacing: .02em; }
+  .sw span { font: var(--text-xs); opacity: .85; font-feature-settings: "tnum"; }
+  .dark { color: #fff; } .light { color: var(--gwf-ink); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw dark" style="background:var(--gwf-purple-900)"><b>900</b><span>#2E1247</span></div>
+    <div class="sw dark" style="background:var(--gwf-purple-700)"><b>700</b><span>#4A2275</span></div>
+    <div class="sw dark" style="background:var(--gwf-purple-600)"><b>600 · Primary</b><span>#5B2D8E</span></div>
+    <div class="sw dark" style="background:var(--gwf-purple-400)"><b>400</b><span>#8C5FC0</span></div>
+    <div class="sw light" style="background:var(--gwf-purple-200)"><b>200</b><span>#D4C2EC</span></div>
+    <div class="sw light" style="background:var(--gwf-purple-100);border:1px solid var(--border-subtle)"><b>100 · Lavender</b><span>#F3EEFF</span></div>
+  </div>
+</body>
+</html>
