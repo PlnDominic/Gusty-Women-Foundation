@@ -32,7 +32,7 @@ function SocialBtn({ icon, href, label }: { icon: string; href: string; label: s
       style={{
         width: 44,
         height: 44,
-        borderRadius: '50%',
+        borderRadius: 0,
         background: hover ? 'var(--gwf-purple-600)' : 'var(--gwf-purple-100)',
         color: hover ? '#fff' : 'var(--gwf-purple-700)',
         display: 'inline-flex',

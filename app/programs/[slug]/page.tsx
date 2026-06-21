@@ -82,7 +82,7 @@ export default function ProgramDetailPage({ params }: { params: { slug: string }
 function Meta({ icon, text }: { icon: string; text: string }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 12, color: '#fff' }}>
-      <span style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,.12)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gwf-gold-500)', flexShrink: 0 }}>
+      <span style={{ width: 36, height: 36, borderRadius: 0, background: 'rgba(255,255,255,.12)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gwf-gold-500)', flexShrink: 0 }}>
         <Icon name={icon} size={17} />
       </span>
       <span style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 15 }}>{text}</span>

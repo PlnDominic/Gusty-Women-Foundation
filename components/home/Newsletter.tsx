@@ -52,7 +52,7 @@ export function Newsletter() {
             {done ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-body)', fontWeight: 700, color: 'var(--gwf-purple-700)', fontSize: 16 }}>
                 <Icon name="check" size={20} />
-                You&apos;re subscribed — thank you!
+                You&apos;re subscribed. Thank you!
               </div>
             ) : (
               <form

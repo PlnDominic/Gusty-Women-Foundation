@@ -5,7 +5,7 @@ import { Capsule } from '@/components/ui/Capsule'
 import { Icon } from '@/components/ui/Icon'
 
 const FACTS = [
-  { icon: 'calendar', text: '5th – 7th August 2026' },
+  { icon: 'calendar', text: '5th - 7th August 2026' },
   { icon: 'clock', text: '8:00AM Each Day' },
   { icon: 'map-pin', text: 'Yota East, Legon' },
 ]
@@ -74,7 +74,7 @@ export function FeaturedProgram() {
                     style={{
                       width: 38,
                       height: 38,
-                      borderRadius: '50%',
+                      borderRadius: 0,
                       background: 'rgba(255,255,255,.12)',
                       display: 'inline-flex',
                       alignItems: 'center',

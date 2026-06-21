@@ -60,7 +60,7 @@ function Pillar({ icon, title, body, accent }: { icon: string; title: string; bo
         style={{
           width: 54,
           height: 54,
-          borderRadius: 16,
+          borderRadius: 0,
           background: ACCENT_BG[accent],
           color: ACCENT_COLOR[accent],
           display: 'inline-flex',

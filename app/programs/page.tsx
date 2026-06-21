@@ -9,7 +9,7 @@ import { programs } from '@/lib/data'
 
 export const metadata: Metadata = {
   title: 'Programs',
-  description: 'Explore GWF programs — Masterclass, Bootcamps, and Webinars for ambitious young women in Ghana.',
+  description: 'Explore GWF programs: Masterclass, Bootcamps, and Webinars for ambitious young women in Ghana.',
 }
 
 export default function ProgramsPage() {
@@ -21,7 +21,7 @@ export default function ProgramsPage() {
           <span style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--gwf-gold-500)' }}>What We Offer</span>
           <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', color: '#fff', fontSize: 'clamp(36px,5vw,64px)', lineHeight: 1, margin: '16px 0 0' }}>Our Programs</h1>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 18, lineHeight: 1.6, color: 'rgba(255,255,255,.82)', margin: '20px 0 0' }}>
-            From intensive masterclasses to monthly webinars — each programme is designed to move you forward.
+            From intensive masterclasses to monthly webinars, each programme is designed to move you forward.
           </p>
         </div>
       </section>
@@ -32,7 +32,7 @@ export default function ProgramsPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <Capsule tone="gold" size="sm">Open Now</Capsule>
             <span style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 15, color: 'var(--gwf-ink)' }}>
-              Cohort 2 Masterclass — 5–7 Aug 2026 · Yota East, Legon
+              Cohort 2 Masterclass: 5-7 Aug 2026 · Yota East, Legon
             </span>
           </div>
           <Link href="/apply" style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 14, color: 'var(--gwf-purple-700)', display: 'flex', alignItems: 'center', gap: 6 }}>

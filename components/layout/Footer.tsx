@@ -41,7 +41,7 @@ export function Footer() {
             style={{ height: 46, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.96 }}
           />
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 14.5, lineHeight: 1.6, color: 'rgba(255,255,255,.65)', margin: '18px 0 0', maxWidth: 280 }}>
-            Leveling the playing field for young women in Ghana — through mentorship, training and community.
+            Leveling the playing field for young women in Ghana through mentorship, training and community.
           </p>
           <div style={{ display: 'flex', gap: 10, marginTop: 22 }}>
             {SOCIALS.map((s) => <SocialBtn key={s.name} name={s.name} href={s.href} />)}
@@ -103,7 +103,7 @@ function SocialBtn({ name, href }: { name: string; href: string }) {
       style={{
         width: 38,
         height: 38,
-        borderRadius: '50%',
+        borderRadius: 0,
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',

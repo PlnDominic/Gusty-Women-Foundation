@@ -4,7 +4,7 @@ import { Newsletter } from '@/components/home/Newsletter'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'Learn about Gutsy Women Foundation — our mission, vision, and the team behind the work.',
+  description: 'Learn about Gutsy Women Foundation: our mission, vision, and the team behind the work.',
 }
 
 const TEAM = [
@@ -15,7 +15,7 @@ const TEAM = [
 
 const TIMELINE = [
   { year: '2024', text: 'Gutsy Women Foundation founded with a mission to level the playing field for young women in Ghana.' },
-  { year: '2025', text: 'Launched Cohort 1 of the Mentorship Program Masterclass — 40 women, 3 days, one city.' },
+  { year: '2025', text: 'Launched Cohort 1 of the Mentorship Program Masterclass: 40 women, 3 days, one city.' },
   { year: '2026', text: 'Cohort 2 announced with expanded programme, new mentors and a focus on Ignite • Build • Scale.' },
 ]
 
@@ -28,7 +28,7 @@ export default function AboutPage() {
           <span style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--gwf-gold-500)' }}>Our Story</span>
           <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', color: '#fff', fontSize: 'clamp(36px,5vw,64px)', lineHeight: 1, margin: '16px 0 0' }}>About Us</h1>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 18, lineHeight: 1.6, color: 'rgba(255,255,255,.82)', margin: '20px 0 0' }}>
-            The Gutsy Women Foundation exists to level the playing field — giving young women in Ghana the mentorship, training and community they need to move beyond dreaming and start building.
+            The Gutsy Women Foundation exists to level the playing field, giving young women in Ghana the mentorship, training and community they need to move beyond dreaming and start building.
           </p>
         </div>
       </section>
@@ -39,13 +39,13 @@ export default function AboutPage() {
           <div>
             <SectionHeading eyebrow="Our Purpose" title="Mission" align="left" />
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: '20px 0 0' }}>
-              To empower young women across Ghana by providing access to world-class mentorship, practical training and powerful networks — enabling them to build sustainable enterprises and lead in their communities.
+              To empower young women across Ghana by providing access to world-class mentorship, practical training and powerful networks, enabling them to build sustainable enterprises and lead in their communities.
             </p>
           </div>
           <div>
             <SectionHeading eyebrow="Our Ambition" title="Vision" align="left" />
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: '20px 0 0' }}>
-              A Ghana — and a continent — where no young woman is held back by lack of access. Where ambition meets opportunity, and every dream has a pathway to reality.
+              A Ghana and a continent where no young woman is held back by lack of access. Where ambition meets opportunity, and every dream has a pathway to reality.
             </p>
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function AboutPage() {
             {TIMELINE.map((t, i) => (
               <div key={t.year} style={{ display: 'flex', gap: 28, position: 'relative' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-                  <div style={{ width: 52, height: 52, borderRadius: '50%', background: 'var(--gwf-purple-600)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 14, flexShrink: 0 }}>{t.year}</div>
+                  <div style={{ width: 52, height: 52, borderRadius: 0, background: 'var(--gwf-purple-600)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 14, flexShrink: 0 }}>{t.year}</div>
                   {i < TIMELINE.length - 1 && <div style={{ width: 2, flex: 1, background: 'var(--gwf-purple-200)', margin: '6px 0' }} />}
                 </div>
                 <div style={{ paddingBottom: i < TIMELINE.length - 1 ? 40 : 0, paddingTop: 12 }}>

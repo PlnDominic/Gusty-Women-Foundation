@@ -69,7 +69,7 @@ export function SectionHeading({
                   bottom: 2,
                   height: 7,
                   background: 'var(--gwf-gold-500)',
-                  borderRadius: 7,
+                  borderRadius: 0,
                   transform: 'rotate(-1deg)',
                   opacity: 0.7,
                 }}

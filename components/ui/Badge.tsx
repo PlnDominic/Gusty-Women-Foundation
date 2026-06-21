@@ -35,7 +35,7 @@ export function Badge({ children, tone = 'open', style = {} }: BadgeProps) {
         ...style,
       }}
     >
-      <span style={{ width: 7, height: 7, borderRadius: '50%', background: t.dot, flexShrink: 0 }} />
+      <span style={{ width: 7, height: 7, borderRadius: 0, background: t.dot, flexShrink: 0 }} />
       {children}
     </span>
   )

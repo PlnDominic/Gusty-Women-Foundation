@@ -189,7 +189,7 @@ function NavLink({ href, label, active }: { href: string; label: string; active:
           height: 2.5,
           width: active || hover ? '100%' : '0%',
           background: active ? 'var(--gwf-purple-600)' : 'var(--gwf-gold-500)',
-          borderRadius: 2,
+          borderRadius: 0,
           transition: 'width var(--dur-base) var(--ease-out)',
         }}
       />

@@ -30,7 +30,7 @@ export function ContactForm() {
   if (done) {
     return (
       <div style={{ background: 'var(--gwf-purple-100)', borderRadius: 'var(--radius-xl)', padding: 'clamp(36px,5vw,52px)', textAlign: 'center' }}>
-        <span style={{ width: 68, height: 68, borderRadius: '50%', background: 'var(--gwf-purple-600)', color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+        <span style={{ width: 68, height: 68, borderRadius: 0, background: 'var(--gwf-purple-600)', color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
           <Icon name="check" size={32} />
         </span>
         <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 24, color: 'var(--gwf-ink)', margin: '20px 0 0' }}>Message sent!</h3>

@@ -15,8 +15,8 @@ export function HeroSection() {
       }}
     >
       {/* Decorative glows */}
-      <div style={{ position: 'absolute', top: -120, right: -80, width: 360, height: 360, borderRadius: '50%', background: 'radial-gradient(circle,rgba(245,197,24,.18),transparent 70%)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: -140, left: -100, width: 380, height: 380, borderRadius: '50%', background: 'radial-gradient(circle,rgba(194,24,91,.22),transparent 70%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: -120, right: -80, width: 360, height: 360, background: 'radial-gradient(circle,rgba(245,197,24,.18),transparent 70%)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: -140, left: -100, width: 380, height: 380, background: 'radial-gradient(circle,rgba(194,24,91,.22),transparent 70%)', pointerEvents: 'none' }} />
 
       <div
         style={{
@@ -64,7 +64,7 @@ export function HeroSection() {
                   bottom: 4,
                   height: 9,
                   background: 'var(--gwf-gold-500)',
-                  borderRadius: 8,
+                  borderRadius: 0,
                   opacity: 0.35,
                   transform: 'rotate(-1.2deg)',
                 }}
@@ -83,7 +83,7 @@ export function HeroSection() {
               margin: '20px 0 0',
             }}
           >
-            We empower young women across Ghana with the mentorship, training and networks to move beyond dreaming — and start building.
+            We empower young women across Ghana with the mentorship, training and networks to move beyond dreaming and start building.
           </p>
 
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 30 }}>

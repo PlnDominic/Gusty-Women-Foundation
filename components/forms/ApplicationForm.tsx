@@ -62,8 +62,8 @@ export function ApplicationForm() {
           </h2>
         </div>
         <div style={{ marginTop: 22 }}>
-          <div style={{ height: 8, borderRadius: 8, background: 'rgba(255,255,255,.18)', overflow: 'hidden' }}>
-            <div style={{ width: pct + '%', height: '100%', background: 'var(--gwf-gold-500)', borderRadius: 8, transition: 'width var(--dur-slow) var(--ease-out)' }} />
+          <div style={{ height: 8, borderRadius: 0, background: 'rgba(255,255,255,.18)', overflow: 'hidden' }}>
+            <div style={{ width: pct + '%', height: '100%', background: 'var(--gwf-gold-500)', borderRadius: 0, transition: 'width var(--dur-slow) var(--ease-out)' }} />
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 10 }}>
             {STEPS.map((s, i) => (
@@ -147,7 +147,7 @@ function Review({ f, onEdit }: { f: FormData; onEdit: (step: number) => void }) 
               <div key={k} style={{ display: 'flex', gap: 12, fontFamily: 'var(--font-body)', fontSize: 14 }}>
                 <span style={{ width: 96, color: 'var(--gwf-ink-muted)', flexShrink: 0 }}>{k}</span>
                 <span style={{ color: 'var(--gwf-ink)', fontWeight: 500 }}>
-                  {v || <em style={{ color: 'var(--gwf-ink-muted)', fontWeight: 400 }}>—</em>}
+                  {v || <em style={{ color: 'var(--gwf-ink-muted)', fontWeight: 400 }}>N/A</em>}
                 </span>
               </div>
             ))}
@@ -162,7 +162,7 @@ function Success({ name, onReset }: { name: string; onReset: () => void }) {
   const first = name.split(' ')[0]
   return (
     <div style={{ maxWidth: 560, margin: '0 auto', background: '#fff', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', padding: 'clamp(36px,5vw,56px)', textAlign: 'center' }}>
-      <span style={{ width: 76, height: 76, borderRadius: '50%', background: 'var(--gwf-purple-100)', color: 'var(--gwf-purple-600)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+      <span style={{ width: 76, height: 76, borderRadius: 0, background: 'var(--gwf-purple-100)', color: 'var(--gwf-purple-600)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
         <Icon name="check" size={40} />
       </span>
       <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 30, color: 'var(--gwf-ink)', margin: '22px 0 0' }}>
@@ -173,7 +173,7 @@ function Success({ name, onReset }: { name: string; onReset: () => void }) {
       </p>
       <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 26 }}>
         {['facebook', 'twitter', 'instagram', 'linkedin'].map((s) => (
-          <span key={s} style={{ width: 42, height: 42, borderRadius: '50%', background: 'var(--gwf-purple-100)', color: 'var(--gwf-purple-700)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+          <span key={s} style={{ width: 42, height: 42, borderRadius: 0, background: 'var(--gwf-purple-100)', color: 'var(--gwf-purple-700)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
             <Icon name={s} size={19} />
           </span>
         ))}

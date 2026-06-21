@@ -38,7 +38,7 @@ export function TestimonialCarousel() {
             <img
               src={t.img}
               alt={t.n}
-              style={{ width: 52, height: 52, borderRadius: '50%', objectFit: 'cover', border: '3px solid var(--gwf-gold-500)' }}
+              style={{ width: 52, height: 52, borderRadius: 0, objectFit: 'cover', border: '3px solid var(--gwf-gold-500)' }}
             />
             <div style={{ textAlign: 'left' }}>
               <div style={{ fontFamily: 'var(--font-body)', fontWeight: 700, color: '#fff', fontSize: 15 }}>{t.n}</div>
@@ -55,7 +55,7 @@ export function TestimonialCarousel() {
                   style={{
                     width: k === idx ? 22 : 8,
                     height: 8,
-                    borderRadius: 8,
+                    borderRadius: 0,
                     background: k === idx ? 'var(--gwf-gold-500)' : 'rgba(255,255,255,.35)',
                     cursor: 'pointer',
                     transition: 'width var(--dur-base)',
@@ -84,7 +84,7 @@ function RoundBtn({ onClick, icon }: { onClick: () => void; icon: string }) {
       style={{
         width: 44,
         height: 44,
-        borderRadius: '50%',
+        borderRadius: 0,
         border: '2px solid rgba(255,255,255,.4)',
         background: h ? '#fff' : 'transparent',
         color: h ? 'var(--gwf-purple-700)' : '#fff',
