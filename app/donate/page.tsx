@@ -15,12 +15,6 @@ const FUNDS = [
   { icon: 'star', text: 'Scholarship support for women who cannot afford the programme fee' },
 ]
 
-const MOMO = [
-  { network: 'MTN Mobile Money', number: '055 XXX XXXX', color: 'var(--gwf-gold-500)' },
-  { network: 'Vodafone Cash', color: '#E60000' },
-  { network: 'AirtelTigo Money', color: '#EF3B24' },
-]
-
 export default function DonatePage() {
   return (
     <main>
@@ -85,42 +79,6 @@ export default function DonatePage() {
                   <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', margin: '4px 0 0' }}>{l}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mobile Money */}
-      <section style={{ padding: 'clamp(48px,7vw,80px) clamp(16px,4vw,40px)', background: 'var(--gwf-gold-100)', borderTop: '1px solid var(--gwf-gold-300)' }}>
-        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
-          <div style={{ maxWidth: 720 }}>
-            <span style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--gwf-gold-600)' }}>Mobile Money</span>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(22px,2.5vw,32px)', color: 'var(--gwf-ink)', margin: '12px 0 8px' }}>
-              Prefer to Pay Directly?
-            </h2>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.65, color: 'var(--gwf-ink-soft)', margin: '0 0 28px' }}>
-              Send your donation via Mobile Money using the details below, then email us at <a href="mailto:gutsywomenfoundation@gmail.com" style={{ color: 'var(--gwf-purple-700)', fontWeight: 600 }}>gutsywomenfoundation@gmail.com</a> with a screenshot of your transaction and your name.
-            </p>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16 }} className="stat-grid">
-              {[
-                { network: 'MTN Mobile Money', hint: 'Send to GWF MoMo number', color: '#FFC300' },
-                { network: 'Vodafone Cash', hint: 'Send to GWF Vodafone number', color: '#E60000' },
-                { network: 'AirtelTigo Money', hint: 'Send to GWF AirtelTigo number', color: '#EF3B24' },
-              ].map((m) => (
-                <div key={m.network} style={{ background: '#fff', padding: 20, border: '1px solid var(--gwf-gold-300)' }}>
-                  <div style={{ width: 10, height: 10, background: m.color, marginBottom: 10 }} />
-                  <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 14, color: 'var(--gwf-ink)', margin: '0 0 6px' }}>{m.network}</p>
-                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', margin: 0, lineHeight: 1.5 }}>{m.hint}</p>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ marginTop: 20, padding: '14px 18px', background: 'rgba(91,45,142,.08)', border: '1px solid var(--gwf-purple-200)', display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-              <Icon name="info" size={16} color="var(--gwf-purple-600)" />
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.6, color: 'var(--gwf-ink-soft)', margin: 0 }}>
-                Contact us to get our current Mobile Money numbers. Use your full name as the payment reference so we can match your contribution.
-              </p>
             </div>
           </div>
         </div>
