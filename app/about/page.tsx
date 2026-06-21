@@ -8,9 +8,21 @@ export const metadata: Metadata = {
 }
 
 const TEAM = [
-  { name: 'Founder & Executive Director', role: 'Visionary leader behind GWF', img: '/assets/event-participant.jpg' },
-  { name: 'Program Lead', role: 'Designing transformative learning experiences', img: '/assets/event-audience.jpg' },
-  { name: 'Partnerships Manager', role: 'Building the sponsor & mentor network', img: '/assets/event-hero.jpg' },
+  { name: 'Founder & Executive Director', role: 'Visionary leader behind GWF', img: '/assets/gwf-podium.jpg' },
+  { name: 'Program Lead', role: 'Designing transformative learning experiences', img: '/assets/gwf-speaker-mic.jpg' },
+  { name: 'Partnerships Manager', role: 'Building the sponsor & mentor network', img: '/assets/gwf-community-outreach.jpg' },
+]
+
+const GALLERY = [
+  { src: '/assets/gwf-school-visit.jpg', alt: 'GWF school visit' },
+  { src: '/assets/gwf-group-photo.jpg', alt: 'GWF community group photo' },
+  { src: '/assets/gwf-purple-mic.jpg', alt: 'GWF speaker with microphone' },
+  { src: '/assets/gwf-cake-cutting.jpg', alt: 'GWF celebration ceremony' },
+  { src: '/assets/gwf-mentorship-convo.jpg', alt: 'GWF one-on-one mentorship' },
+  { src: '/assets/gwf-team-tshirts.jpg', alt: 'GWF team in branded t-shirts' },
+  { src: '/assets/gwf-podium.jpg', alt: 'GWF speaker at podium' },
+  { src: '/assets/gwf-speaker-mic.jpg', alt: 'GWF speaker seated with mic' },
+  { src: '/assets/gwf-community-outreach.jpg', alt: 'GWF community outreach' },
 ]
 
 const TIMELINE = [
@@ -87,6 +99,42 @@ export default function AboutPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section style={{ padding: 'clamp(56px,7vw,96px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
+        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+          <SectionHeading eyebrow="In Action" title="Moments That Matter" align="center" style={{ marginBottom: 36 }} />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 3 }}>
+            {/* Row 1: wide + narrow */}
+            <div style={{ gridColumn: 'span 2', height: 300, overflow: 'hidden' }}>
+              <img src={GALLERY[0].src} alt={GALLERY[0].alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+            </div>
+            <div style={{ height: 300, overflow: 'hidden' }}>
+              <img src={GALLERY[1].src} alt={GALLERY[1].alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+            </div>
+            {/* Row 2: three equal */}
+            {GALLERY.slice(2, 5).map((g) => (
+              <div key={g.src} style={{ height: 240, overflow: 'hidden' }}>
+                <img src={g.src} alt={g.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+            ))}
+            {/* Row 3: narrow + wide */}
+            <div style={{ height: 280, overflow: 'hidden' }}>
+              <img src={GALLERY[5].src} alt={GALLERY[5].alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+            <div style={{ gridColumn: 'span 2', height: 280, overflow: 'hidden' }}>
+              <img src={GALLERY[6].src} alt={GALLERY[6].alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+            {/* Row 4: two + one */}
+            <div style={{ gridColumn: 'span 2', height: 260, overflow: 'hidden' }}>
+              <img src={GALLERY[7].src} alt={GALLERY[7].alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+            </div>
+            <div style={{ height: 260, overflow: 'hidden' }}>
+              <img src={GALLERY[8].src} alt={GALLERY[8].alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
           </div>
         </div>
       </section>

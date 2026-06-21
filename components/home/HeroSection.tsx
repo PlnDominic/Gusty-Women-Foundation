@@ -109,13 +109,13 @@ export function HeroSection() {
         {/* Right column — photos */}
         <div style={{ position: 'relative', minHeight: 380 }} className="hero-photos">
           <Photo
-            src="/assets/event-audience.jpg"
-            alt="Cohort event audience"
+            src="/assets/gwf-group-photo.jpg"
+            alt="GWF community group"
             style={{ position: 'absolute', top: 0, right: 28, width: '74%', height: 250, transform: 'rotate(2.5deg)', zIndex: 2 }}
           />
           <Photo
-            src="/assets/event-participant.jpg"
-            alt="Program participant"
+            src="/assets/gwf-cake-cutting.jpg"
+            alt="GWF celebration"
             style={{ position: 'absolute', bottom: 0, left: 0, width: '62%', height: 220, transform: 'rotate(-3deg)', zIndex: 3 }}
           />
           <div style={{ position: 'absolute', bottom: 26, right: 0, zIndex: 4 }}>

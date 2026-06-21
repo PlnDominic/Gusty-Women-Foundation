@@ -46,7 +46,7 @@ export function CommunityImpact() {
           {/* Left: dark image with overlay text */}
           <div style={{ position: 'relative', minHeight: 380 }}>
             <img
-              src="/assets/event-hero.jpg"
+              src="/assets/gwf-community-outreach.jpg"
               alt="GWF community event"
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />

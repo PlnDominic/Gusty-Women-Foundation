@@ -66,6 +66,30 @@ export default function ProgramsPage() {
         </div>
       </section>
 
+      {/* Photo gallery */}
+      <section style={{ padding: 'clamp(56px,8vw,104px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
+        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+          <SectionHeading eyebrow="Our Programs In Action" title="See What We Do" style={{ marginBottom: 36 }} />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 3 }}>
+            <div style={{ gridColumn: 'span 2', height: 320, overflow: 'hidden' }}>
+              <img src="/assets/gwf-school-visit.jpg" alt="GWF school visit" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+            </div>
+            <div style={{ height: 320, overflow: 'hidden' }}>
+              <img src="/assets/gwf-purple-mic.jpg" alt="GWF speaker" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+            </div>
+            <div style={{ height: 260, overflow: 'hidden' }}>
+              <img src="/assets/gwf-mentorship-convo.jpg" alt="GWF mentorship" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+            <div style={{ height: 260, overflow: 'hidden' }}>
+              <img src="/assets/gwf-team-tshirts.jpg" alt="GWF team" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+            <div style={{ height: 260, overflow: 'hidden' }}>
+              <img src="/assets/gwf-cake-cutting.jpg" alt="GWF celebration" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Newsletter />
     </main>
   )
