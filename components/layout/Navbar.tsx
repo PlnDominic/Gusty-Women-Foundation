@@ -75,7 +75,10 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }} className="desktop-nav">
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 10 }} className="desktop-nav">
+          <Link href="/donate">
+            <Button variant="gold" size="sm">Donate</Button>
+          </Link>
           <Link href="/apply">
             <Button variant="primary" size="sm">Apply Now</Button>
           </Link>
@@ -148,9 +151,12 @@ export function Navbar() {
                 {n.label}
               </Link>
             ))}
-            <div style={{ marginTop: 24 }}>
+            <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
+              <Link href="/donate" onClick={() => setOpen(false)}>
+                <Button variant="gold" size="lg">Donate</Button>
+              </Link>
               <Link href="/apply" onClick={() => setOpen(false)}>
-                <Button variant="gold" size="lg">Apply Now</Button>
+                <Button variant="outline-light" size="lg">Apply Now</Button>
               </Link>
             </div>
           </nav>
