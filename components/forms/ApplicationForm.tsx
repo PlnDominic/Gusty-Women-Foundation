@@ -5,22 +5,17 @@ import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Capsule } from '@/components/ui/Capsule'
 import { Icon } from '@/components/ui/Icon'
+import {
+  getApplicationStepErrors,
+  hasErrors,
+  validateApplication,
+  type ApplicationPayload,
+  type ValidationErrors,
+} from '@/lib/validation'
 
 const STEPS = ['Personal', 'Background', 'Motivation', 'Review'] as const
 
-interface FormData {
-  name: string
-  age: string
-  location: string
-  email: string
-  phone: string
-  education: string
-  occupation: string
-  why: string
-  goals: string
-}
-
-const EMPTY: FormData = {
+const EMPTY: ApplicationPayload = {
   name: '', age: '', location: '', email: '', phone: '',
   education: '', occupation: '', why: '', goals: '',
 }
@@ -29,24 +24,71 @@ export function ApplicationForm() {
   const [step, setStep] = React.useState(0)
   const [done, setDone] = React.useState(false)
   const [submitting, setSubmitting] = React.useState(false)
-  const [f, setF] = React.useState<FormData>(EMPTY)
+  const [f, setF] = React.useState<ApplicationPayload>(EMPTY)
+  const [errors, setErrors] = React.useState<ValidationErrors<ApplicationPayload>>({})
+  const [formError, setFormError] = React.useState('')
 
-  const set = (k: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setF((p) => ({ ...p, [k]: e.target.value }))
+  const set = (k: keyof ApplicationPayload) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const value = e.target.value
+    const next = { ...f, [k]: value }
+    const nextErrors = validateApplication(next)
+    setF(next)
+    setErrors((current) => ({ ...current, [k]: nextErrors[k] }))
+    setFormError('')
+  }
 
   const pct = ((step + 1) / STEPS.length) * 100
+  const currentStepErrors = getApplicationStepErrors(f, step)
+  const cannotContinue = submitting || hasErrors(currentStepErrors)
+
+  function goNext() {
+    const stepErrors = getApplicationStepErrors(f, step)
+    setErrors((p) => ({ ...p, ...stepErrors }))
+
+    if (hasErrors(stepErrors)) {
+      setFormError('Please fix the highlighted fields before continuing.')
+      return
+    }
+
+    setFormError('')
+    setStep(step + 1)
+  }
 
   async function submit() {
+    if (submitting) return
+
+    const validationErrors = validateApplication(f)
+    setErrors(validationErrors)
+
+    if (hasErrors(validationErrors)) {
+      setFormError('Please fix the highlighted fields before submitting.')
+      return
+    }
+
     setSubmitting(true)
+    setFormError('')
+
     try {
-      await fetch('/api/apply', {
+      const response = await fetch('/api/apply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(f),
       })
-    } catch {}
-    setSubmitting(false)
-    setDone(true)
+
+      const result = await response.json().catch(() => null)
+
+      if (!response.ok) {
+        if (result?.errors) setErrors(result.errors)
+        setFormError(result?.error || 'We could not submit your application. Please try again.')
+        return
+      }
+
+      setDone(true)
+    } catch {
+      setFormError('Network error. Please check your connection and try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   if (done) return <Success name={f.name} onReset={() => { setDone(false); setStep(0); setF(EMPTY) }} />
@@ -79,36 +121,42 @@ export function ApplicationForm() {
       <div style={{ padding: 'clamp(24px,4vw,40px)' }}>
         {step === 0 && (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }} className="apply-grid">
-            <Input label="Full name" placeholder="Ama Mensah" value={f.name} onChange={set('name')} required />
-            <Input label="Age" type="number" placeholder="22" value={f.age} onChange={set('age')} min="16" max="40" />
-            <Input label="Location" placeholder="Accra, Ghana" value={f.location} onChange={set('location')} required />
-            <Input label="Email" type="email" placeholder="you@example.com" value={f.email} onChange={set('email')} required />
-            <Input label="Phone" placeholder="+233 ..." value={f.phone} onChange={set('phone')} />
+            <Input label="Full name" placeholder="Ama Mensah" value={f.name} onChange={set('name')} error={errors.name} required />
+            <Input label="Age" type="number" placeholder="22" value={f.age} onChange={set('age')} error={errors.age} min="16" max="40" />
+            <Input label="Location" placeholder="Accra, Ghana" value={f.location} onChange={set('location')} error={errors.location} required />
+            <Input label="Email" type="email" placeholder="you@example.com" value={f.email} onChange={set('email')} error={errors.email} required />
+            <Input label="Phone" placeholder="+233 ..." value={f.phone} onChange={set('phone')} error={errors.phone} />
           </div>
         )}
 
         {step === 1 && (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }} className="apply-grid">
-            <Input label="Highest education" placeholder="BSc, University of Ghana" value={f.education} onChange={set('education')} />
-            <Input label="Current occupation" placeholder="Student / Founder / Employed" value={f.occupation} onChange={set('occupation')} />
+            <Input label="Highest education" placeholder="BSc, University of Ghana" value={f.education} onChange={set('education')} error={errors.education} required />
+            <Input label="Current occupation" placeholder="Student / Founder / Employed" value={f.occupation} onChange={set('occupation')} error={errors.occupation} required />
           </div>
         )}
 
         {step === 2 && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-            <Input label="Why do you want to join Cohort 2?" multiline rows={4} placeholder="Tell us about the idea you want to build..." value={f.why} onChange={set('why')} required />
-            <Input label="What goals do you hope to achieve?" multiline rows={4} placeholder="Where do you want to be in 12 months?" value={f.goals} onChange={set('goals')} />
+            <Input label="Why do you want to join Cohort 2?" multiline rows={4} placeholder="Tell us about the idea you want to build..." value={f.why} onChange={set('why')} error={errors.why} required />
+            <Input label="What goals do you hope to achieve?" multiline rows={4} placeholder="Where do you want to be in 12 months?" value={f.goals} onChange={set('goals')} error={errors.goals} required />
           </div>
         )}
 
         {step === 3 && <Review f={f} onEdit={setStep} />}
+
+        {formError && (
+          <div role="alert" style={{ marginTop: 22, background: 'var(--gwf-magenta-100)', color: 'var(--gwf-magenta-700)', border: '1px solid rgba(194,24,91,.25)', padding: '12px 14px', fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 600 }}>
+            {formError}
+          </div>
+        )}
 
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 30, gap: 12 }}>
           <Button variant="ghost" onClick={() => step > 0 ? setStep(step - 1) : undefined}>
             {step === 0 ? '' : 'Back'}
           </Button>
           {step < STEPS.length - 1 ? (
-            <Button variant="primary" iconRight={<Icon name="arrow-right" size={18} />} onClick={() => setStep(step + 1)}>
+            <Button variant="primary" iconRight={<Icon name="arrow-right" size={18} />} onClick={goNext} disabled={cannotContinue}>
               Continue
             </Button>
           ) : (
@@ -122,7 +170,7 @@ export function ApplicationForm() {
   )
 }
 
-function Review({ f, onEdit }: { f: FormData; onEdit: (step: number) => void }) {
+function Review({ f, onEdit }: { f: ApplicationPayload; onEdit: (step: number) => void }) {
   const sections = [
     { title: 'Personal', step: 0, items: [['Name', f.name], ['Age', f.age], ['Location', f.location], ['Email', f.email], ['Phone', f.phone]] },
     { title: 'Background', step: 1, items: [['Education', f.education], ['Occupation', f.occupation]] },

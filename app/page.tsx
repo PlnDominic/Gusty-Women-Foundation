@@ -3,6 +3,7 @@ import { CEOSection } from '@/components/home/CEOSection'
 import { FeaturedProgram } from '@/components/home/FeaturedProgram'
 import { WhatWeDo } from '@/components/home/WhatWeDo'
 import { TestimonialCarousel } from '@/components/home/TestimonialCarousel'
+import { CommunityImpact } from '@/components/home/CommunityImpact'
 import { Partners } from '@/components/home/Partners'
 import { Newsletter } from '@/components/home/Newsletter'
 
@@ -13,6 +14,7 @@ export default function HomePage() {
       <CEOSection />
       <FeaturedProgram />
       <WhatWeDo />
+      <CommunityImpact />
       <TestimonialCarousel />
       <Partners />
       <Newsletter />

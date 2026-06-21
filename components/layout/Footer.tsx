@@ -6,8 +6,9 @@ import Image from 'next/image'
 import { Icon } from '@/components/ui/Icon'
 
 const COLS = [
-  { h: 'Explore', items: [{ label: 'Home', href: '/' }, { label: 'About', href: '/about' }, { label: 'Programs', href: '/programs' }, { label: 'Blog', href: '/blog' }, { label: 'Contact', href: '/contact' }] },
+  { h: 'Explore', items: [{ label: 'Home', href: '/' }, { label: 'About', href: '/about' }, { label: 'Programs', href: '/programs' }, { label: 'Impact', href: '/impact' }, { label: 'Blog', href: '/blog' }, { label: 'Contact', href: '/contact' }] },
   { h: 'Programs', items: [{ label: 'Masterclass', href: '/programs/masterclass' }, { label: 'Bootcamps', href: '/programs/bootcamp' }, { label: 'Webinars', href: '/programs/webinars' }, { label: 'Apply', href: '/apply' }] },
+  { h: 'Community', items: [{ label: 'Mentors', href: '/mentors' }, { label: 'Alumni', href: '/alumni' }, { label: 'Impact Report', href: '/impact' }] },
 ]
 
 const SOCIALS = [
@@ -27,7 +28,7 @@ export function Footer() {
           margin: '0 auto',
           padding: 'clamp(48px,6vw,72px) clamp(16px,4vw,40px) 32px',
           display: 'grid',
-          gridTemplateColumns: '1.4fr 1fr 1fr 1.2fr',
+          gridTemplateColumns: '1.4fr 1fr 1fr 1fr 1.2fr',
           gap: 'clamp(28px,4vw,48px)',
         }}
         className="footer-grid"

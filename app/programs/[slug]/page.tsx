@@ -15,15 +15,68 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const program = getProgram(params.slug)
   if (!program) return {}
-  return { title: program.title, description: program.description }
+  return {
+    title: program.title,
+    description: program.description,
+    alternates: {
+      canonical: `/programs/${program.slug}`,
+    },
+    openGraph: {
+      type: 'website',
+      title: program.title,
+      description: program.description,
+      url: `/programs/${program.slug}`,
+      images: [
+        {
+          url: program.image,
+          width: 1200,
+          height: 630,
+          alt: program.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: program.title,
+      description: program.description,
+      images: [program.image],
+    },
+  }
 }
 
 export default function ProgramDetailPage({ params }: { params: { slug: string } }) {
   const program = getProgram(params.slug)
   if (!program) notFound()
 
+  const programJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: program.title,
+    description: program.description,
+    image: `https://www.gutsywomenfoundation.org${program.image}`,
+    url: `https://www.gutsywomenfoundation.org/programs/${program.slug}`,
+    eventStatus: program.status === 'closed' ? 'https://schema.org/EventCancelled' : 'https://schema.org/EventScheduled',
+    eventAttendanceMode: program.location?.toLowerCase().includes('online')
+      ? 'https://schema.org/OnlineEventAttendanceMode'
+      : 'https://schema.org/OfflineEventAttendanceMode',
+    location: {
+      '@type': program.location?.toLowerCase().includes('online') ? 'VirtualLocation' : 'Place',
+      name: program.location || 'Gutsy Women Foundation',
+      address: program.location,
+    },
+    organizer: {
+      '@type': 'NGO',
+      name: 'Gutsy Women Foundation',
+      url: 'https://www.gutsywomenfoundation.org',
+    },
+  }
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(programJsonLd) }}
+      />
       {/* Hero */}
       <section style={{ background: 'linear-gradient(145deg,var(--gwf-purple-700),var(--gwf-purple-900))', padding: 'clamp(56px,7vw,96px) clamp(16px,4vw,40px)' }}>
         <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: 48, alignItems: 'center' }} className="hero-grid">
