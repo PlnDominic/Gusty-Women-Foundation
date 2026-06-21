@@ -53,19 +53,21 @@ export function Navbar() {
           gap: 24,
         }}
       >
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <Image
-            src="/assets/logo-lockup.png"
-            alt="Gutsy Women Foundation"
-            width={140}
-            height={42}
-            style={{ height: 42, width: 'auto', objectFit: 'contain' }}
-            priority
-          />
-        </Link>
+        <div style={{ flex: 1 }}>
+          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+            <Image
+              src="/assets/logo-lockup.png"
+              alt="Gutsy Women Foundation"
+              width={140}
+              height={42}
+              style={{ height: 42, width: 'auto', objectFit: 'contain' }}
+              priority
+            />
+          </Link>
+        </div>
 
         <nav
-          style={{ marginLeft: 'auto', display: 'flex', gap: 18, alignItems: 'center' }}
+          style={{ display: 'flex', gap: 20, alignItems: 'center' }}
           className="desktop-nav"
         >
           {NAV.map((n) => (
@@ -73,7 +75,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="desktop-nav">
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }} className="desktop-nav">
           <Link href="/apply">
             <Button variant="primary" size="sm">Apply Now</Button>
           </Link>
@@ -174,7 +176,7 @@ function NavLink({ href, label, active }: { href: string; label: string; active:
       onMouseLeave={() => setHover(false)}
       style={{
         fontFamily: 'var(--font-body)',
-        fontWeight: 600,
+        fontWeight: 400,
         fontSize: 15,
         cursor: 'pointer',
         color: active ? 'var(--gwf-purple-700)' : hover ? 'var(--gwf-gold-600)' : 'var(--gwf-ink-soft)',
