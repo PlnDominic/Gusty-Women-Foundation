@@ -6,26 +6,32 @@ const PILLARS = [
   {
     n: '01',
     title: 'Mentorship',
-    body: 'One-to-one guidance from women who have built businesses, led teams and navigated the challenges you are facing right now.',
+    body: 'We connect young women with experienced mentors through the GUTSY Women Mentoring Programme (GWMP), providing guidance, support and inspiration on personal and professional journeys.',
     color: 'var(--gwf-gold-500)',
   },
   {
     n: '02',
-    title: 'Training',
-    body: 'Intensive masterclasses built around real problems — pitching, pricing, operations, leadership — not theory.',
+    title: 'Advocacy',
+    body: 'We actively advocate for policies that promote gender equality and women\'s rights, working with policymakers, civil society organisations and the media to drive systemic change.',
     color: 'var(--gwf-magenta-600)',
   },
   {
     n: '03',
-    title: 'Networking',
-    body: 'A curated community of peers, partners and sponsors who are invested in seeing you grow.',
+    title: 'Education',
+    body: 'We develop and deliver educational programmes that raise awareness about women\'s rights and empower women to claim their rightful place in society.',
     color: 'var(--gwf-gold-500)',
   },
   {
     n: '04',
-    title: 'Leadership',
-    body: 'The mindset, voice and presence to lead in your industry, your community and beyond.',
+    title: "Women's Health",
+    body: 'We advocate for access to quality healthcare services for women, including reproductive health and mental health, recognising health as foundational to full participation in society.',
     color: 'var(--gwf-magenta-600)',
+  },
+  {
+    n: '05',
+    title: 'Research',
+    body: 'We support gender-based research to identify and address inequalities faced by women and girls, using evidence to inform our advocacy efforts and programme development.',
+    color: 'var(--gwf-gold-500)',
   },
 ]
 
@@ -56,7 +62,7 @@ export function WhatWeDo() {
               What We Do
             </p>
             <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(32px,4vw,52px)', lineHeight: 0.96, color: '#fff', margin: 0 }}>
-              Four Ways<br />We Move<br />You Forward
+              Five Priority<br />Areas Driving<br />Our Work
             </h2>
           </div>
         </div>

@@ -83,7 +83,7 @@ export function HeroSection() {
               margin: '20px 0 0',
             }}
           >
-            We empower young women across Ghana with the mentorship, training and networks to move beyond dreaming and start building.
+            We empower women and girls across Ghana — raising awareness of their rights, promoting gender equity, and increasing their participation in economic and democratic processes to build a just and prosperous future.
           </p>
 
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 30 }}>
