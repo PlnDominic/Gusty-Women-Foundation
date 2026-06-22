@@ -45,7 +45,7 @@ export default function ProgramsPage() {
       <section style={{ padding: 'clamp(56px,8vw,104px) clamp(16px,4vw,40px)', background: '#fff' }}>
         <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
           <SectionHeading eyebrow="All Programmes" title="Our Work in Action" style={{ marginBottom: 40 }} />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 28 }} className="stat-grid">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 28 }} className="stat-grid">
             {programs.map((p) => (
               <ProgramCard
                 key={p.slug}
@@ -71,23 +71,23 @@ export default function ProgramsPage() {
         <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
           <SectionHeading eyebrow="Our Programs In Action" title="Empowering Minds, Shaping Futures" style={{ marginBottom: 36 }} />
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', maxWidth: 700, margin: '0 auto 36px', textAlign: 'center' }}>
-            From school halls to open courtyards — GWF has carried conversations about drug abuse, entrepreneurship, personal hygiene, and self-worth directly to students who need them most.
+            From school halls to open courtyards — GWF has carried conversations about drug abuse, entrepreneurship, personal hygiene, and self-worth directly to thousands of students across Ghana.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 3 }} className="gallery-grid">
-            <div style={{ gridColumn: 'span 2', height: 340, overflow: 'hidden' }}>
-              <img src="/assets/gwf-iwd-address.jpg" alt="GWF speaker addressing students at IWD session" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+            <div style={{ gridColumn: 'span 2', height: 360, overflow: 'hidden' }}>
+              <img src="/assets/gwf-campaign-auditorium.jpg" alt="Hundreds of students at GWF Anti-Drug Campaign" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
             </div>
-            <div style={{ height: 340, overflow: 'hidden' }}>
-              <img src="/assets/gwf-cape-coast-audience.jpg" alt="Students at GWF Cape Coast program" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+            <div style={{ height: 360, overflow: 'hidden' }}>
+              <img src="/assets/gwf-campaign-classroom.jpg" alt="GWF facilitator presenting in classroom" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
             </div>
             <div style={{ height: 280, overflow: 'hidden' }}>
-              <img src="/assets/gwf-iwd-donations.jpg" alt="GWF donating supplies to students" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              <img src="/assets/gwf-iwd-address.jpg" alt="GWF speaker addressing students at IWD session" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
             <div style={{ height: 280, overflow: 'hidden' }}>
               <img src="/assets/gwf-cape-coast-dance.jpg" alt="Students dancing with GWF team" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
             <div style={{ height: 280, overflow: 'hidden' }}>
-              <img src="/assets/gwf-antidrug-facilitator.jpg" alt="GWF facilitator at Anti-Drug Abuse program" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              <img src="/assets/gwf-cape-coast-mentorship.jpg" alt="GWF one-on-one mentorship session" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
           </div>
         </div>

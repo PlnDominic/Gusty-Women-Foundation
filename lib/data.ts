@@ -99,6 +99,18 @@ export const programs: Program[] = [
     image: '/assets/gwf-iwd-address.jpg',
     location: 'Adenta Primary & JHS, Amrahia–Adenta',
   },
+  {
+    slug: 'anti-drug-campaign-drive',
+    title: 'Breaking Chains, Building Futures',
+    subtitle: 'Multi-School Campaign Drive',
+    theme: 'You Are Not Alone',
+    description: 'A transformative anti-drug campaign that has journeyed through Abuakwa State College, Mount Sinai SHS, Ghana National College, La PRESEC, Benkum Senior High, and Holy Trinity Senior High — reaching thousands of students with real conversations, truth, and healing.',
+    longDescription: 'What began as a small vision to raise awareness has evolved into a transformative movement touching hearts, stirring minds, and igniting hope across Ghana. The Gutsy Women Foundation\'s Anti-Drug Abuse Campaign Drive has journeyed through Abuakwa State College, Mount Sinai Senior High, Ghana National College, La Presby SHS (La PRESEC), Benkum Senior High, and Holy Trinity Senior High (HOTCASS) — reaching thousands of students with honest conversations about one of the most silent but destructive threats facing young people today.\n\nEach school visit has unveiled not just curiosity, but pain, fear, and untold struggles hidden behind youthful smiles. Through open discussions, anonymous confessions, and interactive counselling sessions, the campaign has become a safe space for many students to share stories they\'ve held in silence for far too long. Students have shared stories of turning to drugs to escape domestic violence at home, using alcohol to numb grief after losing a friend, and self-destructive habits born of unprocessed trauma. These stories expose the truth — drug abuse among students is not just about curiosity or rebellion. It is about pain, pressure, and a cry for help.\n\nThrough the dedicated efforts of GWF counsellors and volunteers, students receive not just awareness but active support. Sessions emphasise that healing is possible, and that seeking help is a sign of courage, not weakness. GWF\'s mission goes beyond saying "Don\'t do drugs" — it is about saying "You are not alone."\n\nThe Gutsy Women Foundation remains committed to continuing this life-changing campaign across Ghana, educating, counselling, and empowering students to resist peer pressure, seek help, and live purpose-driven lives. Every child deserves love, guidance, and the chance to dream free from the chains of addiction.',
+    status: 'closed',
+    statusLabel: 'Ongoing Campaign',
+    image: '/assets/gwf-campaign-auditorium.jpg',
+    location: 'Multiple Schools Across Ghana',
+  },
 ]
 
 export const blogPosts: BlogPost[] = [
@@ -141,6 +153,52 @@ export const blogPosts: BlogPost[] = [
     date: '2026-05-28',
     image: '/assets/gwf-speaker-mic.jpg',
     category: 'Mentor Spotlight',
+  },
+  {
+    slug: 'breaking-chains-building-futures',
+    title: "Breaking Chains, Building Futures — GWF's Anti-Drug Abuse Campaign Journey",
+    excerpt: 'What began as a small vision to raise awareness has evolved into a transformative movement touching hearts across Ghana — from Abuakwa State College to La PRESEC and Holy Trinity Senior High.',
+    content: `FOR IMMEDIATE RELEASE — November 9, 2025
+
+In a world where young people are constantly bombarded with societal pressures, identity struggles, and emotional battles, the Gutsy Women Foundation has taken a bold step to confront one of the most silent but destructive threats facing our youth today — Drug Abuse.
+
+What began as a small vision to raise awareness has evolved into a transformative movement touching hearts, stirring minds, and igniting hope. Our Anti-Drug Abuse Campaign Drive has journeyed through several senior high schools across Ghana — from Abuakwa State College to Mount Sinai Senior High, Ghana National College, La Presby SHS (La PRESEC), Benkum Senior High, and Holy Trinity Senior High (HOTCASS) — reaching thousands of students with real conversations, truth, and healing.
+
+Each school we visited has unveiled not just curiosity, but pain, fear, and untold struggles hidden behind youthful smiles. Through open discussions, anonymous confessions, and interactive counselling sessions, our campaign has become a safe space for many students to share stories they've held in silence for far too long.
+
+One unforgettable revelation came from a young girl who bravely shared that she resorts to drugs whenever her parents fight — fights that often turn violent. Her father physically assaults her mother, and the children are forced to watch helplessly, sometimes waking up in the dead of night to the horror of abuse. For her, drugs became a means to escape — a false sense of peace in a world of chaos.
+
+Another heart-wrenching story was from a student who turned to alcohol to numb her guilt and depression after an unfortunate incident involving a friend that led to the friend's passing. "I just couldn't face the pain," she said. "Drinking made me forget — at least for a while."
+
+And then there was a quiet young girl who lives in constant fear of death after losing her two best friends — one in junior high and another in senior high. Her trauma has driven her to self-destructive habits in an attempt to outrun her grief.
+
+Why Are Our Youth Turning to Drugs?
+
+These stories expose the truth — drug abuse among students is not just about curiosity or rebellion. It's about pain, pressure, and a cry for help. From our interactions, several recurring causes have emerged: parental neglect and broken homes, peer pressure and the desperate need to fit in, emotional trauma, sexual abuse, and loss, lack of financial support and guidance, and curiosity and misinformation about drugs.
+
+These are not just statistics; they are lived realities of the next generation — a reminder that drug abuse is not merely a moral issue but a social, emotional, and psychological one.
+
+The Gutsy Response: Healing Through Hope
+
+Through the dedicated efforts of our counsellors and volunteers, the Gutsy Women Foundation has been able to offer not just awareness, but active counselling and support for affected students. Our sessions emphasise that healing is possible, and that seeking help is a sign of courage, not weakness. We have seen tears turn into conversations, shame replaced with openness, and despair replaced with determination. Our mission goes beyond saying "Don't do drugs" — it's about saying "You are not alone."
+
+A Call to Parents and Guardians
+
+Parents must rise to the call. We urge them to be active participants in their children's emotional and social development — to build healthy communication, offer guidance, and create safe spaces where children can share their fears without judgment. A connected home is the first line of defence against drug abuse.
+
+The Road Ahead
+
+The Gutsy Women Foundation remains committed to continuing this life-changing campaign across Ghana. We aim to educate, counsel, and empower students to resist peer pressure, seek help, and live purpose-driven lives.
+
+"Every child deserves love, guidance, and the chance to dream free from the chains of addiction."
+
+Together, we are breaking barriers, restoring hope, and raising a generation that is brave, bold, and GUTSY.
+
+— Raynelle Nana Yaa Boadu, Founder & CEO, Gutsy Women Foundation`,
+    author: 'Raynelle Nana Yaa Boadu, Founder & CEO',
+    date: '2025-11-09',
+    image: '/assets/gwf-campaign-auditorium.jpg',
+    category: 'Press Release',
   },
 ]
 

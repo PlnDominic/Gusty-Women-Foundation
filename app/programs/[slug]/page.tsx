@@ -127,6 +127,34 @@ export default function ProgramDetailPage({ params }: { params: { slug: string }
         </div>
       </section>
 
+      {program.slug === 'masterclass' && (
+        <section style={{ padding: 'clamp(48px,7vw,88px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
+          <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(22px,2.5vw,32px)', color: 'var(--gwf-ink)', margin: '0 0 12px', textAlign: 'center' }}>Cohort 1 Highlights</h2>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', maxWidth: 560, margin: '0 auto 28px', textAlign: 'center' }}>
+              A look inside Cohort 1 — 40 women, 3 days of sessions, fireside chats, and real conversations that turned ideas into action.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 3 }} className="gallery-grid">
+              <div style={{ gridColumn: 'span 2', height: 340, overflow: 'hidden' }}>
+                <img src="/assets/gwf-masterclass-session.jpg" alt="Cohort 1 Masterclass session with presenter and screen" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 340, overflow: 'hidden' }}>
+                <img src="/assets/gwf-masterclass-banner.jpg" alt="GWF and EBL Mentorship Program banner" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 280, overflow: 'hidden' }}>
+                <img src="/assets/gwf-masterclass-participants.jpg" alt="Cohort 1 participants at workshop tables" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ height: 280, overflow: 'hidden' }}>
+                <img src="/assets/gwf-masterclass-speaker-red.jpg" alt="Cohort 1 participant sharing at the microphone" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 280, overflow: 'hidden' }}>
+                <img src="/assets/gwf-masterclass-speaker-blue.jpg" alt="Cohort 1 participant speaking with microphone" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {program.slug === 'anti-drug-mentorship' && (
         <section style={{ padding: 'clamp(48px,7vw,88px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
           <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
@@ -196,6 +224,34 @@ export default function ProgramDetailPage({ params }: { params: { slug: string }
               </div>
               <div style={{ height: 280, overflow: 'hidden' }}>
                 <img src="/assets/gwf-iwd-students.jpg" alt="Students attentively watching GWF Mentorship Program" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {program.slug === 'anti-drug-campaign-drive' && (
+        <section style={{ padding: 'clamp(48px,7vw,88px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
+          <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(22px,2.5vw,32px)', color: 'var(--gwf-ink)', margin: '0 0 12px', textAlign: 'center' }}>Campaign Highlights</h2>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', maxWidth: 620, margin: '0 auto 28px', textAlign: 'center' }}>
+              Abuakwa State College · Mount Sinai SHS · Ghana National College · La PRESEC · Benkum Senior High · Holy Trinity Senior High
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 3 }} className="gallery-grid">
+              <div style={{ gridColumn: 'span 2', height: 360, overflow: 'hidden' }}>
+                <img src="/assets/gwf-campaign-auditorium.jpg" alt="Hundreds of students gathered for the GWF Anti-Drug Campaign" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 360, overflow: 'hidden' }}>
+                <img src="/assets/gwf-campaign-classroom.jpg" alt="GWF facilitator in classroom with The Gutsy Anti-Drug banner" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 280, overflow: 'hidden' }}>
+                <img src="/assets/gwf-campaign-tent-session.jpg" alt="GWF speaker addressing students under a tent" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ height: 280, overflow: 'hidden' }}>
+                <img src="/assets/gwf-campaign-assembly.jpg" alt="GWF Anti-Drug Campaign assembly session" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ height: 280, overflow: 'hidden' }}>
+                <img src="/assets/gwf-campaign-group.jpg" alt="GWF team and students at the Anti-Drug Campaign" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
             </div>
           </div>
