@@ -1,6 +1,7 @@
 'use client'
 
 import React, { CSSProperties } from 'react'
+import Link from 'next/link'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 
@@ -19,6 +20,7 @@ interface ProgramCardProps {
   statusLabel?: string
   meta?: MetaItem[]
   ctaLabel?: string
+  href?: string
   onCta?: () => void
   style?: CSSProperties
 }
@@ -31,6 +33,7 @@ export function ProgramCard({
   statusLabel = 'Applications Open',
   meta = [],
   ctaLabel = 'Learn More',
+  href,
   onCta,
   style = {},
 }: ProgramCardProps) {
@@ -112,7 +115,11 @@ export function ProgramCard({
           </div>
         )}
         <div style={{ marginTop: 'auto', paddingTop: 8 }}>
-          <Button variant="primary" size="sm" onClick={onCta}>{ctaLabel}</Button>
+          {href ? (
+            <Link href={href}><Button variant="primary" size="sm">{ctaLabel}</Button></Link>
+          ) : (
+            <Button variant="primary" size="sm" onClick={onCta}>{ctaLabel}</Button>
+          )}
         </div>
       </div>
     </div>
