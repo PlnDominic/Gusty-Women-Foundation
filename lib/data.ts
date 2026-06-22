@@ -75,6 +75,18 @@ export const programs: Program[] = [
     image: '/assets/gwf-antidrug-facilitator.jpg',
     location: 'Ghana National Basic Inclusive School',
   },
+  {
+    slug: 'anti-drug-cape-coast',
+    title: 'Anti-Drug Abuse Campaign & Mentorship Drive',
+    subtitle: 'Cape Coast Schools',
+    theme: 'Impacting Lives, One Conversation at a Time',
+    description: 'A powerful outreach at Ghana National College and Ghana National Basic Inclusive School, Cape Coast — where students shared personal experiences, explored entrepreneurship and personal branding, and found a safe space to be heard.',
+    longDescription: 'The GWF Anti-Drug Abuse Campaign & Mentorship Drive at Ghana National College and Ghana National Basic Inclusive School, Cape Coast was a remarkable success. Students showed incredible courage — sharing personal experiences, deepening their understanding of drug abuse, and actively engaging in meaningful conversations. From asking thoughtful questions about entrepreneurship and course selection to learning about personal branding and responsible social media use, the enthusiasm was truly inspiring. The GWF team was especially moved by those who opened up about their struggles. With the support of the GWF counselling team, they found a safe space to be heard, guided, and encouraged. This programme is a testament to what happens when young people are given the right environment to speak freely, ask boldly, and envision brighter futures — impacting lives, one conversation at a time.',
+    status: 'closed',
+    statusLabel: 'Completed',
+    image: '/assets/gwf-cape-coast-speaker.jpg',
+    location: 'Cape Coast, Ghana',
+  },
 ]
 
 export const blogPosts: BlogPost[] = [

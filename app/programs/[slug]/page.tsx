@@ -152,6 +152,31 @@ export default function ProgramDetailPage({ params }: { params: { slug: string }
         </section>
       )}
 
+      {program.slug === 'anti-drug-cape-coast' && (
+        <section style={{ padding: 'clamp(48px,7vw,88px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
+          <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(22px,2.5vw,32px)', color: 'var(--gwf-ink)', margin: '0 0 28px', textAlign: 'center' }}>Program Highlights</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 3 }} className="gallery-grid">
+              <div style={{ gridColumn: 'span 2', height: 340, overflow: 'hidden' }}>
+                <img src="/assets/gwf-cape-coast-audience.jpg" alt="Students engaged at GWF Cape Coast program" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 340, overflow: 'hidden' }}>
+                <img src="/assets/gwf-cape-coast-address.jpg" alt="GWF speaker addressing Cape Coast students" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 280, overflow: 'hidden' }}>
+                <img src="/assets/gwf-cape-coast-mentorship.jpg" alt="GWF one-on-one mentorship session" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ height: 280, overflow: 'hidden' }}>
+                <img src="/assets/gwf-cape-coast-dance.jpg" alt="Students and GWF team dancing together" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ height: 280, overflow: 'hidden' }}>
+                <img src="/assets/gwf-cape-coast-speaker.jpg" alt="GWF speaker at Cape Coast school" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       <Newsletter />
     </main>
   )
