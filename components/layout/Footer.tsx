@@ -14,6 +14,7 @@ const COLS = [
 
 const SOCIALS = [
   { name: 'facebook', href: 'https://www.facebook.com/share/14bzn1Wny9S/?mibextid=wwXIfr' },
+  { name: 'twitter', href: 'https://x.com/gwf_gutsy' },
   { name: 'instagram', href: 'https://www.instagram.com/gutsy_women_foundation?igsh=MW1mN2Z0cmZnMDVoZg==' },
   { name: 'music', href: 'https://www.tiktok.com/@gutsy.women.foundation' },
   { name: 'linkedin', href: 'https://www.linkedin.com/in/gutsy-women-foundation-884123347' },
