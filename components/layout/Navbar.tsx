@@ -56,11 +56,11 @@ export function Navbar() {
         <div style={{ flex: 1 }}>
           <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
             <Image
-              src="/assets/logo-lockup.png"
+              src="/assets/gwf-logo-official.jpg"
               alt="Gutsy Women Foundation"
-              width={140}
-              height={42}
-              style={{ height: 42, width: 'auto', objectFit: 'contain' }}
+              width={180}
+              height={52}
+              style={{ height: 52, width: 'auto', objectFit: 'contain' }}
               priority
             />
           </Link>

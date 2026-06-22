@@ -7,7 +7,7 @@ import { Icon } from '@/components/ui/Icon'
 
 const COLS = [
   { h: 'Explore', items: [{ label: 'Home', href: '/' }, { label: 'About', href: '/about' }, { label: 'Programs', href: '/programs' }, { label: 'Impact', href: '/impact' }, { label: 'Blog', href: '/blog' }, { label: 'Contact', href: '/contact' }] },
-  { h: 'Programs', items: [{ label: 'Masterclass', href: '/programs/masterclass' }, { label: 'Bootcamps', href: '/programs/bootcamp' }, { label: 'Webinars', href: '/programs/webinars' }, { label: 'Apply', href: '/apply' }] },
+  { h: 'Programs', items: [{ label: 'Masterclass', href: '/programs/masterclass' }, { label: 'Anti-Drug Campaign', href: '/programs/anti-drug-mentorship' }, { label: 'IWD Mentorship', href: '/programs/iwd-mentorship-adenta' }, { label: 'Apply', href: '/apply' }] },
   { h: 'Community', items: [{ label: 'Mentors', href: '/mentors' }, { label: 'Alumni', href: '/alumni' }, { label: 'Impact Report', href: '/impact' }] },
   { h: 'Support Us', items: [{ label: 'Donate', href: '/donate' }, { label: 'Sponsor a Scholar', href: '/sponsor-a-scholar' }, { label: 'Partner With Us', href: '/partners' }] },
 ]
@@ -35,13 +35,15 @@ export function Footer() {
         className="footer-grid"
       >
         <div className="footer-logo">
-          <Image
-            src="/assets/logo-lockup.png"
-            alt="Gutsy Women Foundation"
-            width={140}
-            height={46}
-            style={{ height: 46, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.96 }}
-          />
+          <div style={{ display: 'inline-block', background: '#fff', borderRadius: 6, padding: '8px 12px' }}>
+            <Image
+              src="/assets/gwf-logo-official.jpg"
+              alt="Gutsy Women Foundation"
+              width={160}
+              height={48}
+              style={{ height: 48, width: 'auto', objectFit: 'contain', display: 'block' }}
+            />
+          </div>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 14.5, lineHeight: 1.6, color: 'rgba(255,255,255,.65)', margin: '18px 0 0', maxWidth: 280 }}>
             Leveling the playing field for young women in Ghana through mentorship, training and community.
           </p>
