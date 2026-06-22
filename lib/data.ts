@@ -87,6 +87,18 @@ export const programs: Program[] = [
     image: '/assets/gwf-cape-coast-speaker.jpg',
     location: 'Cape Coast, Ghana',
   },
+  {
+    slug: 'iwd-mentorship-adenta',
+    title: "International Women's Day Mentorship Session",
+    subtitle: 'Adenta Primary & JHS',
+    theme: 'Give to Gain',
+    description: 'Celebrating International Women\'s Day with students of Adenta Primary and Junior High School, Amrahia–Adenta — exploring effort, discipline, personal hygiene, confidence, and the power of lifting each other up.',
+    longDescription: 'As part of this year\'s International Women\'s Day celebration, the Gutsy Women Foundation hosted a mentorship session for students of Adenta Primary and Junior High School, Amrahia–Adenta. Through engaging conversations built around the theme "Give to Gain," the girls explored powerful lessons about effort, discipline, personal hygiene, saying no to drugs, self-confidence, and supporting one another instead of competing. The GWF team reminded students that success does not appear overnight — every woman who has made it gave something first: time, courage, and consistency. Alongside the mentorship session, GWF donated sanitary supplies and essentials to the school, reinforcing the message that empowering girls means meeting both their minds and their practical needs. The future is bright when girls are empowered to believe, grow, and lift each other up.',
+    status: 'closed',
+    statusLabel: 'Completed',
+    image: '/assets/gwf-iwd-address.jpg',
+    location: 'Adenta Primary & JHS, Amrahia–Adenta',
+  },
 ]
 
 export const blogPosts: BlogPost[] = [
