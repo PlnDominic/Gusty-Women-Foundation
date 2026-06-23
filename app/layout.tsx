@@ -19,7 +19,11 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.gutsywomenfoundation.org'),
+  metadataBase: new URL(
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : 'https://gusty-women-foundation.vercel.app'
+  ),
   title: {
     default: 'Gutsy Women Foundation',
     template: '%s | Gutsy Women Foundation',
@@ -32,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_GH',
-    url: 'https://www.gutsywomenfoundation.org',
+    url: '/',
     siteName: 'Gutsy Women Foundation',
     title: 'Gutsy Women Foundation',
     description: 'Leveling the playing field for young women in Ghana through mentorship, training and community.',
