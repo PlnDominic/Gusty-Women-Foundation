@@ -38,10 +38,10 @@ export const metadata: Metadata = {
     description: 'Leveling the playing field for young women in Ghana through mentorship, training and community.',
     images: [
       {
-        url: '/assets/event-hero.jpg',
+        url: '/assets/gwf-logo-official.jpg',
         width: 1200,
         height: 630,
-        alt: 'Gutsy Women Foundation mentorship programme event',
+        alt: 'Gutsy Women Foundation — Leveling the Playing Field',
       },
     ],
   },
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Gutsy Women Foundation',
     description: 'Leveling the playing field for young women in Ghana through mentorship, training and community.',
-    images: ['/assets/event-hero.jpg'],
+    images: ['/assets/gwf-logo-official.jpg'],
   },
 }
 
@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     '@type': 'NGO',
     name: 'Gutsy Women Foundation',
     url: 'https://www.gutsywomenfoundation.org',
-    logo: 'https://www.gutsywomenfoundation.org/assets/logo-lockup.png',
+    logo: 'https://www.gutsywomenfoundation.org/assets/gwf-logo-official.jpg',
     description: 'Leveling the playing field for young women in Ghana through mentorship, training and community.',
     email: 'gutsywomenfoundation@gmail.com',
     address: {
@@ -68,11 +68,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       addressCountry: 'GH',
     },
     sameAs: [
-      'https://facebook.com/GutsyWomenFoundation',
-      'https://twitter.com/GutsyWomenFoundation',
-      'https://instagram.com/GutsyWomenFoundation',
-      'https://tiktok.com/@GutsyWomenFoundation',
-      'https://linkedin.com/company/GutsyWomenFoundation',
+      'https://www.facebook.com/share/14bzn1Wny9S/',
+      'https://x.com/gwf_gutsy',
+      'https://www.instagram.com/gutsy_women_foundation',
+      'https://www.tiktok.com/@gutsy.women.foundation',
+      'https://www.linkedin.com/in/gutsy-women-foundation-884123347',
     ],
   }
 
