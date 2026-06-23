@@ -31,8 +31,8 @@ export default function AlumniPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 28 }} className="stat-grid">
             {alumniStories.map((story) => (
               <article key={story.name} style={{ background: '#fff', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-md)', overflow: 'hidden' }}>
-                <div style={{ position: 'relative', height: 230 }}>
-                  <Image src={story.image} alt={story.name} fill sizes="(max-width: 860px) 50vw, 33vw" style={{ objectFit: 'cover' }} />
+                <div style={{ position: 'relative', height: 280 }}>
+                  <Image src={story.image} alt={story.name} fill sizes="(max-width: 640px) 100vw, (max-width: 860px) 50vw, 33vw" style={{ objectFit: 'cover', objectPosition: 'top' }} />
                 </div>
                 <div style={{ padding: 24 }}>
                   <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--gwf-gold-600)', margin: 0 }}>{story.cohort}</p>
