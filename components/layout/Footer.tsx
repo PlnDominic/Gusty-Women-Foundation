@@ -6,9 +6,9 @@ import Image from 'next/image'
 import { Icon } from '@/components/ui/Icon'
 
 const COLS = [
-  { h: 'Explore', items: [{ label: 'Home', href: '/' }, { label: 'About', href: '/about' }, { label: 'Programs', href: '/programs' }, { label: 'Impact', href: '/impact' }, { label: 'Blog', href: '/blog' }, { label: 'Contact', href: '/contact' }] },
+  { h: 'Explore', items: [{ label: 'Home', href: '/' }, { label: 'About', href: '/about' }, { label: 'Programs', href: '/programs' }, { label: 'Blog', href: '/blog' }, { label: 'Contact', href: '/contact' }] },
   { h: 'Programs', items: [{ label: 'Masterclass', href: '/programs/masterclass' }, { label: 'Anti-Drug Campaign', href: '/programs/anti-drug-mentorship' }, { label: 'IWD Mentorship', href: '/programs/iwd-mentorship-adenta' }, { label: 'Apply', href: '/apply' }] },
-  { h: 'Community', items: [{ label: 'Mentors', href: '/mentors' }, { label: 'Alumni', href: '/alumni' }, { label: 'Impact Report', href: '/impact' }] },
+  { h: 'Community', items: [{ label: 'Mentors', href: '/mentors' }, { label: 'Alumni', href: '/alumni' }] },
   { h: 'Support Us', items: [{ label: 'Donate', href: '/donate' }, { label: 'Sponsor a Scholar', href: '/sponsor-a-scholar' }, { label: 'Partner With Us', href: '/partners' }] },
 ]
 

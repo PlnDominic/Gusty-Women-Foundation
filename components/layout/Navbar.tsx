@@ -13,7 +13,6 @@ const NAV = [
   { label: 'Programs', href: '/programs' },
   { label: 'Mentors', href: '/mentors' },
   { label: 'Alumni', href: '/alumni' },
-  { label: 'Impact', href: '/impact' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ]
