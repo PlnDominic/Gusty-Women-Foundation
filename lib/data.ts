@@ -290,6 +290,22 @@ export const alumniStories: AlumniStory[] = [
     outcome: 'Cohort 1 Graduate — purposeful, prepared, and ready to soar.',
     image: '/assets/gwf-cohort1-lawrencia-sakyi.jpg',
   },
+  {
+    name: 'Edith Amakye',
+    cohort: 'Cohort 1',
+    venture: 'GWF Mentorship Masterclass',
+    story: 'Edith arrived at Cohort 1 with ambition and curiosity. Through expert-led workshops, peer accountability circles, and one-on-one mentorship, she gained both the clarity and the courage to pursue her goals with intention.',
+    outcome: 'Cohort 1 Graduate — focused, fearless, and moving forward.',
+    image: '/assets/gwf-cohort1-edith-amakye.jpg',
+  },
+  {
+    name: 'Fatimatu Dauda Affanyi',
+    cohort: 'Cohort 1',
+    venture: 'GWF Mentorship Masterclass',
+    story: 'Fatimatu brought her whole self to Cohort 1 and left with so much more. The masterclass opened her eyes to new possibilities, connected her with mentors who understood her journey, and equipped her with tools to build a future on her own terms.',
+    outcome: 'Cohort 1 Graduate — inspired, equipped, and unstoppable.',
+    image: '/assets/gwf-cohort1-fatimatu-affanyi.jpg',
+  },
 ]
 
 export const impactMetrics: ImpactMetric[] = [
