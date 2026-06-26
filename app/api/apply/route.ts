@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { transporter, GWF_EMAIL } from '@/lib/mailer'
+import { getTransporter, GWF_EMAIL } from '@/lib/mailer'
 import { hasErrors, validateApplication, type ApplicationPayload } from '@/lib/validation'
 
 function toApplicationPayload(body: Partial<ApplicationPayload>): ApplicationPayload {
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     const first = name.split(' ')[0]
 
     // Email to GWF team
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: `"GWF Applications" <${GWF_EMAIL}>`,
       to: GWF_EMAIL,
       replyTo: email,
@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
     })
 
     // Confirmation email to applicant
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: `"Gutsy Women Foundation" <${GWF_EMAIL}>`,
       to: email,
       subject: `We've received your application, ${first}!`,
