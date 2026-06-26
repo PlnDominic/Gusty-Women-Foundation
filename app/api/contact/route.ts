@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { transporter, GWF_EMAIL } from '@/lib/mailer'
+import { getTransporter, GWF_EMAIL } from '@/lib/mailer'
 import { hasErrors, validateContact, type ContactPayload } from '@/lib/validation'
 
 function toContactPayload(body: Partial<ContactPayload>): ContactPayload {
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
 
     const { name, email, message } = payload
 
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: `"GWF Website" <${GWF_EMAIL}>`,
       to: GWF_EMAIL,
       replyTo: email,
