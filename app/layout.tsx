@@ -18,12 +18,11 @@ const inter = Inter({
   display: 'swap',
 })
 
+const SITE_URL = 'https://www.gustywomenfoundation.org'
+const OG_IMAGE = `${SITE_URL}/assets/gwf-logo-official.jpg`
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : 'https://gusty-women-foundation.vercel.app'
-  ),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Gutsy Women Foundation',
     template: '%s | Gutsy Women Foundation',
@@ -31,29 +30,29 @@ export const metadata: Metadata = {
   description: 'Leveling the playing field for young women in Ghana through mentorship, training and community.',
   keywords: ['NGO', 'Ghana', 'women empowerment', 'mentorship', 'masterclass'],
   alternates: {
-    canonical: '/',
+    canonical: SITE_URL,
   },
   openGraph: {
     type: 'website',
     locale: 'en_GH',
-    url: '/',
+    url: SITE_URL,
     siteName: 'Gutsy Women Foundation',
     title: 'Gutsy Women Foundation',
     description: 'Leveling the playing field for young women in Ghana through mentorship, training and community.',
     images: [
       {
-        url: '/assets/gwf-logo-official.jpg',
-        width: 1200,
-        height: 630,
+        url: OG_IMAGE,
+        width: 1500,
+        height: 1500,
         alt: 'Gutsy Women Foundation — Leveling the Playing Field',
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title: 'Gutsy Women Foundation',
     description: 'Leveling the playing field for young women in Ghana through mentorship, training and community.',
-    images: ['/assets/gwf-logo-official.jpg'],
+    images: [OG_IMAGE],
   },
 }
 
