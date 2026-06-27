@@ -48,6 +48,13 @@ export interface ImpactMetric {
   description: string
 }
 
+export interface TeamMember {
+  name: string
+  title: string
+  bio?: string
+  image: string
+}
+
 export const programs: Program[] = [
   {
     slug: 'masterclass',
@@ -393,6 +400,48 @@ export const impactMetrics: ImpactMetric[] = [
     label: 'Sessions delivered',
     description: 'Workshops, fireside chats, coaching blocks and peer accountability sessions.',
   },
+]
+
+export const team: TeamMember[] = [
+  {
+    name: 'Raynelle Nana Yaa Boadu',
+    title: 'Founder & Executive Director',
+    bio: 'Raynelle founded the Gutsy Women Foundation with a singular belief: that every young woman in Ghana deserves a fair shot at building something meaningful. She leads the organisation\'s vision, strategy and programmes.',
+    image: '/assets/ceo-raynelle.jpg',
+  },
+  {
+    name: 'Hariratah Ibrahim Doudu',
+    title: 'Social Media Lead',
+    bio: 'A law professional and emerging leader passionate about legal excellence, leadership and public service. She holds an LL.B from GIMPA and is pursuing the Professional Law Course at the Ghana School of Law. Hariratah serves as VP of the Ghana School of Law Students\' Representative Council and leads GWF\'s communications and visibility.',
+    image: '/assets/team-hariratah-ibrahim-doudu.jpg',
+  },
+  {
+    name: 'Eugenia Abena Ahenkorah',
+    title: 'Administrative Secretary',
+    bio: 'A dedicated emerging leader in the health sciences at the University of Ghana and proud alumna of GWF Mentorship Cohort 1. Eugenia serves as Administrative Secretary of the GWF Administrative Team and Vice President of the UG Medical Laboratory Science Students\' Association (UG-MELSSA). Her work spans student advocacy, professional development and community service.',
+    image: '/assets/team-eugenia-abena-ahenkorah.jpg',
+  },
+  {
+    name: 'Eunice Esi Esaaba Essien',
+    title: 'Youth Advocate',
+    bio: 'A dynamic youth advocate and President of the Ghana Union of Professional Students. Eunice holds a BA in Public Relations Management and a Master of Arts in Digital and Strategic Marketing Management, bringing sharp communications and strategic thinking to everything she does.',
+    image: '/assets/team-eunice-esi-esaaba-essien.jpg',
+  },
+  {
+    name: 'Adwoa Sefah Gyasiwaa-Agyemang',
+    title: 'Project Director & Administrative Lead',
+    bio: 'A student leader and emerging professional passionate about leadership, youth development and social impact. Adwoa serves as Project Director, Administrative Lead and member of the Planning & Organising Team at GWF, and as Tutorials Lead for the 1835 Group. She is the former General Secretary of the University of Ghana Accra City Campus.',
+    image: '/assets/team-adwoa-sefah-gyasiwaa-agyemang.jpg',
+  },
+  // Add more team members below.
+  // Steps: drop photo in public/assets/, then copy and fill in a new block:
+  //
+  // {
+  //   name: 'Full Name',
+  //   title: 'Role / Title',
+  //   bio: 'Short one- or two-sentence bio.',
+  //   image: '/assets/your-photo-filename.jpg',
+  // },
 ]
 
 export function getProgram(slug: string) {
