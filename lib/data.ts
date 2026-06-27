@@ -415,6 +415,12 @@ export const team: TeamMember[] = [
     bio: 'A law professional and emerging leader passionate about legal excellence, leadership and public service. She holds an LL.B from GIMPA and is pursuing the Professional Law Course at the Ghana School of Law. Hariratah serves as VP of the Ghana School of Law Students\' Representative Council and leads GWF\'s communications and visibility.',
     image: '/assets/team-hariratah-ibrahim-doudu.jpg',
   },
+  {
+    name: 'Eugenia Abena Ahenkorah',
+    title: 'Administrative Secretary',
+    bio: 'A dedicated emerging leader in the health sciences at the University of Ghana and proud alumna of GWF Mentorship Cohort 1. Eugenia serves as Administrative Secretary of the GWF Administrative Team and Vice President of the UG Medical Laboratory Science Students\' Association (UG-MELSSA). Her work spans student advocacy, professional development and community service.',
+    image: '/assets/team-eugenia-abena-ahenkorah.jpg',
+  },
   // Add more team members below.
   // Steps: drop photo in public/assets/, then copy and fill in a new block:
   //
