@@ -20,7 +20,7 @@ export default function ApplyPage() {
           5th–7th August 2026 · Yota East, Legon · 8:00 AM each day
         </p>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 600, color: 'var(--gwf-magenta-600)', margin: '10px auto 0', maxWidth: 500 }}>
-          Application fee: GHS 550 · Payable securely via Paystack at the end of this form
+          Application fee: GHS 550 · Payment details provided at the end of this form
         </p>
       </div>
       <ApplicationForm />
