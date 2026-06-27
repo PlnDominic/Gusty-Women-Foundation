@@ -1,17 +1,12 @@
 import type { Metadata } from 'next'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Newsletter } from '@/components/home/Newsletter'
+import { team } from '@/lib/data'
 
 export const metadata: Metadata = {
   title: 'About',
   description: 'Learn about Gutsy Women Foundation: our mission, vision, and the team behind the work.',
 }
-
-const TEAM = [
-  { name: 'Founder & Executive Director', role: 'Visionary leader behind GWF', img: '/assets/gwf-podium.jpg' },
-  { name: 'Program Lead', role: 'Designing transformative learning experiences', img: '/assets/gwf-speaker-mic.jpg' },
-  { name: 'Partnerships Manager', role: 'Building the sponsor & mentor network', img: '/assets/gwf-community-outreach.jpg' },
-]
 
 const GALLERY = [
   { src: '/assets/gwf-school-visit.jpg', alt: 'GWF school visit' },
@@ -150,14 +145,17 @@ export default function AboutPage() {
         <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
           <SectionHeading eyebrow="The People" title="Our Team" align="center" style={{ marginBottom: 44 }} />
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 28 }} className="stat-grid">
-            {TEAM.map((m) => (
-              <div key={m.name} style={{ background: '#fff', borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: 'var(--shadow-md)', textAlign: 'center' }}>
-                <div style={{ height: 220, overflow: 'hidden' }}>
-                  <img src={m.img} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            {team.map((m) => (
+              <div key={m.name} style={{ background: '#fff', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-md)', overflow: 'hidden' }}>
+                <div style={{ height: 280, overflow: 'hidden' }}>
+                  <img src={m.image} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
                 </div>
-                <div style={{ padding: '20px 20px 24px' }}>
-                  <p style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 16, color: 'var(--gwf-ink)', margin: 0 }}>{m.name}</p>
-                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--gwf-ink-muted)', margin: '6px 0 0' }}>{m.role}</p>
+                <div style={{ padding: '22px 24px 26px' }}>
+                  <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--gwf-magenta-600)', margin: '0 0 8px' }}>{m.title}</p>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 18, color: 'var(--gwf-ink)', margin: 0, lineHeight: 1.15 }}>{m.name}</h3>
+                  {m.bio && (
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.65, color: 'var(--gwf-ink-soft)', margin: '12px 0 0' }}>{m.bio}</p>
+                  )}
                 </div>
               </div>
             ))}

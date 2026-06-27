@@ -48,6 +48,13 @@ export interface ImpactMetric {
   description: string
 }
 
+export interface TeamMember {
+  name: string
+  title: string
+  bio?: string
+  image: string
+}
+
 export const programs: Program[] = [
   {
     slug: 'masterclass',
@@ -393,6 +400,30 @@ export const impactMetrics: ImpactMetric[] = [
     label: 'Sessions delivered',
     description: 'Workshops, fireside chats, coaching blocks and peer accountability sessions.',
   },
+]
+
+export const team: TeamMember[] = [
+  {
+    name: 'Raynelle Nana Yaa Boadu',
+    title: 'Founder & Executive Director',
+    bio: 'Raynelle founded the Gutsy Women Foundation with a singular belief: that every young woman in Ghana deserves a fair shot at building something meaningful. She leads the organisation\'s vision, strategy and programmes.',
+    image: '/assets/ceo-raynelle.jpg',
+  },
+  {
+    name: 'Hariratah Ibrahim Doudu',
+    title: 'Social Media Lead',
+    bio: 'A law professional and emerging leader passionate about legal excellence, leadership and public service. She holds an LL.B from GIMPA and is pursuing the Professional Law Course at the Ghana School of Law. Hariratah serves as VP of the Ghana School of Law Students\' Representative Council and leads GWF\'s communications and visibility.',
+    image: '/assets/team-hariratah-ibrahim-doudu.jpg',
+  },
+  // Add more team members below.
+  // Steps: drop photo in public/assets/, then copy and fill in a new block:
+  //
+  // {
+  //   name: 'Full Name',
+  //   title: 'Role / Title',
+  //   bio: 'Short one- or two-sentence bio.',
+  //   image: '/assets/your-photo-filename.jpg',
+  // },
 ]
 
 export function getProgram(slug: string) {
