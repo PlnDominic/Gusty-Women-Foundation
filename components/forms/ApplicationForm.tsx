@@ -13,24 +13,15 @@ import {
   type ValidationErrors,
 } from '@/lib/validation'
 
+const MOMO_NUMBER = '0530505645'
+const MOMO_NAME = 'Gutsy Women Foundation / Raynelle BOADU'
 const APPLICATION_FEE_GHS = 550
+
 const STEPS = ['Personal', 'Background', 'Motivation', 'Review'] as const
 
 const EMPTY: ApplicationPayload = {
   name: '', age: '', location: '', email: '', phone: '',
   education: '', occupation: '', why: '', goals: '',
-}
-
-function loadPaystack(): Promise<void> {
-  return new Promise((resolve) => {
-    if ((window as any).PaystackPop) { resolve(); return }
-    if (document.getElementById('paystack-inline')) { resolve(); return }
-    const s = document.createElement('script')
-    s.id = 'paystack-inline'
-    s.src = 'https://js.paystack.co/v1/inline.js'
-    s.onload = () => resolve()
-    document.head.appendChild(s)
-  })
 }
 
 export function ApplicationForm() {
@@ -40,8 +31,6 @@ export function ApplicationForm() {
   const [f, setF] = React.useState<ApplicationPayload>(EMPTY)
   const [errors, setErrors] = React.useState<ValidationErrors<ApplicationPayload>>({})
   const [formError, setFormError] = React.useState('')
-
-  React.useEffect(() => { loadPaystack() }, [])
 
   const set = (k: keyof ApplicationPayload) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value
@@ -69,7 +58,17 @@ export function ApplicationForm() {
     setStep(step + 1)
   }
 
-  async function submitAfterPayment(paymentRef: string) {
+  async function submit() {
+    if (submitting) return
+
+    const validationErrors = validateApplication(f)
+    setErrors(validationErrors)
+
+    if (hasErrors(validationErrors)) {
+      setFormError('Please fix the highlighted fields before submitting.')
+      return
+    }
+
     setSubmitting(true)
     setFormError('')
 
@@ -77,67 +76,23 @@ export function ApplicationForm() {
       const response = await fetch('/api/apply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...f, paymentRef }),
+        body: JSON.stringify(f),
       })
 
       const result = await response.json().catch(() => null)
 
       if (!response.ok) {
         if (result?.errors) setErrors(result.errors)
-        setFormError(result?.error || 'Your payment was received but we could not record your application. Please contact us.')
+        setFormError(result?.error || 'We could not submit your application. Please try again.')
         return
       }
 
       setDone(true)
     } catch {
-      setFormError('Your payment was received but there was a network error. Please contact gutsywomenfoundation@gmail.com.')
+      setFormError('Network error. Please check your connection and try again.')
     } finally {
       setSubmitting(false)
     }
-  }
-
-  async function openPayment() {
-    if (submitting) return
-
-    const validationErrors = validateApplication(f)
-    setErrors(validationErrors)
-
-    if (hasErrors(validationErrors)) {
-      setFormError('Please fix the highlighted fields before proceeding to payment.')
-      return
-    }
-
-    const key = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY
-    if (!key) {
-      setFormError('Payment gateway is not configured. Please contact gutsywomenfoundation@gmail.com to complete your application.')
-      return
-    }
-
-    setFormError('')
-    setSubmitting(true)
-    await loadPaystack()
-    setSubmitting(false)
-
-    const handler = (window as any).PaystackPop.setup({
-      key,
-      email: f.email,
-      amount: APPLICATION_FEE_GHS * 100,
-      currency: 'GHS',
-      ref: `gwf_apply_${Date.now()}`,
-      metadata: {
-        custom_fields: [
-          { display_name: 'Applicant Name', variable_name: 'applicant_name', value: f.name },
-          { display_name: 'Purpose', variable_name: 'purpose', value: 'Cohort 2 Application Fee' },
-        ],
-      },
-      callback: (res: { reference: string }) => {
-        submitAfterPayment(res.reference)
-      },
-      onClose: () => {
-        setSubmitting(false)
-      },
-    })
-    handler.openIframe()
   }
 
   if (done) return <Success name={f.name} onReset={() => { setDone(false); setStep(0); setF(EMPTY) }} />
@@ -192,7 +147,12 @@ export function ApplicationForm() {
           </div>
         )}
 
-        {step === 3 && <Review f={f} onEdit={setStep} />}
+        {step === 3 && (
+          <>
+            <Review f={f} onEdit={setStep} />
+            <MoMoInstructions />
+          </>
+        )}
 
         {formError && (
           <div role="alert" style={{ marginTop: 22, background: 'var(--gwf-magenta-100)', color: 'var(--gwf-magenta-700)', border: '1px solid rgba(194,24,91,.25)', padding: '12px 14px', fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 600 }}>
@@ -209,12 +169,42 @@ export function ApplicationForm() {
               Continue
             </Button>
           ) : (
-            <Button variant="gold" iconRight={<Icon name="arrow-right" size={18} />} onClick={openPayment} disabled={submitting}>
-              {submitting ? 'Processing…' : `Pay & Submit · GHS ${APPLICATION_FEE_GHS}`}
+            <Button variant="gold" iconRight={<Icon name="check" size={18} />} onClick={submit} disabled={submitting}>
+              {submitting ? 'Submitting…' : 'I've Paid · Submit Application'}
             </Button>
           )}
         </div>
       </div>
+    </div>
+  )
+}
+
+function MoMoInstructions() {
+  return (
+    <div style={{ marginTop: 24, background: 'var(--gwf-gold-100)', border: '1.5px solid var(--gwf-gold-500)', padding: '20px 24px' }}>
+      <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--gwf-ink-muted)', margin: '0 0 12px' }}>
+        Payment Instructions
+      </p>
+      <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--gwf-ink-soft)', margin: '0 0 14px', lineHeight: 1.6 }}>
+        Send <strong style={{ color: 'var(--gwf-ink)' }}>GHS {APPLICATION_FEE_GHS}</strong> via Mobile Money before submitting:
+      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 14 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', width: 80, flexShrink: 0 }}>Number</span>
+          <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 20, color: 'var(--gwf-ink)', letterSpacing: '0.05em' }}>{MOMO_NUMBER}</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+          <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', width: 80, flexShrink: 0 }}>Name</span>
+          <span style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 14, color: 'var(--gwf-ink)', lineHeight: 1.5 }}>{MOMO_NAME}</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', width: 80, flexShrink: 0 }}>Amount</span>
+          <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 16, color: 'var(--gwf-purple-700)' }}>GHS {APPLICATION_FEE_GHS}</span>
+        </div>
+      </div>
+      <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', margin: 0, lineHeight: 1.6 }}>
+        Once payment is sent, click <strong>I've Paid · Submit Application</strong> below to complete your application.
+      </p>
     </div>
   )
 }
@@ -267,18 +257,18 @@ function Success({ name, onReset }: { name: string; onReset: () => void }) {
           Welcome to the Gutsy Family!
         </h2>
         <p style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 14, color: 'var(--gwf-gold-400)', margin: 0, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-          Payment Confirmed · Cohort 2
+          Application Submitted · Cohort 2
         </p>
       </div>
       <div style={{ padding: 'clamp(28px,4vw,44px)' }}>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.7, color: 'var(--gwf-ink)', margin: '0 0 16px', fontWeight: 600 }}>
-          Congratulations{first ? `, ${first}` : ''}! Your spot in Cohort 2 is secured.
+          Congratulations{first ? `, ${first}` : ''}! Your application has been received.
         </p>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: '0 0 16px' }}>
-          You are now part of a vibrant community of ambitious individuals ready to learn, grow, connect, and thrive.
+          Once we confirm your MoMo payment we will send you a welcome email. You are now part of a vibrant community of ambitious individuals ready to learn, grow, connect, and thrive.
         </p>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: '0 0 24px' }}>
-          Get ready for mentorship, leadership training, networking opportunities, career guidance, and access to industry experts. Further details and updates will be communicated soon.
+          Further details and updates will be communicated soon.
         </p>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 28 }}>
           {['facebook', 'twitter', 'instagram', 'linkedin'].map((s) => (
