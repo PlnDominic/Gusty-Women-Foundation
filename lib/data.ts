@@ -427,6 +427,12 @@ export const team: TeamMember[] = [
     bio: 'A dynamic youth advocate and President of the Ghana Union of Professional Students. Eunice holds a BA in Public Relations Management and a Master of Arts in Digital and Strategic Marketing Management, bringing sharp communications and strategic thinking to everything she does.',
     image: '/assets/team-eunice-esi-esaaba-essien.jpg',
   },
+  {
+    name: 'Adwoa Sefah Gyasiwaa-Agyemang',
+    title: 'Project Director & Administrative Lead',
+    bio: 'A student leader and emerging professional passionate about leadership, youth development and social impact. Adwoa serves as Project Director, Administrative Lead and member of the Planning & Organising Team at GWF, and as Tutorials Lead for the 1835 Group. She is the former General Secretary of the University of Ghana Accra City Campus.',
+    image: '/assets/team-adwoa-sefah-gyasiwaa-agyemang.jpg',
+  },
   // Add more team members below.
   // Steps: drop photo in public/assets/, then copy and fill in a new block:
   //
