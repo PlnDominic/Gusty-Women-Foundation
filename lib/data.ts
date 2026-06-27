@@ -421,6 +421,12 @@ export const team: TeamMember[] = [
     bio: 'A dedicated emerging leader in the health sciences at the University of Ghana and proud alumna of GWF Mentorship Cohort 1. Eugenia serves as Administrative Secretary of the GWF Administrative Team and Vice President of the UG Medical Laboratory Science Students\' Association (UG-MELSSA). Her work spans student advocacy, professional development and community service.',
     image: '/assets/team-eugenia-abena-ahenkorah.jpg',
   },
+  {
+    name: 'Eunice Esi Esaaba Essien',
+    title: 'Youth Advocate',
+    bio: 'A dynamic youth advocate and President of the Ghana Union of Professional Students. Eunice holds a BA in Public Relations Management and a Master of Arts in Digital and Strategic Marketing Management, bringing sharp communications and strategic thinking to everything she does.',
+    image: '/assets/team-eunice-esi-esaaba-essien.jpg',
+  },
   // Add more team members below.
   // Steps: drop photo in public/assets/, then copy and fill in a new block:
   //
