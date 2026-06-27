@@ -170,7 +170,7 @@ export function ApplicationForm() {
             </Button>
           ) : (
             <Button variant="gold" iconRight={<Icon name="check" size={18} />} onClick={submit} disabled={submitting}>
-              {submitting ? 'Submitting…' : 'I've Paid · Submit Application'}
+              {submitting ? 'Submitting…' : "I've Paid · Submit Application"}
             </Button>
           )}
         </div>
@@ -203,7 +203,7 @@ function MoMoInstructions() {
         </div>
       </div>
       <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', margin: 0, lineHeight: 1.6 }}>
-        Once payment is sent, click <strong>I've Paid · Submit Application</strong> below to complete your application.
+        Once payment is sent, click <strong>I&apos;ve Paid &middot; Submit Application</strong> below to complete your application.
       </p>
     </div>
   )
