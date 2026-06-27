@@ -31,6 +31,8 @@ export function ApplicationForm() {
   const [f, setF] = React.useState<ApplicationPayload>(EMPTY)
   const [errors, setErrors] = React.useState<ValidationErrors<ApplicationPayload>>({})
   const [formError, setFormError] = React.useState('')
+  const [screenshot, setScreenshot] = React.useState<File | null>(null)
+  const [screenshotError, setScreenshotError] = React.useState('')
 
   const set = (k: keyof ApplicationPayload) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value
@@ -58,6 +60,18 @@ export function ApplicationForm() {
     setStep(step + 1)
   }
 
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0] ?? null
+    setScreenshotError('')
+    if (file && file.size > 5 * 1024 * 1024) {
+      setScreenshotError('Screenshot must be under 5 MB.')
+      setScreenshot(null)
+      e.target.value = ''
+      return
+    }
+    setScreenshot(file)
+  }
+
   async function submit() {
     if (submitting) return
 
@@ -69,16 +83,21 @@ export function ApplicationForm() {
       return
     }
 
+    if (!screenshot) {
+      setScreenshotError('Please attach a screenshot of your MoMo payment.')
+      return
+    }
+
     setSubmitting(true)
     setFormError('')
+    setScreenshotError('')
 
     try {
-      const response = await fetch('/api/apply', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(f),
-      })
+      const body = new FormData()
+      Object.entries(f).forEach(([k, v]) => body.append(k, v))
+      body.append('screenshot', screenshot, screenshot.name)
 
+      const response = await fetch('/api/apply', { method: 'POST', body })
       const result = await response.json().catch(() => null)
 
       if (!response.ok) {
@@ -95,7 +114,7 @@ export function ApplicationForm() {
     }
   }
 
-  if (done) return <Success name={f.name} onReset={() => { setDone(false); setStep(0); setF(EMPTY) }} />
+  if (done) return <Success name={f.name} onReset={() => { setDone(false); setStep(0); setF(EMPTY); setScreenshot(null) }} />
 
   return (
     <div style={{ maxWidth: 720, margin: '0 auto', background: '#fff', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', overflow: 'hidden' }}>
@@ -150,7 +169,11 @@ export function ApplicationForm() {
         {step === 3 && (
           <>
             <Review f={f} onEdit={setStep} />
-            <MoMoInstructions />
+            <MoMoInstructions
+              screenshot={screenshot}
+              screenshotError={screenshotError}
+              onFileChange={handleFileChange}
+            />
           </>
         )}
 
@@ -179,32 +202,67 @@ export function ApplicationForm() {
   )
 }
 
-function MoMoInstructions() {
+function MoMoInstructions({
+  screenshot,
+  screenshotError,
+  onFileChange,
+}: {
+  screenshot: File | null
+  screenshotError: string
+  onFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+}) {
   return (
-    <div style={{ marginTop: 24, background: 'var(--gwf-gold-100)', border: '1.5px solid var(--gwf-gold-500)', padding: '20px 24px' }}>
-      <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--gwf-ink-muted)', margin: '0 0 12px' }}>
-        Payment Instructions
-      </p>
-      <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--gwf-ink-soft)', margin: '0 0 14px', lineHeight: 1.6 }}>
-        Send <strong style={{ color: 'var(--gwf-ink)' }}>GHS {APPLICATION_FEE_GHS}</strong> via Mobile Money before submitting:
-      </p>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 14 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', width: 80, flexShrink: 0 }}>Number</span>
-          <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 20, color: 'var(--gwf-ink)', letterSpacing: '0.05em' }}>{MOMO_NUMBER}</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-          <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', width: 80, flexShrink: 0 }}>Name</span>
-          <span style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 14, color: 'var(--gwf-ink)', lineHeight: 1.5 }}>{MOMO_NAME}</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', width: 80, flexShrink: 0 }}>Amount</span>
-          <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 16, color: 'var(--gwf-purple-700)' }}>GHS {APPLICATION_FEE_GHS}</span>
+    <div style={{ marginTop: 24 }}>
+      {/* Payment details */}
+      <div style={{ background: 'var(--gwf-gold-100)', border: '1.5px solid var(--gwf-gold-500)', padding: '20px 24px', marginBottom: 16 }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--gwf-ink-muted)', margin: '0 0 12px' }}>
+          Step 1 — Send Payment via Mobile Money
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 10 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', width: 80, flexShrink: 0 }}>Number</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 22, color: 'var(--gwf-ink)', letterSpacing: '0.05em' }}>{MOMO_NUMBER}</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+            <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', width: 80, flexShrink: 0 }}>Name</span>
+            <span style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 14, color: 'var(--gwf-ink)', lineHeight: 1.5 }}>{MOMO_NAME}</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', width: 80, flexShrink: 0 }}>Amount</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 18, color: 'var(--gwf-purple-700)' }}>GHS {APPLICATION_FEE_GHS}</span>
+          </div>
         </div>
       </div>
-      <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', margin: 0, lineHeight: 1.6 }}>
-        Once payment is sent, click <strong>I&apos;ve Paid &middot; Submit Application</strong> below to complete your application.
-      </p>
+
+      {/* Screenshot upload */}
+      <div style={{ border: `1.5px dashed ${screenshotError ? 'var(--gwf-magenta-500)' : screenshot ? 'var(--gwf-purple-500)' : 'var(--border-subtle)'}`, padding: '20px 24px', background: screenshot ? 'var(--gwf-purple-100)' : '#fafafa' }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--gwf-ink-muted)', margin: '0 0 10px' }}>
+          Step 2 — Attach Payment Screenshot <span style={{ color: 'var(--gwf-magenta-600)' }}>*</span>
+        </p>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-soft)', margin: '0 0 14px', lineHeight: 1.6 }}>
+          Take a screenshot of your MoMo confirmation message and upload it here before submitting.
+        </p>
+        <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 14, color: screenshot ? 'var(--gwf-purple-700)' : 'var(--gwf-ink)', background: screenshot ? 'var(--gwf-purple-200)' : '#fff', border: '1.5px solid var(--border-subtle)', padding: '10px 16px' }}>
+          <Icon name="upload" size={16} />
+          {screenshot ? screenshot.name : 'Choose screenshot…'}
+          <input
+            type="file"
+            accept="image/*"
+            onChange={onFileChange}
+            style={{ display: 'none' }}
+          />
+        </label>
+        {screenshot && (
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--gwf-purple-600)', margin: '8px 0 0', fontWeight: 600 }}>
+            ✓ Ready to attach ({(screenshot.size / 1024).toFixed(0)} KB)
+          </p>
+        )}
+        {screenshotError && (
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-magenta-600)', margin: '8px 0 0', fontWeight: 600 }}>
+            {screenshotError}
+          </p>
+        )}
+      </div>
     </div>
   )
 }
@@ -257,15 +315,15 @@ function Success({ name, onReset }: { name: string; onReset: () => void }) {
           Welcome to the Gutsy Family!
         </h2>
         <p style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 14, color: 'var(--gwf-gold-400)', margin: 0, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-          Application Submitted · Cohort 2
+          Payment Confirmed · Cohort 2
         </p>
       </div>
       <div style={{ padding: 'clamp(28px,4vw,44px)' }}>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.7, color: 'var(--gwf-ink)', margin: '0 0 16px', fontWeight: 600 }}>
-          Congratulations{first ? `, ${first}` : ''}! Your application has been received.
+          Congratulations{first ? `, ${first}` : ''}! Your spot in Cohort 2 is secured.
         </p>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: '0 0 16px' }}>
-          Once we confirm your MoMo payment we will send you a welcome email. You are now part of a vibrant community of ambitious individuals ready to learn, grow, connect, and thrive.
+          You are now part of a vibrant community of ambitious individuals ready to learn, grow, connect, and thrive. A welcome email has been sent to your inbox.
         </p>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: '0 0 24px' }}>
           Further details and updates will be communicated soon.
