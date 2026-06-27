@@ -13,11 +13,24 @@ import {
   type ValidationErrors,
 } from '@/lib/validation'
 
+const APPLICATION_FEE_GHS = 550
 const STEPS = ['Personal', 'Background', 'Motivation', 'Review'] as const
 
 const EMPTY: ApplicationPayload = {
   name: '', age: '', location: '', email: '', phone: '',
   education: '', occupation: '', why: '', goals: '',
+}
+
+function loadPaystack(): Promise<void> {
+  return new Promise((resolve) => {
+    if ((window as any).PaystackPop) { resolve(); return }
+    if (document.getElementById('paystack-inline')) { resolve(); return }
+    const s = document.createElement('script')
+    s.id = 'paystack-inline'
+    s.src = 'https://js.paystack.co/v1/inline.js'
+    s.onload = () => resolve()
+    document.head.appendChild(s)
+  })
 }
 
 export function ApplicationForm() {
@@ -27,6 +40,8 @@ export function ApplicationForm() {
   const [f, setF] = React.useState<ApplicationPayload>(EMPTY)
   const [errors, setErrors] = React.useState<ValidationErrors<ApplicationPayload>>({})
   const [formError, setFormError] = React.useState('')
+
+  React.useEffect(() => { loadPaystack() }, [])
 
   const set = (k: keyof ApplicationPayload) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value
@@ -54,17 +69,7 @@ export function ApplicationForm() {
     setStep(step + 1)
   }
 
-  async function submit() {
-    if (submitting) return
-
-    const validationErrors = validateApplication(f)
-    setErrors(validationErrors)
-
-    if (hasErrors(validationErrors)) {
-      setFormError('Please fix the highlighted fields before submitting.')
-      return
-    }
-
+  async function submitAfterPayment(paymentRef: string) {
     setSubmitting(true)
     setFormError('')
 
@@ -72,23 +77,67 @@ export function ApplicationForm() {
       const response = await fetch('/api/apply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(f),
+        body: JSON.stringify({ ...f, paymentRef }),
       })
 
       const result = await response.json().catch(() => null)
 
       if (!response.ok) {
         if (result?.errors) setErrors(result.errors)
-        setFormError(result?.error || 'We could not submit your application. Please try again.')
+        setFormError(result?.error || 'Your payment was received but we could not record your application. Please contact us.')
         return
       }
 
       setDone(true)
     } catch {
-      setFormError('Network error. Please check your connection and try again.')
+      setFormError('Your payment was received but there was a network error. Please contact gutsywomenfoundation@gmail.com.')
     } finally {
       setSubmitting(false)
     }
+  }
+
+  async function openPayment() {
+    if (submitting) return
+
+    const validationErrors = validateApplication(f)
+    setErrors(validationErrors)
+
+    if (hasErrors(validationErrors)) {
+      setFormError('Please fix the highlighted fields before proceeding to payment.')
+      return
+    }
+
+    const key = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY
+    if (!key) {
+      setFormError('Payment gateway is not configured. Please contact gutsywomenfoundation@gmail.com to complete your application.')
+      return
+    }
+
+    setFormError('')
+    setSubmitting(true)
+    await loadPaystack()
+    setSubmitting(false)
+
+    const handler = (window as any).PaystackPop.setup({
+      key,
+      email: f.email,
+      amount: APPLICATION_FEE_GHS * 100,
+      currency: 'GHS',
+      ref: `gwf_apply_${Date.now()}`,
+      metadata: {
+        custom_fields: [
+          { display_name: 'Applicant Name', variable_name: 'applicant_name', value: f.name },
+          { display_name: 'Purpose', variable_name: 'purpose', value: 'Cohort 2 Application Fee' },
+        ],
+      },
+      callback: (res: { reference: string }) => {
+        submitAfterPayment(res.reference)
+      },
+      onClose: () => {
+        setSubmitting(false)
+      },
+    })
+    handler.openIframe()
   }
 
   if (done) return <Success name={f.name} onReset={() => { setDone(false); setStep(0); setF(EMPTY) }} />
@@ -160,8 +209,8 @@ export function ApplicationForm() {
               Continue
             </Button>
           ) : (
-            <Button variant="gold" iconRight={<Icon name="check" size={18} />} onClick={submit} disabled={submitting}>
-              {submitting ? 'Submitting…' : 'Submit Application'}
+            <Button variant="gold" iconRight={<Icon name="arrow-right" size={18} />} onClick={openPayment} disabled={submitting}>
+              {submitting ? 'Processing…' : `Pay & Submit · GHS ${APPLICATION_FEE_GHS}`}
             </Button>
           )}
         </div>
@@ -209,25 +258,39 @@ function Review({ f, onEdit }: { f: ApplicationPayload; onEdit: (step: number) =
 function Success({ name, onReset }: { name: string; onReset: () => void }) {
   const first = name.split(' ')[0]
   return (
-    <div style={{ maxWidth: 560, margin: '0 auto', background: '#fff', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', padding: 'clamp(36px,5vw,56px)', textAlign: 'center' }}>
-      <span style={{ width: 76, height: 76, borderRadius: 0, background: 'var(--gwf-purple-100)', color: 'var(--gwf-purple-600)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-        <Icon name="check" size={40} />
-      </span>
-      <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 30, color: 'var(--gwf-ink)', margin: '22px 0 0' }}>
-        Application received!
-      </h2>
-      <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.6, color: 'var(--gwf-ink-soft)', margin: '12px 0 0' }}>
-        Thank you{first ? `, ${first}` : ''}. We&apos;ve received your Cohort 2 application and will be in touch by email soon. Keep building.
-      </p>
-      <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 26 }}>
-        {['facebook', 'twitter', 'instagram', 'linkedin'].map((s) => (
-          <span key={s} style={{ width: 42, height: 42, borderRadius: 0, background: 'var(--gwf-purple-100)', color: 'var(--gwf-purple-700)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Icon name={s} size={19} />
-          </span>
-        ))}
+    <div style={{ maxWidth: 580, margin: '0 auto', background: '#fff', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', overflow: 'hidden', textAlign: 'center' }}>
+      <div style={{ background: 'linear-gradient(135deg,var(--gwf-purple-600),var(--gwf-purple-900))', padding: 'clamp(32px,5vw,48px)' }}>
+        <span style={{ width: 76, height: 76, background: 'rgba(255,255,255,.15)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+          <Icon name="check" size={40} color="#fff" />
+        </span>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(22px,3vw,30px)', color: '#fff', margin: '18px 0 6px' }}>
+          Welcome to the Gutsy Family!
+        </h2>
+        <p style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 14, color: 'var(--gwf-gold-400)', margin: 0, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          Payment Confirmed · Cohort 2
+        </p>
       </div>
-      <div style={{ marginTop: 26 }}>
+      <div style={{ padding: 'clamp(28px,4vw,44px)' }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.7, color: 'var(--gwf-ink)', margin: '0 0 16px', fontWeight: 600 }}>
+          Congratulations{first ? `, ${first}` : ''}! Your spot in Cohort 2 is secured.
+        </p>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: '0 0 16px' }}>
+          You are now part of a vibrant community of ambitious individuals ready to learn, grow, connect, and thrive.
+        </p>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: '0 0 24px' }}>
+          Get ready for mentorship, leadership training, networking opportunities, career guidance, and access to industry experts. Further details and updates will be communicated soon.
+        </p>
+        <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 28 }}>
+          {['facebook', 'twitter', 'instagram', 'linkedin'].map((s) => (
+            <span key={s} style={{ width: 42, height: 42, background: 'var(--gwf-purple-100)', color: 'var(--gwf-purple-700)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Icon name={s} size={19} />
+            </span>
+          ))}
+        </div>
         <Button variant="primary" onClick={onReset}>Back to Home</Button>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--gwf-ink-muted)', margin: '18px 0 0' }}>
+          Gutsy Women Foundation · Leveling the Playing Field
+        </p>
       </div>
     </div>
   )
