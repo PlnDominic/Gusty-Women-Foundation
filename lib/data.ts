@@ -411,8 +411,8 @@ export const impactMetrics: ImpactMetric[] = [
 export const team: TeamMember[] = [
   {
     name: 'Raynelle Nana Yaa Boadu',
-    title: 'Founder & Executive Director',
-    bio: 'Raynelle founded the Gutsy Women Foundation with a singular belief: that every young woman in Ghana deserves a fair shot at building something meaningful. She leads the organisation\'s vision, strategy and programmes.',
+    title: 'Founder & Chief Executive Officer',
+    bio: 'A gender advocate, communications professional, confidence coach, and writer, Raynelle leads GWF\'s programmes and interventions with deep empathy and strategic vision. She holds a BA in Strategic Communication, an MA in Gender and Law, and an MBA in Marketing, and is currently pursuing an MA in Development Management to further strengthen her capacity to design sustainable initiatives for women and girls across Ghana.',
     image: '/assets/ceo-raynelle.jpg',
   },
   {
