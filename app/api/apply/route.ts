@@ -104,7 +104,8 @@ export async function POST(req: NextRequest) {
         : [],
     })
 
-    // Welcome email to participant
+    // Welcome email to participant — screenshot embedded inline
+    const screenshotCid = 'momo-payment@gwf'
     await getTransporter().sendMail({
       from: `"Gutsy Women Foundation" <${GWF_EMAIL}>`,
       to: email,
@@ -140,12 +141,17 @@ export async function POST(req: NextRequest) {
             <p style="font-size:15px;color:#374151;line-height:1.7;margin:0 0 28px">
               Further details and updates will be communicated soon.
             </p>
-            <p style="font-size:15px;color:#374151;line-height:1.7;margin:0">
+            <p style="font-size:15px;color:#374151;line-height:1.7;margin:0 0 28px">
               Welcome to the Gutsy family!<br>
               …..<br><br>
               <strong>Gutsy Women Foundation</strong><br>
               <em style="color:#6b7280">Leveling the Playing Field</em>
             </p>
+            ${screenshotAttachment ? `
+            <div style="border-top:1px solid #e5e7eb;padding-top:24px;margin-top:8px">
+              <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#9ca3af;margin:0 0 12px">Your Payment Screenshot</p>
+              <img src="cid:${screenshotCid}" alt="MoMo payment screenshot" style="max-width:100%;border:1px solid #e5e7eb;display:block" />
+            </div>` : ''}
           </div>
           <div style="padding:16px 32px;background:#f9fafb;color:#9ca3af;font-size:12px">
             © 2026 Gutsy Women Foundation · Leveling the Playing Field<br>
@@ -153,6 +159,14 @@ export async function POST(req: NextRequest) {
           </div>
         </div>
       `,
+      attachments: screenshotAttachment
+        ? [{
+            filename: screenshotAttachment.filename,
+            content: screenshotAttachment.content,
+            contentType: screenshotAttachment.contentType,
+            cid: screenshotCid,
+          }]
+        : [],
     })
 
     return NextResponse.json({ success: true })
