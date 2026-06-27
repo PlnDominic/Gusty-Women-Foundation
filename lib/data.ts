@@ -375,10 +375,16 @@ export const alumniStories: AlumniStory[] = [
 
 export const impactMetrics: ImpactMetric[] = [
   {
-    value: 240,
+    value: 35000,
     suffix: '+',
-    label: 'Applicants reached',
-    description: 'Young women engaged through applications, outreach and programme interest forms.',
+    label: 'Girls connected',
+    description: 'Young women and girls reached through GWF outreach, events, and awareness programmes.',
+  },
+  {
+    value: 200,
+    suffix: '+',
+    label: 'Girls mentored',
+    description: 'Young women who have received direct mentorship through GWF programmes.',
   },
   {
     value: 40,
