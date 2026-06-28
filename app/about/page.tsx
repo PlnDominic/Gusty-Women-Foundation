@@ -147,8 +147,8 @@ export default function AboutPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 28 }} className="stat-grid">
             {team.map((m) => (
               <div key={m.name} style={{ background: '#fff', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-md)', overflow: 'hidden' }}>
-                <div style={{ height: 280, overflow: 'hidden' }}>
-                  <img src={m.image} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+                <div>
+                  <img src={m.image} alt={m.name} style={{ width: '100%', height: 'auto', display: 'block' }} />
                 </div>
                 <div style={{ padding: '22px 24px 26px' }}>
                   <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--gwf-magenta-600)', margin: '0 0 8px' }}>{m.title}</p>
