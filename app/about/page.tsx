@@ -144,18 +144,34 @@ export default function AboutPage() {
       <section style={{ padding: 'clamp(56px,7vw,96px) clamp(16px,4vw,40px)', background: '#fff' }}>
         <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
           <SectionHeading eyebrow="The People" title="Our Team" align="center" style={{ marginBottom: 44 }} />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 28 }} className="stat-grid">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
             {team.map((m) => (
-              <div key={m.name} style={{ background: '#fff', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-md)', overflow: 'hidden' }}>
-                <div>
-                  <img src={m.image} alt={m.name} style={{ width: '100%', height: 'auto', display: 'block' }} />
+              <div key={m.name} style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: 0, background: '#fff', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-md)', overflow: 'hidden' }} className="team-card">
+                <div style={{ flexShrink: 0 }}>
+                  <img src={m.image} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </div>
-                <div style={{ padding: '22px 24px 26px' }}>
+                <div style={{ padding: 'clamp(24px,3vw,40px)' }}>
                   <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--gwf-magenta-600)', margin: '0 0 8px' }}>{m.title}</p>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 18, color: 'var(--gwf-ink)', margin: 0, lineHeight: 1.15 }}>{m.name}</h3>
-                  {m.bio && (
-                    <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.65, color: 'var(--gwf-ink-soft)', margin: '12px 0 0' }}>{m.bio}</p>
-                  )}
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 22, color: 'var(--gwf-ink)', margin: '0 0 18px', lineHeight: 1.15 }}>{m.name}</h3>
+                  {m.bioFull ? (
+                    <div>
+                      {m.bioFull.map((para, idx) => (
+                        <p key={idx} style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: idx === 0 ? 0 : '12px 0 0' }}>{para}</p>
+                      ))}
+                      {m.qualifications && (
+                        <div style={{ marginTop: 20 }}>
+                          <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gwf-ink)', margin: '0 0 10px' }}>Academic Qualifications</p>
+                          <ul style={{ margin: 0, padding: '0 0 0 18px' }}>
+                            {m.qualifications.map((q, idx) => (
+                              <li key={idx} style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.65, color: 'var(--gwf-ink-soft)', marginBottom: 4 }}>{q}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  ) : m.bio ? (
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: 0 }}>{m.bio}</p>
+                  ) : null}
                 </div>
               </div>
             ))}
