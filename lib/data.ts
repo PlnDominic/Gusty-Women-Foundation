@@ -413,7 +413,7 @@ export const team: TeamMember[] = [
     name: 'Raynelle Nana Yaa Boadu',
     title: 'Founder & Chief Executive Officer',
     bio: 'A gender advocate, communications professional, confidence coach, and writer, Raynelle leads GWF\'s programmes and interventions with deep empathy and strategic vision. She holds a BA in Strategic Communication, an MA in Gender and Law, and an MBA in Marketing, and is currently pursuing an MA in Development Management to further strengthen her capacity to design sustainable initiatives for women and girls across Ghana.',
-    image: '/assets/ceo-raynelle.jpg',
+    image: '/assets/CEO.jpg.jpg',
   },
   {
     name: 'Hariratah Ibrahim Doudu',
