@@ -472,6 +472,16 @@ export const team: TeamMember[] = [
     ],
     image: '/assets/team-adwoa-sefah-gyasiwaa-agyemang.jpg',
   },
+  {
+    name: 'Nathaniel Obeng Boafo',
+    title: 'Publicity Coordinator & Planning Team',
+    bioFull: [
+      'Nathaniel Obeng Boafo is a youth and gender advocate, and emerging professional with a strong commitment to leadership, youth development, gender equality, and social impact. He is passionate about creating inclusive spaces that empower young people and drive meaningful community transformation.',
+      'He holds multiple leadership roles within the Gutsy Women Foundation, contributing to publicity coordination as well as serving on the Planning and Organising Team, supporting the design, promotion, and execution of initiatives that advance gender equity and community impact.',
+      'He also serves as project director for the 1835 Group, where he leads the coordination, planning, and execution of projects and initiatives, ensuring effective organisation and delivery of programmes that support leadership development and youth engagement.',
+    ],
+    image: '/assets/team-nathaniel-obeng-boafo.jpg',
+  },
 ]
 
 export function getProgram(slug: string) {
