@@ -145,6 +145,7 @@ button {
   .featured-grid { grid-template-columns: 1fr !important; }
   .footer-grid { grid-template-columns: 1fr 1fr !important; }
   .news-grid { grid-template-columns: 1fr !important; }
+  .team-card { grid-template-columns: 1fr !important; }
 }
 
 @media (max-width: 640px) {

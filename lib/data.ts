@@ -52,6 +52,8 @@ export interface TeamMember {
   name: string
   title: string
   bio?: string
+  bioFull?: string[]
+  qualifications?: string[]
   image: string
 }
 
@@ -412,42 +414,64 @@ export const team: TeamMember[] = [
   {
     name: 'Raynelle Nana Yaa Boadu',
     title: 'Founder & Chief Executive Officer',
-    bio: 'A gender advocate, communications professional, confidence coach, and writer, Raynelle leads GWF\'s programmes and interventions with deep empathy and strategic vision. She holds a BA in Strategic Communication, an MA in Gender and Law, and an MBA in Marketing, and is currently pursuing an MA in Development Management to further strengthen her capacity to design sustainable initiatives for women and girls across Ghana.',
+    bioFull: [
+      'Raynelle Boadu is a gender advocate, communications professional, confidence and self-awareness coach, writer, and development-focused leader dedicated to empowering young girls and women through education, mentorship, advocacy, and sustainable social impact initiatives.',
+      'As the Founder and Chief Executive Officer of Gutsy Women Foundation, she leads programs and interventions designed to equip women and girls with the confidence, knowledge, leadership skills, and opportunities necessary to thrive and create meaningful change in their communities. Her vision is rooted in creating long-term, sustainable solutions that enable women and girls to discover their potential and become agents of transformation.',
+      'Raynelle is deeply passionate about helping young women and girls overcome fear, particularly in areas of public speaking, self-expression, and personal identity development. Through coaching, mentorship, and advocacy, she supports young people in building confidence, self-awareness, and a strong sense of purpose.',
+      'Beyond her work in leadership and development, Raynelle is also a writer with a strong interest in social and political issues. Through her writing, she explores conversations that challenge perspectives, amplify voices, and encourage social change.',
+      'Her professional background reflects an interdisciplinary blend of communication, gender studies, business, and development management. This combination enables her to approach leadership with both strategic insight and empathy while creating initiatives that deliver measurable impact.',
+      'Raynelle is defined by qualities that shape both her leadership and personal philosophy: deep empathy, infectious optimism, radical authenticity, and a strategic coaching mindset. Her unique combination of creative vision, ambition, and transformational leadership continues to inspire and empower the next generation of women leaders.',
+    ],
+    qualifications: [
+      'Bachelor of Arts in Strategic Communication',
+      'Master of Arts in Gender and Law',
+      'Master of Business Administration (MBA) in Marketing',
+      'Currently pursuing a Master of Arts in Development Management',
+    ],
     image: '/assets/CEO.jpg.jpg',
   },
   {
     name: 'Hariratah Ibrahim Doudu',
     title: 'Social Media Lead',
-    bio: 'A law professional and emerging leader passionate about legal excellence, leadership and public service. She holds an LL.B from GIMPA and is pursuing the Professional Law Course at the Ghana School of Law. Hariratah serves as VP of the Ghana School of Law Students\' Representative Council and leads GWF\'s communications and visibility.',
+    bioFull: [
+      'Hariratah Ibrahim Doudu is a law professional, emerging leader, and advocate passionate about legal excellence, leadership, and public service. She holds an LL.B from GIMPA and is currently pursuing the Professional Law Course at the Ghana School of Law.',
+      'With experience in legal research, corporate support, and governance, she has developed a strong interest in commercial law and policy. She serves as the Vice President of the Ghana School of Law Students’ Representative Council and is the Social Media Lead for the Gutsy Women Foundation, where she contributes to communication, visibility, and women’s empowerment initiatives.',
+    ],
     image: '/assets/team-hariratah-ibrahim-doudu.jpg',
   },
   {
     name: 'Eugenia Abena Ahenkorah',
     title: 'Administrative Secretary',
-    bio: 'A dedicated emerging leader in the health sciences at the University of Ghana and proud alumna of GWF Mentorship Cohort 1. Eugenia serves as Administrative Secretary of the GWF Administrative Team and Vice President of the UG Medical Laboratory Science Students\' Association (UG-MELSSA). Her work spans student advocacy, professional development and community service.',
+    bioFull: [
+      'Eugenia Abena Ahenkorah is a dedicated and emerging leader in the health sciences community at the University of Ghana.',
+      'She was a proud member of Mentorship Cohort One with the Gutsy Women Foundation, where she honed her leadership skills and commitment to women’s empowerment.',
+      'She currently serves as Administrative Secretary of Gutsy Women Foundation Administrative Team and is also Vice President of the University of Ghana Medical Laboratory Science Students’ Association (UG-MELSSA), and actively volunteers in community initiatives.',
+      'Her multifaceted roles reflect a strong passion for academic excellence, student advocacy, professional development, and service to others. Eugenia continues to inspire her peers through her leadership, initiative, and dedication to advancing medical laboratory science and youth empowerment in Ghana.',
+    ],
     image: '/assets/team-eugenia-abena-ahenkorah.jpg',
   },
   {
     name: 'Eunice Esi Esaaba Essien',
     title: 'Youth Advocate',
-    bio: 'A dynamic youth advocate and President of the Ghana Union of Professional Students. Eunice holds a BA in Public Relations Management and a Master of Arts in Digital and Strategic Marketing Management, bringing sharp communications and strategic thinking to everything she does.',
+    bioFull: [
+      'Eunice Esi Esaaba Essien is a Youth Advocate and President of the Ghana Union of Professional Students.',
+    ],
+    qualifications: [
+      'Bachelor of Arts in Public Relations Management',
+      'Master of Arts in Digital and Strategic Marketing Management',
+    ],
     image: '/assets/team-eunice-esi-esaaba-essien.jpg',
   },
   {
     name: 'Adwoa Sefah Gyasiwaa-Agyemang',
     title: 'Project Director & Administrative Lead',
-    bio: 'A student leader and emerging professional passionate about leadership, youth development and social impact. Adwoa serves as Project Director, Administrative Lead and member of the Planning & Organising Team at GWF, and as Tutorials Lead for the 1835 Group. She is the former General Secretary of the University of Ghana Accra City Campus.',
+    bioFull: [
+      'Adwoa Sefah Gyasiwaa-Agyemang is a student leader and emerging professional with a strong passion for leadership, youth development, and social impact. She currently serves as Tutorials Lead for the 1835 Group, where she supports academic coordination and student development initiatives.',
+      'She also plays multiple leadership roles within the Gutsy Women Foundation, including Project Director, Administrative Lead, and member of the Planning and Organising Team, contributing to programme design, coordination, and execution.',
+      'Additionally, she served as the former General Secretary for the University of Ghana Accra City Campus and has experience in student representation, communication, and organisational leadership. She is committed to excellence, teamwork, and creating meaningful impact through education, advocacy, and community-driven initiatives.',
+    ],
     image: '/assets/team-adwoa-sefah-gyasiwaa-agyemang.jpg',
   },
-  // Add more team members below.
-  // Steps: drop photo in public/assets/, then copy and fill in a new block:
-  //
-  // {
-  //   name: 'Full Name',
-  //   title: 'Role / Title',
-  //   bio: 'Short one- or two-sentence bio.',
-  //   image: '/assets/your-photo-filename.jpg',
-  // },
 ]
 
 export function getProgram(slug: string) {
