@@ -4,7 +4,7 @@ import { blogPosts, programs } from '@/lib/data'
 const SITE_URL = 'https://www.gutsywomenfoundation.org'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes: MetadataRoute.Sitemap = ['', '/about', '/programs', '/mentors', '/alumni', '/impact', '/blog', '/apply', '/contact'].map((route) => ({
+  const staticRoutes: MetadataRoute.Sitemap = ['', '/about', '/programs', '/alumni', '/impact', '/blog', '/apply', '/contact'].map((route) => ({
     url: `${SITE_URL}${route}`,
     lastModified: new Date(),
     changeFrequency: route === '' ? 'weekly' : 'monthly',
