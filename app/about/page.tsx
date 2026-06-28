@@ -20,11 +20,6 @@ const GALLERY = [
   { src: '/assets/gwf-community-outreach.jpg', alt: 'GWF community outreach' },
 ]
 
-const TIMELINE = [
-  { year: '2024', text: 'Gutsy Women Foundation founded with a mission to level the playing field for young women in Ghana.' },
-  { year: '2025', text: 'Launched Cohort 1 of the Mentorship Program Masterclass: 40 women, 3 days, one city.' },
-  { year: '2026', text: 'Cohort 2 announced with expanded programme, new mentors and a focus on Ignite • Build • Scale.' },
-]
 
 export default function AboutPage() {
   return (
@@ -72,68 +67,6 @@ export default function AboutPage() {
               <div key={obj.n} style={{ background: '#fff', padding: 'clamp(24px,3vw,36px)', boxShadow: 'var(--shadow-sm)', display: 'flex', gap: 20, alignItems: 'flex-start' }}>
                 <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 32, color: 'var(--gwf-purple-200)', lineHeight: 1, flexShrink: 0 }}>{obj.n}</span>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: 0 }}>{obj.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Priority Areas */}
-      <section style={{ padding: 'clamp(56px,7vw,96px) clamp(16px,4vw,40px)', background: '#fff' }}>
-        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
-          <SectionHeading eyebrow="Where We Focus" title="Priority Areas" align="center" style={{ marginBottom: 44 }} />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }} className="stat-grid">
-            {[
-              {
-                title: 'Mentorship',
-                body: 'Through the GUTSY Women Mentoring Programme (GWMP), we connect young women with experienced mentors who provide guidance, support and inspiration on their personal and professional journeys.',
-                accent: 'var(--gwf-purple-600)',
-              },
-              {
-                title: 'Advocacy',
-                body: 'We actively advocate for policies that promote gender equality and women\'s rights, working with policymakers, civil society organisations and the media to drive meaningful change.',
-                accent: 'var(--gwf-gold-500)',
-              },
-              {
-                title: 'Education',
-                body: 'We develop and deliver educational programmes that raise awareness about women\'s rights and empower women to claim their rightful place in society.',
-                accent: 'var(--gwf-magenta-600)',
-              },
-              {
-                title: "Women's Health",
-                body: 'We advocate for access to quality healthcare services for women, including reproductive health and mental health, recognising that wellbeing is foundational to full participation in society.',
-                accent: 'var(--gwf-purple-600)',
-              },
-              {
-                title: 'Gender-Based Research',
-                body: 'We support and promote gender-based research to identify and address inequalities faced by women and girls. This research informs our advocacy efforts and programme development for a more equitable future.',
-                accent: 'var(--gwf-gold-500)',
-              },
-            ].map((area) => (
-              <div key={area.title} style={{ background: 'var(--gwf-purple-100)', padding: 'clamp(24px,3vw,36px)', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, width: 5, height: '100%', background: area.accent }} />
-                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 18, color: 'var(--gwf-ink)', margin: '0 0 14px', letterSpacing: '-0.01em' }}>{area.title}</h3>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: 0 }}>{area.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section style={{ padding: 'clamp(56px,7vw,96px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
-        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
-          <SectionHeading eyebrow="Our Journey" title="Foundation Timeline" align="center" style={{ marginBottom: 48 }} />
-          <div style={{ maxWidth: 680, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 0 }}>
-            {TIMELINE.map((t, i) => (
-              <div key={t.year} style={{ display: 'flex', gap: 28, position: 'relative' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-                  <div style={{ width: 52, height: 52, borderRadius: 0, background: 'var(--gwf-purple-600)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 14, flexShrink: 0 }}>{t.year}</div>
-                  {i < TIMELINE.length - 1 && <div style={{ width: 2, flex: 1, background: 'var(--gwf-purple-200)', margin: '6px 0' }} />}
-                </div>
-                <div style={{ paddingBottom: i < TIMELINE.length - 1 ? 40 : 0, paddingTop: 12 }}>
-                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.65, color: 'var(--gwf-ink-soft)', margin: 0 }}>{t.text}</p>
-                </div>
               </div>
             ))}
           </div>
