@@ -30,7 +30,8 @@ export default function ContactPage() {
             <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 28, color: 'var(--gwf-ink)', margin: '0 0 28px' }}>Get in Touch</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <InfoRow icon="mail" label="Email" value="gutsywomenfoundation@gmail.com" href="mailto:gutsywomenfoundation@gmail.com" />
-              <InfoRow icon="map-pin" label="Location" value="Yota East, Legon, Accra, Ghana" />
+              <InfoRow icon="phone" label="Phone" value="+233 549 094 441 / +233 530 505 645" href="tel:+233549094441" />
+              <InfoRow icon="map-pin" label="Office Address" value="23 Examination Drive Ridge, Accra, Ghana" />
               <InfoRow icon="globe" label="Website" value="www.gutsywomenfoundation.org" href="https://www.gutsywomenfoundation.org" />
             </div>
 
@@ -42,7 +43,7 @@ export default function ContactPage() {
             {/* Map placeholder */}
             <div style={{ marginTop: 40, borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-md)', height: 220, background: 'var(--gwf-purple-100)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 10, color: 'var(--gwf-purple-400)' }}>
               <Icon name="map-pin" size={36} />
-              <span style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--gwf-ink-muted)' }}>Yota East, Legon · Accra</span>
+              <span style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--gwf-ink-muted)' }}>23 Examination Drive Ridge · Accra</span>
             </div>
           </div>
 
