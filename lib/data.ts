@@ -109,6 +109,17 @@ export const programs: Program[] = [
     location: 'Adenta Primary & JHS, Amrahia–Adenta',
   },
   {
+    slug: 'annual-meeting',
+    title: 'Gutsy Women Foundation Annual Meeting',
+    subtitle: 'All-Hands Gathering',
+    theme: 'Reflect · Reconnect · Reimagine',
+    description: 'A full-team annual gathering bringing together GWF staff, volunteers, and partners to reflect on impact, align on vision, and plan the road ahead.',
+    longDescription: 'The Gutsy Women Foundation Annual Meeting is our flagship internal gathering — a space where every member of the GWF family comes together to celebrate progress, share learnings, and co-create the path forward. From presentations on programme impact and volunteerism to collaborative planning sessions and candid conversations, the Annual Meeting embodies the spirit of community that drives everything we do. It is a day of reflection, reconnection, and reimagination — grounding our team in purpose and equipping everyone for the year ahead.',
+    status: 'closed',
+    statusLabel: 'Completed',
+    image: '/assets/gwf-annual-meeting-group.jpg',
+  },
+  {
     slug: 'anti-drug-campaign-drive',
     title: 'Breaking Chains, Building Futures',
     subtitle: 'Multi-School Campaign Drive',

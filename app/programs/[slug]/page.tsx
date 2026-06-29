@@ -230,6 +230,31 @@ export default function ProgramDetailPage({ params }: { params: { slug: string }
         </section>
       )}
 
+      {program.slug === 'annual-meeting' && (
+        <section style={{ padding: 'clamp(48px,7vw,88px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
+          <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(22px,2.5vw,32px)', color: 'var(--gwf-ink)', margin: '0 0 28px', textAlign: 'center' }}>Meeting Highlights</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 3 }} className="gallery-grid">
+              <div style={{ gridColumn: 'span 2', height: 360, overflow: 'hidden' }}>
+                <img src="/assets/gwf-annual-meeting-group.jpg" alt="GWF team group photo at Annual Meeting" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 360, overflow: 'hidden' }}>
+                <img src="/assets/gwf-annual-meeting-group2.jpg" alt="GWF attendees at Annual Meeting" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 280, overflow: 'hidden' }}>
+                <img src="/assets/gwf-annual-meeting-session.jpg" alt="Presenters addressing attendees at GWF Annual Meeting" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ height: 280, overflow: 'hidden' }}>
+                <img src="/assets/gwf-annual-meeting-speaker.jpg" alt="Speaker presenting at GWF Annual Meeting" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ height: 280, overflow: 'hidden' }}>
+                <img src="/assets/gwf-annual-meeting-presenter.jpg" alt="Volunteer presenter at GWF Annual Meeting" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {program.slug === 'anti-drug-campaign-drive' && (
         <section style={{ padding: 'clamp(48px,7vw,88px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
           <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
