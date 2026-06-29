@@ -230,6 +230,31 @@ export default function ProgramDetailPage({ params }: { params: { slug: string }
         </section>
       )}
 
+      {program.slug === 'samira-bawumia-visit' && (
+        <section style={{ padding: 'clamp(48px,7vw,88px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
+          <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(22px,2.5vw,32px)', color: 'var(--gwf-ink)', margin: '0 0 28px', textAlign: 'center' }}>Visit Highlights</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 3 }} className="gallery-grid">
+              <div style={{ gridColumn: 'span 2', height: 400, overflow: 'hidden' }}>
+                <img src="/assets/gwf-samira-bawumia-group.jpg" alt="GWF team with H.E. Samira Bawumia" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 400, overflow: 'hidden' }}>
+                <img src="/assets/gwf-samira-bawumia-closeup.jpg" alt="H.E. Samira Bawumia, former Second Lady of Ghana" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 300, overflow: 'hidden' }}>
+                <img src="/assets/gwf-samira-bawumia-portrait.jpg" alt="GWF founder with H.E. Samira Bawumia" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 300, overflow: 'hidden' }}>
+                <img src="/assets/gwf-samira-bawumia-session.jpg" alt="GWF team in discussion during the courtesy visit" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 300, overflow: 'hidden' }}>
+                <img src="/assets/gwf-samira-bawumia-notes.jpg" alt="GWF CEO taking notes during the meeting" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {program.slug === 'annual-meeting' && (
         <section style={{ padding: 'clamp(48px,7vw,88px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
           <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>

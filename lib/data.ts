@@ -109,6 +109,17 @@ export const programs: Program[] = [
     location: 'Adenta Primary & JHS, Amrahia–Adenta',
   },
   {
+    slug: 'samira-bawumia-visit',
+    title: 'Courtesy Visit to H.E. Samira Bawumia',
+    subtitle: 'Former Second Lady of Ghana',
+    theme: 'Connecting with Purpose, Inspiring a Generation',
+    description: 'The Gutsy Women Foundation paid a courtesy visit to Her Excellency Samira Bawumia, former Second Lady of the Republic of Ghana — a meaningful exchange rooted in shared values of women\'s empowerment and purposeful service.',
+    longDescription: 'In a memorable moment of connection and inspiration, the Gutsy Women Foundation team paid a courtesy visit to Her Excellency Samira Bawumia, former Second Lady of the Republic of Ghana. The visit was a heartfelt exchange of ideas, values, and shared commitment to the empowerment of women and girls across Ghana. H.E. Samira Bawumia warmly received the GWF team, engaging in candid conversations about leadership, service, and the vital role that organisations like the Gutsy Women Foundation play in shaping the next generation of women leaders. Her grace, passion, and dedication to humanitarian service left a lasting impression on everyone present. The visit reinforced GWF\'s belief that when women support women — across every level of society — the impact is transformational.',
+    status: 'closed',
+    statusLabel: 'Completed',
+    image: '/assets/gwf-samira-bawumia-group.jpg',
+  },
+  {
     slug: 'annual-meeting',
     title: 'Gutsy Women Foundation Annual Meeting',
     subtitle: 'All-Hands Gathering',
