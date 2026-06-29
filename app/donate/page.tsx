@@ -35,12 +35,15 @@ export default function DonatePage() {
       <section style={{ padding: 'clamp(56px,8vw,104px) clamp(16px,4vw,40px)', background: '#fff' }}>
         <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: 'clamp(40px,6vw,80px)', alignItems: 'start' }} className="hero-grid">
 
-          {/* Left — donation form */}
+          {/* Left — payment details */}
           <div>
             <span style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--gwf-magenta-600)' }}>Make a Donation</span>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(24px,3vw,36px)', color: 'var(--gwf-ink)', lineHeight: 1.04, margin: '12px 0 28px' }}>
-              Choose Your Amount
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(24px,3vw,36px)', color: 'var(--gwf-ink)', lineHeight: 1.04, margin: '12px 0 8px' }}>
+              How to Give
             </h2>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.6, color: 'var(--gwf-ink-soft)', margin: '0 0 28px' }}>
+              Transfer directly to our First Atlantic Bank account or send via Mobile Money. Every cedi and dollar goes straight to our programmes.
+            </p>
             <DonateClient />
           </div>
 
@@ -84,15 +87,15 @@ export default function DonatePage() {
         </div>
       </section>
 
-      {/* International / Bank */}
-      <section style={{ padding: 'clamp(48px,7vw,80px) clamp(16px,4vw,40px)', background: '#fff' }}>
+      {/* International donors */}
+      <section style={{ padding: 'clamp(48px,7vw,80px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
           <span style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--gwf-ink-muted)' }}>International Donors</span>
           <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(20px,2.5vw,28px)', color: 'var(--gwf-ink)', margin: '12px 0 12px' }}>
             Donating from Outside Ghana?
           </h2>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.65, color: 'var(--gwf-ink-soft)', margin: '0 0 20px' }}>
-            International donors can give via Paystack using a Visa or Mastercard — Paystack handles the currency conversion. Alternatively, reach out to us directly to arrange a bank transfer.
+            Use our USD account at First Atlantic Bank (North Ridge) to send a direct international wire transfer — account number <strong>2301971112012</strong> under <strong>GUTSY WOMEN FOUNDATION LBG</strong>. For wire details or any questions, reach us directly.
           </p>
           <a href="mailto:gutsywomenfoundation@gmail.com?subject=International%20Donation%20Enquiry" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 15, color: 'var(--gwf-purple-700)' }}>
             <Icon name="mail" size={17} /> gutsywomenfoundation@gmail.com
