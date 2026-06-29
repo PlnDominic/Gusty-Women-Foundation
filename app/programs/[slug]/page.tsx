@@ -230,6 +230,34 @@ export default function ProgramDetailPage({ params }: { params: { slug: string }
         </section>
       )}
 
+      {program.slug === 'menstrual-hygiene-outreach' && (
+        <section style={{ padding: 'clamp(48px,7vw,88px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
+          <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(22px,2.5vw,32px)', color: 'var(--gwf-ink)', margin: '0 0 12px', textAlign: 'center' }}>Outreach Highlights</h2>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', maxWidth: 580, margin: '0 auto 28px', textAlign: 'center' }}>
+              Junior high schools · Senior high schools · KNUST SRC · Communities across Ghana
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 3 }} className="gallery-grid">
+              <div style={{ gridColumn: 'span 2', height: 380, overflow: 'hidden' }}>
+                <img src="/assets/gwf-hygiene-group.jpg" alt="GWF team and students holding hygiene packs at school outreach" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 380, overflow: 'hidden' }}>
+                <img src="/assets/gwf-hygiene-handover.jpg" alt="GWF CEO handing a hygiene pack to a student" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 290, overflow: 'hidden' }}>
+                <img src="/assets/gwf-hygiene-knust.jpg" alt="GWF and KNUST SRC hygiene distribution event" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 290, overflow: 'hidden' }}>
+                <img src="/assets/gwf-hygiene-students-frame.jpg" alt="Students celebrating their GWF hygiene packs with Instagram frame" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+              <div style={{ height: 290, overflow: 'hidden' }}>
+                <img src="/assets/gwf-hygiene-classroom.jpg" alt="GWF facilitator distributing hygiene packs in classroom" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {program.slug === 'samira-bawumia-visit' && (
         <section style={{ padding: 'clamp(48px,7vw,88px) clamp(16px,4vw,40px)', background: 'var(--gwf-purple-100)' }}>
           <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>

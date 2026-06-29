@@ -109,6 +109,17 @@ export const programs: Program[] = [
     location: 'Adenta Primary & JHS, Amrahia–Adenta',
   },
   {
+    slug: 'menstrual-hygiene-outreach',
+    title: 'Menstrual Hygiene & Sensitization Outreaches',
+    subtitle: 'Schools Across Ghana',
+    theme: 'Breaking the Silence, Restoring Dignity',
+    description: 'GWF takes menstrual health education directly into schools — distributing hygiene packs, breaking stigma, and empowering girls to stay in school with confidence and dignity.',
+    longDescription: 'Menstrual health is a right, not a privilege — and the Gutsy Women Foundation is on a mission to make that a lived reality for every girl in Ghana. Through our Menstrual Hygiene & Sensitization Outreaches, GWF has visited schools across the country to deliver open, honest conversations about menstrual health while distributing GWF Hygiene Packs packed with sanitary essentials. From junior high school classrooms to senior high school halls, our team engages girls in a safe, stigma-free environment where questions are welcomed and no topic is off the table. In partnership with KNUST SRC and other institutions, these outreaches reach hundreds of girls at a time — many of whom have never had access to proper menstrual education or sanitary products. By combining sensitization with tangible support, GWF is helping girls manage their periods with confidence, stay in school, and understand that their bodies are nothing to be ashamed of. Every hygiene pack is a message: you are seen, you are supported, and you deserve to thrive.',
+    status: 'closed',
+    statusLabel: 'Ongoing Outreach',
+    image: '/assets/gwf-hygiene-group.jpg',
+  },
+  {
     slug: 'samira-bawumia-visit',
     title: 'Courtesy Visit to H.E. Samira Bawumia',
     subtitle: 'Former Second Lady of Ghana',
