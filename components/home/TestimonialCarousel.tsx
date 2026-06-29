@@ -5,9 +5,15 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Icon } from '@/components/ui/Icon'
 
 const QUOTES = [
-  { q: 'Cohort 1 gave me the courage and the network to finally launch. I stopped dreaming and started building.', n: 'Akosua D.', r: 'Founder, Cohort 1', img: '/assets/event-participant.jpg' },
-  { q: 'The mentorship was real and personal. My mentor still checks in on my goals months later.', n: 'Efua B.', r: 'Participant, Cohort 1', img: '/assets/event-audience.jpg' },
-  { q: 'I walked in with an idea and walked out with a plan, a team and partners who believe in it.', n: 'Naa K.', r: 'Founder, Cohort 1', img: '/assets/event-hero.jpg' },
+  { q: 'Cohort 1 gave me the courage and the network to finally launch. I stopped dreaming and started building.', n: 'Bernice Amoah', r: 'Cohort 1 Graduate', img: '/assets/gwf-cohort1-bernice-amoah.jpg' },
+  { q: 'The mentorship was real and personal. My mentor still checks in on my goals months later.', n: 'Nana Kwegyirba Koomson', r: 'Cohort 1 Graduate', img: '/assets/gwf-cohort1-nana-koomson.jpg' },
+  { q: 'I walked in with an idea and walked out with a plan, a team and partners who believe in it.', n: 'Gloria Darko', r: 'Cohort 1 Graduate', img: '/assets/gwf-cohort1-gloria-darko.jpg' },
+  { q: 'The three days reshaped how I see myself as a leader. I left with clarity, confidence and a network I still lean on.', n: 'Regina Clottey', r: 'Cohort 1 Graduate', img: '/assets/gwf-cohort1-regina-clottey.jpg' },
+  { q: 'Every session pushed me further than I expected. GWF doesn\'t let you play small.', n: 'Lawrencia Oparebea Sakyi', r: 'Cohort 1 Graduate', img: '/assets/gwf-cohort1-lawrencia-sakyi.jpg' },
+  { q: 'I came in uncertain about my path. I left with a plan, a community and the belief that I can actually do this.', n: 'Edith Amakye', r: 'Cohort 1 Graduate', img: '/assets/gwf-cohort1-edith-amakye.jpg' },
+  { q: 'Being surrounded by driven women who genuinely want to see each other succeed changed everything for me.', n: 'Shemanica Naa Ayeley Aryeetey', r: 'Cohort 1 Graduate', img: '/assets/gwf-cohort1-shemanica-aryeetey.jpg' },
+  { q: 'GWF showed me that mentorship isn\'t just advice — it\'s accountability, connection and real support.', n: 'Fatimatu Dauda Affanyi', r: 'Cohort 1 Graduate', img: '/assets/gwf-cohort1-fatimatu-affanyi.jpg' },
+  { q: 'Cohort 1 transformed how I think about building. The tools, the mentors and the sisterhood are unlike anything else.', n: 'Asante-Ansah Kynell Marklyna', r: 'Cohort 1 Graduate', img: '/assets/gwf-cohort1-kynell-marklyna.jpg' },
 ]
 
 export function TestimonialCarousel() {
