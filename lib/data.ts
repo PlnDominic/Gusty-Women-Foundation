@@ -506,6 +506,17 @@ export const team: TeamMember[] = [
     image: '/assets/team-adwoa-sefah-gyasiwaa-agyemang.jpg',
   },
   {
+    name: 'Samuel Palm',
+    title: 'Communications & Strategic Management Advisor',
+    bioFull: [
+      'Samuel Palm is a seasoned communications and strategic management professional with academic qualifications in Communications, Public Relations, Law (LLB), and Brands & Communication Management.',
+      'With extensive experience as a manager and lead strategist, he has successfully delivered high-impact communication and stakeholder engagement projects for organisations including The Coca-Cola Company, UNICEF, Marie Stopes International, the Ministry of Food and Agriculture, and the Ministry of Gender, Children and Social Protection.',
+      'Over the years, he has been providing strategic leadership in communications, policy engagement, stakeholder relations, and reputation management.',
+      'His multidisciplinary expertise enables him to effectively advise on public affairs, branding, governance, and strategic communications.',
+    ],
+    image: '/assets/team-samuel-palm.jpg',
+  },
+  {
     name: 'Nathaniel Obeng Boafo',
     title: 'Publicity Coordinator & Planning Team',
     bioFull: [
