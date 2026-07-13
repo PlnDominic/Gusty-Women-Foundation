@@ -526,6 +526,20 @@ export const team: TeamMember[] = [
     ],
     image: '/assets/team-nathaniel-obeng-boafo.jpg',
   },
+  {
+    name: 'Castin Boakye',
+    title: 'Monitoring & Evaluation (M&E) Officer',
+    bioFull: [
+      'Castin Boakye is the Monitoring & Evaluation (M&E) Officer at Gutsy Women Foundation, where he leads the design, implementation, and continuous improvement of monitoring, evaluation, accountability, and learning systems to measure the Foundation\'s impact and enhance programme effectiveness.',
+      'He is responsible for developing results frameworks, performance indicators, data collection tools, and reporting systems that support evidence-based decision-making. His role includes tracking project implementation, conducting data quality assessments, analysing programme outcomes, preparing donor and management reports, and generating insights that strengthen organisational learning and accountability.',
+      'Castin combines strong analytical skills with expertise in data management, research, policy analysis, and strategic planning to ensure programmes are effectively monitored and evaluated. Passionate about sustainable development and social impact, he is committed to using data and evidence to improve programme delivery, empower women and vulnerable communities, and support the Foundation\'s mission of creating lasting, measurable change.',
+    ],
+    qualifications: [
+      'Bachelor of Arts in Information Studies and Political Science — University of Ghana',
+      'Master of Public Sector Management (in progress)',
+    ],
+    image: '/assets/gwf-team-castin-boakye.jpg',
+  },
 ]
 
 export function getProgram(slug: string) {
