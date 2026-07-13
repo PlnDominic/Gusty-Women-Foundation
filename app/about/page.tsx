@@ -8,9 +8,12 @@ export const metadata: Metadata = {
 }
 
 const TEAM = [
-  { name: 'Founder & Executive Director', role: 'Visionary leader behind GWF', img: '/assets/gwf-podium.jpg' },
-  { name: 'Program Lead', role: 'Designing transformative learning experiences', img: '/assets/gwf-speaker-mic.jpg' },
-  { name: 'Partnerships Manager', role: 'Building the sponsor & mentor network', img: '/assets/gwf-community-outreach.jpg' },
+  {
+    name: 'Castin Boakye',
+    role: 'Monitoring & Evaluation (M&E) Officer',
+    bio: 'Castin leads the design and implementation of monitoring, evaluation, and learning systems that measure GWF\'s impact and strengthen programme delivery. He holds a BSc in Information Studies & Political Science from the University of Ghana and is pursuing a Master of Public Sector Management.',
+    img: '/assets/gwf-team-castin-boakye.jpg',
+  },
 ]
 
 const GALLERY = [
@@ -149,15 +152,16 @@ export default function AboutPage() {
       <section style={{ padding: 'clamp(56px,7vw,96px) clamp(16px,4vw,40px)', background: '#fff' }}>
         <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
           <SectionHeading eyebrow="The People" title="Our Team" align="center" style={{ marginBottom: 44 }} />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 28 }} className="stat-grid">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,360px))', gap: 28, justifyContent: 'center' }}>
             {TEAM.map((m) => (
               <div key={m.name} style={{ background: '#fff', borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: 'var(--shadow-md)', textAlign: 'center' }}>
-                <div style={{ height: 220, overflow: 'hidden' }}>
-                  <img src={m.img} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div style={{ height: 280, overflow: 'hidden' }}>
+                  <img src={m.img} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
                 </div>
-                <div style={{ padding: '20px 20px 24px' }}>
+                <div style={{ padding: '20px 24px 28px' }}>
                   <p style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 16, color: 'var(--gwf-ink)', margin: 0 }}>{m.name}</p>
-                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--gwf-ink-muted)', margin: '6px 0 0' }}>{m.role}</p>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 700, color: 'var(--gwf-purple-600)', margin: '6px 0 0', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{m.role}</p>
+                  {m.bio && <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: '14px 0 0' }}>{m.bio}</p>}
                 </div>
               </div>
             ))}
