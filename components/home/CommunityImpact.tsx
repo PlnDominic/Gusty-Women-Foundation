@@ -22,8 +22,8 @@ const BOTTOM_COLS = [
 ]
 
 export function CommunityImpact() {
-  const participants = impactMetrics.find((m) => m.label === 'Accepted participants')
-  const businesses = impactMetrics.find((m) => m.label === 'Businesses launched')
+  const connected = impactMetrics.find((m) => m.label === 'Girls connected')
+  const mentored = impactMetrics.find((m) => m.label === 'Girls mentored')
   const mentors = impactMetrics.find((m) => m.label === 'Mentors engaged')
 
   return (
@@ -69,7 +69,7 @@ export function CommunityImpact() {
             <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'rgba(26,18,0,.6)', margin: '0 0 28px' }}>
               Achieve Tangible Results
             </p>
-            {[participants, businesses, mentors].map((m) => m && (
+            {[connected, mentored, mentors].map((m) => m && (
               <div key={m.label} style={{ borderTop: '1px solid rgba(0,0,0,.15)', padding: '22px 0' }}>
                 <p style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(34px,4vw,52px)', lineHeight: 1, color: 'var(--gwf-ink)', margin: 0 }}>
                   {m.value}{m.suffix || ''}

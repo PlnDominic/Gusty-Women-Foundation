@@ -8,7 +8,7 @@ import { Icon } from '@/components/ui/Icon'
 const COLS = [
   { h: 'Explore', items: [{ label: 'Home', href: '/' }, { label: 'About', href: '/about' }, { label: 'Programs', href: '/programs' }, { label: 'Blog', href: '/blog' }, { label: 'Contact', href: '/contact' }] },
   { h: 'Programs', items: [{ label: 'Masterclass', href: '/programs/masterclass' }, { label: 'Anti-Drug Campaign', href: '/programs/anti-drug-mentorship' }, { label: 'IWD Mentorship', href: '/programs/iwd-mentorship-adenta' }, { label: 'Apply', href: '/apply' }] },
-  { h: 'Community', items: [{ label: 'Mentors', href: '/mentors' }, { label: 'Alumni', href: '/alumni' }] },
+  { h: 'Community', items: [{ label: 'Alumni', href: '/alumni' }] },
   { h: 'Support Us', items: [{ label: 'Donate', href: '/donate' }, { label: 'Sponsor a Scholar', href: '/sponsor-a-scholar' }, { label: 'Partner With Us', href: '/partners' }] },
 ]
 
@@ -72,9 +72,17 @@ export function Footer() {
               <Icon name="mail" size={17} color="var(--gwf-gold-500)" />
               gutsywomenfoundation@gmail.com
             </a>
-            <span style={{ display: 'flex', alignItems: 'center', gap: 9, color: 'rgba(255,255,255,.8)', fontFamily: 'var(--font-body)', fontSize: 14 }}>
+            <a href="tel:+233549094441" style={{ display: 'flex', alignItems: 'center', gap: 9, color: 'rgba(255,255,255,.8)', textDecoration: 'none', fontFamily: 'var(--font-body)', fontSize: 14 }}>
+              <Icon name="phone" size={17} color="var(--gwf-gold-500)" />
+              +233 549 094 441
+            </a>
+            <a href="tel:+233530505645" style={{ display: 'flex', alignItems: 'center', gap: 9, color: 'rgba(255,255,255,.8)', textDecoration: 'none', fontFamily: 'var(--font-body)', fontSize: 14 }}>
+              <Icon name="phone" size={17} color="var(--gwf-gold-500)" />
+              +233 530 505 645
+            </a>
+            <span style={{ display: 'flex', alignItems: 'flex-start', gap: 9, color: 'rgba(255,255,255,.8)', fontFamily: 'var(--font-body)', fontSize: 14 }}>
               <Icon name="map-pin" size={17} color="var(--gwf-gold-500)" />
-              Yota East, Legon · Accra
+              23 Examination Drive Ridge, Accra
             </span>
             <a href="https://www.gutsywomenfoundation.org" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: 9, color: 'rgba(255,255,255,.8)', textDecoration: 'none', fontFamily: 'var(--font-body)', fontSize: 14 }}>
               <Icon name="arrow-up-right" size={17} color="var(--gwf-gold-500)" />

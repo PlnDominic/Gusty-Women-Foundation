@@ -6,6 +6,7 @@ import { TestimonialCarousel } from '@/components/home/TestimonialCarousel'
 import { CommunityImpact } from '@/components/home/CommunityImpact'
 import { PhotoGallery } from '@/components/home/PhotoGallery'
 import { Partners } from '@/components/home/Partners'
+import { OurBankers } from '@/components/home/OurBankers'
 import { Newsletter } from '@/components/home/Newsletter'
 
 export default function HomePage() {
@@ -19,6 +20,7 @@ export default function HomePage() {
       <TestimonialCarousel />
       <PhotoGallery />
       <Partners />
+      <OurBankers />
       <Newsletter />
     </main>
   )

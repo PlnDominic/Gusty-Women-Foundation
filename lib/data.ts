@@ -48,6 +48,15 @@ export interface ImpactMetric {
   description: string
 }
 
+export interface TeamMember {
+  name: string
+  title: string
+  bio?: string
+  bioFull?: string[]
+  qualifications?: string[]
+  image: string
+}
+
 export const programs: Program[] = [
   {
     slug: 'masterclass',
@@ -100,6 +109,39 @@ export const programs: Program[] = [
     location: 'Adenta Primary & JHS, Amrahia–Adenta',
   },
   {
+    slug: 'menstrual-hygiene-outreach',
+    title: 'Menstrual Hygiene & Sensitization Outreaches',
+    subtitle: 'Schools Across Ghana',
+    theme: 'Breaking the Silence, Restoring Dignity',
+    description: 'GWF takes menstrual health education directly into schools — distributing hygiene packs, breaking stigma, and empowering girls to stay in school with confidence and dignity.',
+    longDescription: 'Menstrual health is a right, not a privilege — and the Gutsy Women Foundation is on a mission to make that a lived reality for every girl in Ghana. Through our Menstrual Hygiene & Sensitization Outreaches, GWF has visited schools across the country to deliver open, honest conversations about menstrual health while distributing GWF Hygiene Packs packed with sanitary essentials. From junior high school classrooms to senior high school halls, our team engages girls in a safe, stigma-free environment where questions are welcomed and no topic is off the table. In partnership with KNUST SRC and other institutions, these outreaches reach hundreds of girls at a time — many of whom have never had access to proper menstrual education or sanitary products. By combining sensitization with tangible support, GWF is helping girls manage their periods with confidence, stay in school, and understand that their bodies are nothing to be ashamed of. Every hygiene pack is a message: you are seen, you are supported, and you deserve to thrive.',
+    status: 'closed',
+    statusLabel: 'Ongoing Outreach',
+    image: '/assets/gwf-hygiene-group.jpg',
+  },
+  {
+    slug: 'samira-bawumia-visit',
+    title: 'Courtesy Visit to H.E. Samira Bawumia',
+    subtitle: 'Former Second Lady of Ghana',
+    theme: 'Connecting with Purpose, Inspiring a Generation',
+    description: 'The Gutsy Women Foundation paid a courtesy visit to Her Excellency Samira Bawumia, former Second Lady of the Republic of Ghana — a meaningful exchange rooted in shared values of women\'s empowerment and purposeful service.',
+    longDescription: 'In a memorable moment of connection and inspiration, the Gutsy Women Foundation team paid a courtesy visit to Her Excellency Samira Bawumia, former Second Lady of the Republic of Ghana. The visit was a heartfelt exchange of ideas, values, and shared commitment to the empowerment of women and girls across Ghana. H.E. Samira Bawumia warmly received the GWF team, engaging in candid conversations about leadership, service, and the vital role that organisations like the Gutsy Women Foundation play in shaping the next generation of women leaders. Her grace, passion, and dedication to humanitarian service left a lasting impression on everyone present. The visit reinforced GWF\'s belief that when women support women — across every level of society — the impact is transformational.',
+    status: 'closed',
+    statusLabel: 'Completed',
+    image: '/assets/gwf-samira-bawumia-group.jpg',
+  },
+  {
+    slug: 'annual-meeting',
+    title: 'Gutsy Women Foundation Annual Meeting',
+    subtitle: 'All-Hands Gathering',
+    theme: 'Reflect · Reconnect · Reimagine',
+    description: 'A full-team annual gathering bringing together GWF staff, volunteers, and partners to reflect on impact, align on vision, and plan the road ahead.',
+    longDescription: 'The Gutsy Women Foundation Annual Meeting is our flagship internal gathering — a space where every member of the GWF family comes together to celebrate progress, share learnings, and co-create the path forward. From presentations on programme impact and volunteerism to collaborative planning sessions and candid conversations, the Annual Meeting embodies the spirit of community that drives everything we do. It is a day of reflection, reconnection, and reimagination — grounding our team in purpose and equipping everyone for the year ahead.',
+    status: 'closed',
+    statusLabel: 'Completed',
+    image: '/assets/gwf-annual-meeting-group.jpg',
+  },
+  {
     slug: 'anti-drug-campaign-drive',
     title: 'Breaking Chains, Building Futures',
     subtitle: 'Multi-School Campaign Drive',
@@ -118,7 +160,19 @@ export const blogPosts: BlogPost[] = [
     slug: 'cohort-1-recap',
     title: 'Cohort 1 in Review: 40 Women, 3 Days, Infinite Possibilities',
     excerpt: 'Here is what happened when we brought 40 of Ghana\'s most driven young women together for the first Gutsy Women Foundation Masterclass.',
-    content: 'When we launched Cohort 1 of the GWF Masterclass, we had one goal: give Ghana\'s most driven young women the tools, mentors and community they needed to stop dreaming and start building. Forty women joined us at Yota East for three days of intensive sessions, fireside chats and workshops...',
+    content: `When we launched Cohort 1 of the GWF Masterclass, we had one goal: give Ghana's most driven young women the tools, mentors and community they needed to stop dreaming and start building. Forty women joined us at Yota East, Legon for three days of intensive sessions, fireside chats and hands-on workshops — and what unfolded exceeded every expectation we had set.
+
+Day one opened with energy that was almost electric. Women arrived from across Ghana — from Accra to Cape Coast to the Northern regions — each carrying a different dream, a different story and a shared determination to make something happen. The morning kicked off with an orientation that quickly dissolved into a deep conversation about identity and ambition. What does it mean to be a gutsy woman today? What has stopped you before, and what brings you here now? The room filled with honest, vulnerable and powerful answers.
+
+By afternoon, our mentors were already at work. Participants rotated through structured sessions on business modelling, personal branding and financial storytelling — not theory, but real tools walked through with real examples from Ghana's entrepreneurial landscape. In the evening, a fireside session with our lead mentor ran over by forty-five minutes because nobody wanted it to end.
+
+Day two pushed harder. Participants worked in small peer groups to stress-test each other's ideas, identify blind spots and sharpen their pitches. Our mentors challenged assumptions, asked uncomfortable questions and refused to let vague language substitute for real plans. By the time the day wrapped, women who had arrived with rough ideas were leaving with structured frameworks, clearer positioning and the beginnings of actual execution plans.
+
+Day three was about momentum. Participants made commitments — to their peers, to their mentors and to themselves — and the room held them to it. We closed with a ceremony that was part celebration, part accountability launch. Forty women walked in as applicants and walked out as GWF alumni, equipped with networks, plans and the shared belief that building something real is entirely possible.
+
+In the months since Cohort 1, we have watched those women move. Businesses have been registered. Partnerships formed. Products launched. Conversations started that are still bearing fruit. Cohort 1 proved what we believed: when you give Ghana's women the right environment, the results take care of themselves.
+
+Cohort 2 is now open. If you are ready to build, we are ready for you.`,
     author: 'GWF Team',
     date: '2026-03-15',
     image: '/assets/gwf-group-photo.jpg',
@@ -128,8 +182,20 @@ export const blogPosts: BlogPost[] = [
     slug: 'why-mentorship-matters',
     title: 'Why Mentorship is the Missing Piece for Young Women in Business',
     excerpt: 'Access to the right mentor can compress years of learning into months. Here is the evidence and what we are doing about it.',
-    content: 'The statistics are stark: women-led businesses in Sub-Saharan Africa receive less than 2% of venture capital funding. But the gap is not talent, it is access. Access to networks, to knowledge, and most critically, to mentors who have walked the path before...',
-    author: 'Founder, GWF',
+    content: `The statistics are stark: women-led businesses in Sub-Saharan Africa receive less than 2% of venture capital funding. But the gap is not talent. It is access — access to networks, to knowledge, and most critically, to mentors who have walked the path before and are willing to walk it again alongside someone else.
+
+In Ghana, the story is the same. Talented, driven young women are everywhere. You find them in university lecture halls, at trade fairs, behind market stalls, in corporate offices dreaming of something more. What is rarely available to them is structured guidance from someone who has built something, faced the obstacles and come out the other side. That absence is not small. It is the difference between an idea that stays in a notebook and a business that reaches a customer.
+
+Research consistently shows that mentored entrepreneurs grow their ventures faster, make fewer costly mistakes and build more durable businesses than those who go it alone. A McKinsey study found that women who had mentors were more likely to aspire to senior roles, more likely to ask for promotions and more likely to receive them. The mechanism is simple: mentorship closes the confidence gap that experience has not yet filled.
+
+At the Gutsy Women Foundation, we have seen this up close. In Cohort 1, women arrived with ideas they were afraid to say out loud. By day two, those same women were in front of mentors dissecting their assumptions, arguing for their positioning and asking hard questions about unit economics. The shift was not in their intelligence — that was always there. The shift was in their belief that their ideas were worth taking seriously, and that the path forward was knowable.
+
+Mentorship works best when it is structured, when it is mutual and when it is embedded in a community of peers who are going through the same thing at the same time. That is the model we have built, and that is the model that produces the results we see.
+
+If you are a young woman in Ghana with ambition but without a roadmap, the Gutsy Women Foundation exists because of you and for you. And if you are an experienced leader, founder or executive with lessons to share, we want to connect you with the next generation that needs them.
+
+The gap is real. The solution is available. The only question is whether we are willing to show up for each other.`,
+    author: 'Raynelle Nana Yaa Boadu, Founder & CEO',
     date: '2026-04-20',
     image: '/assets/gwf-podium.jpg',
     category: 'Insights',
@@ -138,7 +204,19 @@ export const blogPosts: BlogPost[] = [
     slug: 'cohort-2-announcement',
     title: 'Cohort 2 is Here: Apply Now for the Ignite • Build • Scale Masterclass',
     excerpt: 'Applications are open for the second Gutsy Women Foundation Masterclass: 5th to 7th August 2026 at Yota East, Legon.',
-    content: 'We are thrilled to announce that applications are now open for Cohort 2 of the GWF Mentorship Program Masterclass. This year\'s theme, Ignite, Build, Scale: Turning Dreams Into Reality, speaks to our belief that every young woman in Ghana has the raw material to build something remarkable...',
+    content: `We are thrilled to announce that applications are now open for Cohort 2 of the GWF Mentorship Program Masterclass. This year's theme — Ignite, Build, Scale: Turning Dreams Into Reality — speaks to our belief that every young woman in Ghana has the raw material to build something remarkable. What she needs is the right environment to ignite it, the right tools to build it and the right network to scale it.
+
+Cohort 2 takes place from 5th to 7th August 2026 at Yota East, Legon, Accra. Doors open at 8:00 AM each day. If you were part of Cohort 1, you already know what this looks like. If you are new, here is what to expect.
+
+Three days of structured intensity. Morning sessions with experienced mentors covering leadership, financial planning, business strategy and personal branding. Afternoon workshops where you work on your own idea, challenge and be challenged by peers, and receive real-time feedback from people who have built businesses before. Evening conversations that go deeper — on purpose, on identity, on what it actually takes to sustain the commitment required to build something.
+
+Cohort 2 is not a conference. You will not sit in a hall and listen to speeches. You will work, and you will be held to what you commit to. That is the culture we built in Cohort 1, and it produced real results. Women left with plans, with partnerships and with the kind of confidence that only comes from having your ideas taken seriously by people who know what they are talking about.
+
+The application fee for Cohort 2 is GHS 550. This covers your programme materials, all sessions and daily lunch for the three days. Spaces are limited. Cohort 1 filled quickly, and we expect Cohort 2 to do the same.
+
+To apply, complete the application form on our website. You will be asked about your background, your current occupation and your goals for the programme. We review every application and select participants based on drive, clarity of purpose and readiness to engage fully in the three days.
+
+If this is your year to stop talking and start building, we are waiting for you.`,
     author: 'GWF Team',
     date: '2026-05-01',
     image: '/assets/gwf-cake-cutting.jpg',
@@ -148,7 +226,29 @@ export const blogPosts: BlogPost[] = [
     slug: 'meet-the-mentor-abena',
     title: 'Meet the Mentor: Abena Asante on Building a Business with No Safety Net',
     excerpt: 'In our mentor spotlight series, Abena shares how she left a corporate career to bootstrap a supply-chain company and what she wishes she had known.',
-    content: 'Abena Asante built her logistics company from nothing but a laptop, a phone, and an obsessive understanding of how supply chains break in West Africa. Today her company employs 28 people and is expanding into Togo and Côte d\'Ivoire...',
+    content: `Abena Asante built her logistics company from nothing but a laptop, a phone and an obsessive understanding of how supply chains break in West Africa. Today her company employs 28 people and is expanding into Togo and Côte d'Ivoire. She will be one of the lead mentors at Cohort 2, and she sat down with us to talk honestly about what it took.
+
+GWF: You left a well-paid corporate role to start Asante Supply Co. What was going through your head?
+
+Abena: Honestly? Terror. I had a good salary, health coverage and a title that impressed people at dinner parties. But I was watching supply chains fail around me every day and thinking — I understand this problem better than most people in this room. If I stay quiet and comfortable, someone else will solve it poorly. That thought was more uncomfortable than the risk.
+
+GWF: The early years were difficult. What did you get wrong?
+
+Abena: I thought the product would sell itself because the problem was obvious. I did not invest enough in relationships. In Ghana — in West Africa broadly — trust moves before contracts. I had a great logistics solution but no one knew me well enough to bet their business on me. I spent the first eighteen months rebuilding that social capital from scratch. That is time I could have saved if I had listened better earlier.
+
+GWF: What does good mentorship look like to you?
+
+Abena: A good mentor tells you what you cannot see because you are too close to the thing. They do not tell you what to do — they ask you the questions that force you to see clearly. The best mentor I ever had never gave me a single answer. She just kept asking "and then what?" until I had worked through the consequences of my own logic. That kind of challenge is uncomfortable. It is also irreplaceable.
+
+GWF: What will you focus on with the Cohort 2 participants?
+
+Abena: Operations and the mindset underneath operations. Most early-stage founders are great at selling the vision. Very few have thought carefully about how the product actually reaches the customer at a cost that works. I want to help women think about that before they have learned it the expensive way.
+
+GWF: What do you wish someone had told you at the beginning?
+
+Abena: That asking for help is strategy, not weakness. I wasted so much time trying to figure things out alone because I thought that was what real entrepreneurs did. The ones who move fastest are the ones who are relentlessly resourceful — and that means being willing to say "I don't know, but I know someone who does."
+
+We are glad Abena is that person for Cohort 2.`,
     author: 'GWF Editorial',
     date: '2026-05-28',
     image: '/assets/gwf-speaker-mic.jpg',
@@ -310,10 +410,16 @@ export const alumniStories: AlumniStory[] = [
 
 export const impactMetrics: ImpactMetric[] = [
   {
-    value: 240,
+    value: 35000,
     suffix: '+',
-    label: 'Applicants reached',
-    description: 'Young women engaged through applications, outreach and programme interest forms.',
+    label: 'Girls connected',
+    description: 'Young women and girls reached through GWF outreach, events, and awareness programmes.',
+  },
+  {
+    value: 200,
+    suffix: '+',
+    label: 'Girls mentored',
+    description: 'Young women who have received direct mentorship through GWF programmes.',
   },
   {
     value: 40,
@@ -334,6 +440,105 @@ export const impactMetrics: ImpactMetric[] = [
     value: 36,
     label: 'Sessions delivered',
     description: 'Workshops, fireside chats, coaching blocks and peer accountability sessions.',
+  },
+]
+
+export const team: TeamMember[] = [
+  {
+    name: 'Raynelle Nana Yaa Boadu',
+    title: 'Founder & Chief Executive Officer',
+    bioFull: [
+      'Raynelle Boadu is a gender advocate, communications professional, confidence and self-awareness coach, writer, and development-focused leader dedicated to empowering young girls and women through education, mentorship, advocacy, and sustainable social impact initiatives.',
+      'As the Founder and Chief Executive Officer of Gutsy Women Foundation, she leads programs and interventions designed to equip women and girls with the confidence, knowledge, leadership skills, and opportunities necessary to thrive and create meaningful change in their communities. Her vision is rooted in creating long-term, sustainable solutions that enable women and girls to discover their potential and become agents of transformation.',
+      'Raynelle is deeply passionate about helping young women and girls overcome fear, particularly in areas of public speaking, self-expression, and personal identity development. Through coaching, mentorship, and advocacy, she supports young people in building confidence, self-awareness, and a strong sense of purpose.',
+      'Beyond her work in leadership and development, Raynelle is also a writer with a strong interest in social and political issues. Through her writing, she explores conversations that challenge perspectives, amplify voices, and encourage social change.',
+      'Her professional background reflects an interdisciplinary blend of communication, gender studies, business, and development management. This combination enables her to approach leadership with both strategic insight and empathy while creating initiatives that deliver measurable impact.',
+      'Raynelle is defined by qualities that shape both her leadership and personal philosophy: deep empathy, infectious optimism, radical authenticity, and a strategic coaching mindset. Her unique combination of creative vision, ambition, and transformational leadership continues to inspire and empower the next generation of women leaders.',
+    ],
+    qualifications: [
+      'Bachelor of Arts in Strategic Communication',
+      'Master of Arts in Gender and Law',
+      'Master of Business Administration (MBA) in Marketing',
+      'Currently pursuing a Master of Arts in Development Management',
+    ],
+    image: '/assets/CEO.jpg.jpg',
+  },
+  {
+    name: 'Hariratah Ibrahim Doudu',
+    title: 'Social Media Lead',
+    bioFull: [
+      'Hariratah Ibrahim Doudu is a law professional, emerging leader, and advocate passionate about legal excellence, leadership, and public service. She holds an LL.B from GIMPA and is currently pursuing the Professional Law Course at the Ghana School of Law.',
+      'With experience in legal research, corporate support, and governance, she has developed a strong interest in commercial law and policy. She serves as the Vice President of the Ghana School of Law Students’ Representative Council and is the Social Media Lead for the Gutsy Women Foundation, where she contributes to communication, visibility, and women’s empowerment initiatives.',
+    ],
+    image: '/assets/team-hariratah-ibrahim-doudu.jpg',
+  },
+  {
+    name: 'Eugenia Abena Ahenkorah',
+    title: 'Administrative Secretary',
+    bioFull: [
+      'Eugenia Abena Ahenkorah is a dedicated and emerging leader in the health sciences community at the University of Ghana.',
+      'She was a proud member of Mentorship Cohort One with the Gutsy Women Foundation, where she honed her leadership skills and commitment to women’s empowerment.',
+      'She currently serves as Administrative Secretary of Gutsy Women Foundation Administrative Team and is also Vice President of the University of Ghana Medical Laboratory Science Students’ Association (UG-MELSSA), and actively volunteers in community initiatives.',
+      'Her multifaceted roles reflect a strong passion for academic excellence, student advocacy, professional development, and service to others. Eugenia continues to inspire her peers through her leadership, initiative, and dedication to advancing medical laboratory science and youth empowerment in Ghana.',
+    ],
+    image: '/assets/team-eugenia-abena-ahenkorah.jpg',
+  },
+  {
+    name: 'Eunice Esi Esaaba Essien',
+    title: 'Youth Advocate',
+    bioFull: [
+      'Eunice Esi Esaaba Essien is a Youth Advocate and President of the Ghana Union of Professional Students.',
+    ],
+    qualifications: [
+      'Bachelor of Arts in Public Relations Management',
+      'Master of Arts in Digital and Strategic Marketing Management',
+    ],
+    image: '/assets/team-eunice-esi-esaaba-essien.jpg',
+  },
+  {
+    name: 'Adwoa Sefah Gyasiwaa-Agyemang',
+    title: 'Project Director & Administrative Lead',
+    bioFull: [
+      'Adwoa Sefah Gyasiwaa-Agyemang is a student leader and emerging professional with a strong passion for leadership, youth development, and social impact. She currently serves as Tutorials Lead for the 1835 Group, where she supports academic coordination and student development initiatives.',
+      'She also plays multiple leadership roles within the Gutsy Women Foundation, including Project Director, Administrative Lead, and member of the Planning and Organising Team, contributing to programme design, coordination, and execution.',
+      'Additionally, she served as the former General Secretary for the University of Ghana Accra City Campus and has experience in student representation, communication, and organisational leadership. She is committed to excellence, teamwork, and creating meaningful impact through education, advocacy, and community-driven initiatives.',
+    ],
+    image: '/assets/team-adwoa-sefah-gyasiwaa-agyemang.jpg',
+  },
+  {
+    name: 'Samuel Palm',
+    title: 'Communications & Strategic Management Advisor',
+    bioFull: [
+      'Samuel Palm is a seasoned communications and strategic management professional with academic qualifications in Communications, Public Relations, Law (LLB), and Brands & Communication Management.',
+      'With extensive experience as a manager and lead strategist, he has successfully delivered high-impact communication and stakeholder engagement projects for organisations including The Coca-Cola Company, UNICEF, Marie Stopes International, the Ministry of Food and Agriculture, and the Ministry of Gender, Children and Social Protection.',
+      'Over the years, he has been providing strategic leadership in communications, policy engagement, stakeholder relations, and reputation management.',
+      'His multidisciplinary expertise enables him to effectively advise on public affairs, branding, governance, and strategic communications.',
+    ],
+    image: '/assets/team-samuel-palm.jpg',
+  },
+  {
+    name: 'Nathaniel Obeng Boafo',
+    title: 'Publicity Coordinator & Planning Team',
+    bioFull: [
+      'Nathaniel Obeng Boafo is a youth and gender advocate, and emerging professional with a strong commitment to leadership, youth development, gender equality, and social impact. He is passionate about creating inclusive spaces that empower young people and drive meaningful community transformation.',
+      'He holds multiple leadership roles within the Gutsy Women Foundation, contributing to publicity coordination as well as serving on the Planning and Organising Team, supporting the design, promotion, and execution of initiatives that advance gender equity and community impact.',
+      'He also serves as project director for the 1835 Group, where he leads the coordination, planning, and execution of projects and initiatives, ensuring effective organisation and delivery of programmes that support leadership development and youth engagement.',
+    ],
+    image: '/assets/team-nathaniel-obeng-boafo.jpg',
+  },
+  {
+    name: 'Castin Boakye',
+    title: 'Monitoring & Evaluation (M&E) Officer',
+    bioFull: [
+      'Castin Boakye is the Monitoring & Evaluation (M&E) Officer at Gutsy Women Foundation, where he leads the design, implementation, and continuous improvement of monitoring, evaluation, accountability, and learning systems to measure the Foundation\'s impact and enhance programme effectiveness.',
+      'He is responsible for developing results frameworks, performance indicators, data collection tools, and reporting systems that support evidence-based decision-making. His role includes tracking project implementation, conducting data quality assessments, analysing programme outcomes, preparing donor and management reports, and generating insights that strengthen organisational learning and accountability.',
+      'Castin combines strong analytical skills with expertise in data management, research, policy analysis, and strategic planning to ensure programmes are effectively monitored and evaluated. Passionate about sustainable development and social impact, he is committed to using data and evidence to improve programme delivery, empower women and vulnerable communities, and support the Foundation\'s mission of creating lasting, measurable change.',
+    ],
+    qualifications: [
+      'Bachelor of Arts in Information Studies and Political Science — University of Ghana',
+      'Master of Public Sector Management (in progress)',
+    ],
+    image: '/assets/gwf-team-castin-boakye.jpg',
   },
 ]
 

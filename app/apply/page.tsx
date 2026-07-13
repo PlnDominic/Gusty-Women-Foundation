@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { ApplicationForm } from '@/components/forms/ApplicationForm'
 
 export const metadata: Metadata = {
@@ -10,6 +11,16 @@ export default function ApplyPage() {
   return (
     <main style={{ background: 'var(--gwf-purple-100)', minHeight: 'calc(100vh - 72px)', padding: 'clamp(40px,6vw,80px) clamp(16px,4vw,40px)' }}>
       <div style={{ maxWidth: 780, margin: '0 auto', marginBottom: 36, textAlign: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 32 }}>
+          <Image
+            src="/assets/flyer-cohort2.jpg"
+            alt="Gutsy Women Mentorship Program Masterclass Cohort 2 – 5th–7th August 2026"
+            width={520}
+            height={520}
+            style={{ borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', width: '100%', maxWidth: 520, height: 'auto' }}
+            priority
+          />
+        </div>
         <span style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--gwf-magenta-600)' }}>
           Cohort 2: Applications Open
         </span>
@@ -17,7 +28,10 @@ export default function ApplyPage() {
           Apply Now
         </h1>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.6, color: 'var(--gwf-ink-soft)', margin: '14px auto 0', maxWidth: 500 }}>
-          5th-7th August 2026 · Yota East, Legon · 8:00AM each day
+          5th–7th August 2026 · Yota East, Legon · 8:00 AM each day
+        </p>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 600, color: 'var(--gwf-magenta-600)', margin: '10px auto 0', maxWidth: 500 }}>
+          Application fee: GHS 550 · Payment details provided at the end of this form
         </p>
       </div>
       <ApplicationForm />

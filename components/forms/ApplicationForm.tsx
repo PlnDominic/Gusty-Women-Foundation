@@ -13,6 +13,10 @@ import {
   type ValidationErrors,
 } from '@/lib/validation'
 
+const MOMO_NUMBER = '0530505645'
+const MOMO_NAME = 'Gutsy Women Foundation / Raynelle BOADU'
+const APPLICATION_FEE_GHS = 550
+
 const STEPS = ['Personal', 'Background', 'Motivation', 'Review'] as const
 
 const EMPTY: ApplicationPayload = {
@@ -27,6 +31,8 @@ export function ApplicationForm() {
   const [f, setF] = React.useState<ApplicationPayload>(EMPTY)
   const [errors, setErrors] = React.useState<ValidationErrors<ApplicationPayload>>({})
   const [formError, setFormError] = React.useState('')
+  const [screenshot, setScreenshot] = React.useState<File | null>(null)
+  const [screenshotError, setScreenshotError] = React.useState('')
 
   const set = (k: keyof ApplicationPayload) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value
@@ -54,6 +60,18 @@ export function ApplicationForm() {
     setStep(step + 1)
   }
 
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0] ?? null
+    setScreenshotError('')
+    if (file && file.size > 5 * 1024 * 1024) {
+      setScreenshotError('Screenshot must be under 5 MB.')
+      setScreenshot(null)
+      e.target.value = ''
+      return
+    }
+    setScreenshot(file)
+  }
+
   async function submit() {
     if (submitting) return
 
@@ -65,16 +83,21 @@ export function ApplicationForm() {
       return
     }
 
+    if (!screenshot) {
+      setScreenshotError('Please attach a screenshot of your MoMo payment.')
+      return
+    }
+
     setSubmitting(true)
     setFormError('')
+    setScreenshotError('')
 
     try {
-      const response = await fetch('/api/apply', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(f),
-      })
+      const body = new FormData()
+      Object.entries(f).forEach(([k, v]) => body.append(k, v))
+      body.append('screenshot', screenshot, screenshot.name)
 
+      const response = await fetch('/api/apply', { method: 'POST', body })
       const result = await response.json().catch(() => null)
 
       if (!response.ok) {
@@ -91,7 +114,7 @@ export function ApplicationForm() {
     }
   }
 
-  if (done) return <Success name={f.name} onReset={() => { setDone(false); setStep(0); setF(EMPTY) }} />
+  if (done) return <Success name={f.name} onReset={() => { setDone(false); setStep(0); setF(EMPTY); setScreenshot(null) }} />
 
   return (
     <div style={{ maxWidth: 720, margin: '0 auto', background: '#fff', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', overflow: 'hidden' }}>
@@ -143,7 +166,16 @@ export function ApplicationForm() {
           </div>
         )}
 
-        {step === 3 && <Review f={f} onEdit={setStep} />}
+        {step === 3 && (
+          <>
+            <Review f={f} onEdit={setStep} />
+            <MoMoInstructions
+              screenshot={screenshot}
+              screenshotError={screenshotError}
+              onFileChange={handleFileChange}
+            />
+          </>
+        )}
 
         {formError && (
           <div role="alert" style={{ marginTop: 22, background: 'var(--gwf-magenta-100)', color: 'var(--gwf-magenta-700)', border: '1px solid rgba(194,24,91,.25)', padding: '12px 14px', fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 600 }}>
@@ -161,10 +193,75 @@ export function ApplicationForm() {
             </Button>
           ) : (
             <Button variant="gold" iconRight={<Icon name="check" size={18} />} onClick={submit} disabled={submitting}>
-              {submitting ? 'Submitting…' : 'Submit Application'}
+              {submitting ? 'Submitting…' : "I've Paid · Submit Application"}
             </Button>
           )}
         </div>
+      </div>
+    </div>
+  )
+}
+
+function MoMoInstructions({
+  screenshot,
+  screenshotError,
+  onFileChange,
+}: {
+  screenshot: File | null
+  screenshotError: string
+  onFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+}) {
+  return (
+    <div style={{ marginTop: 24 }}>
+      {/* Payment details */}
+      <div style={{ background: 'var(--gwf-gold-100)', border: '1.5px solid var(--gwf-gold-500)', padding: '20px 24px', marginBottom: 16 }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--gwf-ink-muted)', margin: '0 0 12px' }}>
+          Step 1 — Send Payment via Mobile Money
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 10 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', width: 80, flexShrink: 0 }}>Number</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 22, color: 'var(--gwf-ink)', letterSpacing: '0.05em' }}>{MOMO_NUMBER}</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+            <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', width: 80, flexShrink: 0 }}>Name</span>
+            <span style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 14, color: 'var(--gwf-ink)', lineHeight: 1.5 }}>{MOMO_NAME}</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', width: 80, flexShrink: 0 }}>Amount</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 18, color: 'var(--gwf-purple-700)' }}>GHS {APPLICATION_FEE_GHS}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Screenshot upload */}
+      <div style={{ border: `1.5px dashed ${screenshotError ? 'var(--gwf-magenta-500)' : screenshot ? 'var(--gwf-purple-500)' : 'var(--border-subtle)'}`, padding: '20px 24px', background: screenshot ? 'var(--gwf-purple-100)' : '#fafafa' }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--gwf-ink-muted)', margin: '0 0 10px' }}>
+          Step 2 — Attach Payment Screenshot <span style={{ color: 'var(--gwf-magenta-600)' }}>*</span>
+        </p>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-soft)', margin: '0 0 14px', lineHeight: 1.6 }}>
+          Take a screenshot of your MoMo confirmation message and upload it here before submitting.
+        </p>
+        <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 14, color: screenshot ? 'var(--gwf-purple-700)' : 'var(--gwf-ink)', background: screenshot ? 'var(--gwf-purple-200)' : '#fff', border: '1.5px solid var(--border-subtle)', padding: '10px 16px' }}>
+          <Icon name="upload" size={16} />
+          {screenshot ? screenshot.name : 'Choose screenshot…'}
+          <input
+            type="file"
+            accept="image/*"
+            onChange={onFileChange}
+            style={{ display: 'none' }}
+          />
+        </label>
+        {screenshot && (
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--gwf-purple-600)', margin: '8px 0 0', fontWeight: 600 }}>
+            ✓ Ready to attach ({(screenshot.size / 1024).toFixed(0)} KB)
+          </p>
+        )}
+        {screenshotError && (
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-magenta-600)', margin: '8px 0 0', fontWeight: 600 }}>
+            {screenshotError}
+          </p>
+        )}
       </div>
     </div>
   )
@@ -209,25 +306,39 @@ function Review({ f, onEdit }: { f: ApplicationPayload; onEdit: (step: number) =
 function Success({ name, onReset }: { name: string; onReset: () => void }) {
   const first = name.split(' ')[0]
   return (
-    <div style={{ maxWidth: 560, margin: '0 auto', background: '#fff', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', padding: 'clamp(36px,5vw,56px)', textAlign: 'center' }}>
-      <span style={{ width: 76, height: 76, borderRadius: 0, background: 'var(--gwf-purple-100)', color: 'var(--gwf-purple-600)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-        <Icon name="check" size={40} />
-      </span>
-      <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 30, color: 'var(--gwf-ink)', margin: '22px 0 0' }}>
-        Application received!
-      </h2>
-      <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.6, color: 'var(--gwf-ink-soft)', margin: '12px 0 0' }}>
-        Thank you{first ? `, ${first}` : ''}. We&apos;ve received your Cohort 2 application and will be in touch by email soon. Keep building.
-      </p>
-      <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 26 }}>
-        {['facebook', 'twitter', 'instagram', 'linkedin'].map((s) => (
-          <span key={s} style={{ width: 42, height: 42, borderRadius: 0, background: 'var(--gwf-purple-100)', color: 'var(--gwf-purple-700)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Icon name={s} size={19} />
-          </span>
-        ))}
+    <div style={{ maxWidth: 580, margin: '0 auto', background: '#fff', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', overflow: 'hidden', textAlign: 'center' }}>
+      <div style={{ background: 'linear-gradient(135deg,var(--gwf-purple-600),var(--gwf-purple-900))', padding: 'clamp(32px,5vw,48px)' }}>
+        <span style={{ width: 76, height: 76, background: 'rgba(255,255,255,.15)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+          <Icon name="check" size={40} color="#fff" />
+        </span>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(22px,3vw,30px)', color: '#fff', margin: '18px 0 6px' }}>
+          Welcome to the Gutsy Family!
+        </h2>
+        <p style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 14, color: 'var(--gwf-gold-400)', margin: 0, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          Payment Confirmed · Cohort 2
+        </p>
       </div>
-      <div style={{ marginTop: 26 }}>
+      <div style={{ padding: 'clamp(28px,4vw,44px)' }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.7, color: 'var(--gwf-ink)', margin: '0 0 16px', fontWeight: 600 }}>
+          Congratulations{first ? `, ${first}` : ''}! Your spot in Cohort 2 is secured.
+        </p>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: '0 0 16px' }}>
+          You are now part of a vibrant community of ambitious individuals ready to learn, grow, connect, and thrive. A welcome email has been sent to your inbox.
+        </p>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: '0 0 24px' }}>
+          Further details and updates will be communicated soon.
+        </p>
+        <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 28 }}>
+          {['facebook', 'twitter', 'instagram', 'linkedin'].map((s) => (
+            <span key={s} style={{ width: 42, height: 42, background: 'var(--gwf-purple-100)', color: 'var(--gwf-purple-700)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Icon name={s} size={19} />
+            </span>
+          ))}
+        </div>
         <Button variant="primary" onClick={onReset}>Back to Home</Button>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--gwf-ink-muted)', margin: '18px 0 0' }}>
+          Gutsy Women Foundation · Leveling the Playing Field
+        </p>
       </div>
     </div>
   )
