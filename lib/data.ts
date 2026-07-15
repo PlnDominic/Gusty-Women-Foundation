@@ -32,6 +32,14 @@ export interface Mentor {
   image: string
 }
 
+export interface Facilitator {
+  name: string
+  title: string
+  focus: string
+  bio: string
+  image: string
+}
+
 export interface AlumniStory {
   name: string
   cohort: string
@@ -71,7 +79,7 @@ export const programs: Program[] = [
     longDescription: 'The Gutsy Women Foundation Mentorship Program Masterclass is a transformative 3-day immersive experience designed for young women who are ready to move beyond dreaming and start building. Through expert-led sessions, one-on-one mentorship, and peer collaboration, you will leave with a concrete plan, a powerful network, and the confidence to execute your goals.',
     status: 'closed',
     statusLabel: 'Applications Closed',
-    image: '/assets/gwf-cake-cutting.jpg',
+    image: '/assets/gwf-masterclass-audience.jpg',
     dates: '5th - 7th August 2026',
     time: '8:00AM Each Day',
     location: 'Yota East, Legon, Accra',
@@ -334,6 +342,30 @@ export const mentors: Mentor[] = [
     expertise: 'Brand & go-to-market',
     bio: 'Akosua guides founders through customer positioning, digital launch plans and building brands that communities trust.',
     image: '/assets/ceo-raynelle.jpg',
+  },
+]
+
+export const facilitators: Facilitator[] = [
+  {
+    name: 'Fatimatu Abubakar, Esq.',
+    title: 'Lawyer',
+    focus: 'Public Speaking & Communication',
+    bio: 'A distinguished lawyer with over a decade of professional excellence, Fatimatu returns to Cohort 2 to lead her Public Speaking and Communication Simulation Exercise — helping participants overcome fear and present themselves with clarity, confidence and authority.',
+    image: '/assets/gwf-facilitator-fatimatu-abubakar.jpg',
+  },
+  {
+    name: 'Prince Okoampah',
+    title: 'Founder, TET Africa',
+    focus: 'Mindset & Personal Branding',
+    bio: 'Award-winning speaker, business innovation strategist and brand coach, Prince helps participants develop a winning mindset, build a personal brand that opens doors, and turn their ideas into impact and income.',
+    image: '/assets/gwf-facilitator-prince-okoampah.jpg',
+  },
+  {
+    name: 'Natalie Fort',
+    title: 'Journalist & Media Entrepreneur',
+    focus: 'Personal Brand & Influence',
+    bio: 'One of Ghana’s most respected journalists and the builder of a global media brand, Natalie shares the blueprint for building a powerful personal brand, communicating with confidence, and leading with purpose.',
+    image: '/assets/gwf-facilitator-natalie-fort.jpg',
   },
 ]
 
