@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getTransporter, GWF_EMAIL } from '@/lib/mailer'
 import { hasErrors, validateApplication, type ApplicationPayload } from '@/lib/validation'
+import { APPLICATIONS_OPEN } from '@/lib/data'
 
 function row(label: string, value: string) {
   return `
@@ -12,6 +13,10 @@ function row(label: string, value: string) {
 
 export async function POST(req: NextRequest) {
   try {
+    if (!APPLICATIONS_OPEN) {
+      return NextResponse.json({ error: 'Applications for Cohort 2 have closed.' }, { status: 403 })
+    }
+
     const formData = await req.formData()
 
     const payload: ApplicationPayload = {

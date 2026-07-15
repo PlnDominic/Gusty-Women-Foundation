@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { Capsule } from '@/components/ui/Capsule'
 import { Icon } from '@/components/ui/Icon'
+import { APPLICATIONS_OPEN } from '@/lib/data'
 
 const FACTS = [
   { icon: 'calendar', text: '5th - 7th August 2026' },
@@ -90,8 +91,8 @@ export function FeaturedProgram() {
               ))}
             </div>
 
-            <Link href="/apply">
-              <Button variant="gold" size="lg" iconRight={<Icon name="arrow-right" size={18} />}>Apply Now</Button>
+            <Link href={APPLICATIONS_OPEN ? '/apply' : '/programs/masterclass'}>
+              <Button variant="gold" size="lg" iconRight={<Icon name="arrow-right" size={18} />}>{APPLICATIONS_OPEN ? 'Apply Now' : 'View Programme'}</Button>
             </Link>
           </div>
 

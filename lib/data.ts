@@ -57,6 +57,10 @@ export interface TeamMember {
   image: string
 }
 
+// Single source of truth for whether Cohort 2 applications are being accepted.
+// Applications closed after the intake for the 5th–7th August 2026 masterclass ended.
+export const APPLICATIONS_OPEN = false
+
 export const programs: Program[] = [
   {
     slug: 'masterclass',
@@ -65,8 +69,8 @@ export const programs: Program[] = [
     theme: 'Ignite • Build • Scale: Turning Dreams Into Reality',
     description: 'A 3-day intensive masterclass connecting ambitious young women with experienced mentors, business builders, and industry leaders.',
     longDescription: 'The Gutsy Women Foundation Mentorship Program Masterclass is a transformative 3-day immersive experience designed for young women who are ready to move beyond dreaming and start building. Through expert-led sessions, one-on-one mentorship, and peer collaboration, you will leave with a concrete plan, a powerful network, and the confidence to execute your goals.',
-    status: 'open',
-    statusLabel: 'Applications Open',
+    status: 'closed',
+    statusLabel: 'Applications Closed',
     image: '/assets/gwf-cake-cutting.jpg',
     dates: '5th - 7th August 2026',
     time: '8:00AM Each Day',

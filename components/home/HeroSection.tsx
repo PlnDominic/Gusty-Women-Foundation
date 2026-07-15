@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Capsule } from '@/components/ui/Capsule'
 import { Icon } from '@/components/ui/Icon'
+import { APPLICATIONS_OPEN } from '@/lib/data'
 
 export function HeroSection() {
   return (
@@ -35,7 +36,7 @@ export function HeroSection() {
         <div>
           <div style={{ display: 'inline-flex' }}>
             <Capsule tone="outline" iconLeft={<Icon name="sparkles" size={15} />}>
-              Cohort 2 · Applications Open
+              {APPLICATIONS_OPEN ? 'Cohort 2 · Applications Open' : 'Cohort 2 · Applications Closed'}
             </Capsule>
           </div>
 
@@ -87,9 +88,9 @@ export function HeroSection() {
           </p>
 
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 30 }}>
-            <Link href="/apply">
+            <Link href={APPLICATIONS_OPEN ? '/apply' : '/programs'}>
               <Button variant="gold" size="lg" iconRight={<Icon name="arrow-right" size={18} />}>
-                Apply Now
+                {APPLICATIONS_OPEN ? 'Apply Now' : 'Explore Programs'}
               </Button>
             </Link>
             <Link href="/programs">
