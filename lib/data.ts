@@ -71,7 +71,7 @@ export const programs: Program[] = [
     longDescription: 'The Gutsy Women Foundation Mentorship Program Masterclass is a transformative 3-day immersive experience designed for young women who are ready to move beyond dreaming and start building. Through expert-led sessions, one-on-one mentorship, and peer collaboration, you will leave with a concrete plan, a powerful network, and the confidence to execute your goals.',
     status: 'closed',
     statusLabel: 'Applications Closed',
-    image: '/assets/gwf-cake-cutting.jpg',
+    image: '/assets/gwf-masterclass-audience.jpg',
     dates: '5th - 7th August 2026',
     time: '8:00AM Each Day',
     location: 'Yota East, Legon, Accra',
