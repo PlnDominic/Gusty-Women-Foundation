@@ -128,7 +128,7 @@ export default function ProgramDetailPage({ params }: { params: { slug: string }
       </section>
 
       {program.slug === 'masterclass' && (
-        <section style={{ padding: 'clamp(48px,7vw,88px) clamp(16px,4vw,40px)', background: '#fff' }}>
+        <section id="facilitators" style={{ padding: 'clamp(48px,7vw,88px) clamp(16px,4vw,40px)', background: '#fff', scrollMarginTop: 90 }}>
           <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
             <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(22px,2.5vw,32px)', color: 'var(--gwf-ink)', margin: '0 0 12px', textAlign: 'center' }}>Meet the Facilitators</h2>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', maxWidth: 560, margin: '0 auto 40px', textAlign: 'center' }}>
