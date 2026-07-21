@@ -52,7 +52,7 @@ export function HeroSection() {
               margin: '20px 0 0',
             }}
           >
-            Leveling
+            Levelling
             <br />
             the{' '}
             <span style={{ position: 'relative', display: 'inline-block', color: 'var(--gwf-gold-500)' }}>

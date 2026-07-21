@@ -45,7 +45,7 @@ export function Footer() {
             />
           </div>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 14.5, lineHeight: 1.6, color: 'rgba(255,255,255,.65)', margin: '18px 0 0', maxWidth: 280 }}>
-            Leveling the playing field for young women in Ghana through mentorship, training and community.
+            Levelling the playing field for young women in Ghana through mentorship, training and community.
           </p>
           <div style={{ display: 'flex', gap: 10, marginTop: 22 }}>
             {SOCIALS.map((s) => <SocialBtn key={s.name} name={s.name} href={s.href} />)}
@@ -98,7 +98,7 @@ export function Footer() {
             © 2026 Gutsy Women Foundation. All rights reserved.
           </span>
           <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,.5)' }}>
-            Leveling the Playing Field
+            Levelling the Playing Field
           </span>
         </div>
       </div>
