@@ -304,32 +304,25 @@ Together, we are breaking barriers, restoring hope, and raising a generation tha
 
 export const mentors: Mentor[] = [
   {
-    name: 'Abena Asante',
-    role: 'Founder, Asante Supply Co.',
-    expertise: 'Operations & supply chains',
-    bio: 'Abena helps emerging founders turn early traction into repeatable systems, with a focus on logistics, hiring and customer delivery.',
-    image: '/assets/gwf-podium.jpg',
+    name: 'Dr. Rahmat Quaigrane Duker',
+    role: 'Lecturer, UESD · Country Coordinator, BlueRRP Institute',
+    expertise: 'Academic leadership & sustainable development',
+    bio: 'Dr. Rahmat Quaigrane Duker is a Lecturer at the University of Environment and Sustainable Development (UESD) and Country Coordinator for the BlueRRP Institute. Passionate about developing the next generation of ethical, resilient, and purpose-driven leaders, she brings a wealth of experience in academia, leadership, and sustainable development — equipping participants with practical insights to think critically, lead confidently, and create meaningful impact.',
+    image: '/assets/gwf-facilitator-rahmat-duker.jpg',
   },
   {
-    name: 'Naa Korkoi Mensah',
-    role: 'Investment Readiness Advisor',
-    expertise: 'Pitching & finance',
-    bio: 'Naa supports participants with financial storytelling, pitch structure and practical funding preparation for early-stage businesses.',
-    image: '/assets/gwf-speaker-mic.jpg',
+    name: 'Barbara Quashigah',
+    role: 'International Business Consultant, Entrepreneur & Philanthropist',
+    expertise: 'Business strategy & entrepreneurship',
+    bio: 'Barbara Quashigah is an International Business Consultant, Entrepreneur, and Philanthropist who has dedicated her career to helping individuals and businesses unlock opportunities, build sustainable ventures, and create lasting impact. Her session challenges participants to think beyond limitations, embrace innovation, and position themselves for success in today\'s competitive world.',
+    image: '/assets/gwf-facilitator-barbara-quashigah.jpg',
   },
   {
-    name: 'Efua Boateng',
-    role: 'Leadership Coach',
-    expertise: 'Leadership & confidence',
-    bio: 'Efua works with young women to build executive presence, decision-making confidence and personal leadership routines.',
-    image: '/assets/gwf-purple-mic.jpg',
-  },
-  {
-    name: 'Akosua Danquah',
-    role: 'Brand Strategist',
-    expertise: 'Brand & go-to-market',
-    bio: 'Akosua guides founders through customer positioning, digital launch plans and building brands that communities trust.',
-    image: '/assets/ceo-raynelle.jpg',
+    name: 'Mr. Paa Kwesi Folson',
+    role: 'Founder, Revolead Solutions · Award-Winning Public Speaker & Leadership Strategist',
+    expertise: 'Leadership & public speaking',
+    bio: 'Paa Kwesi Folson is the Founder of Revolead Solutions, an Award-Winning Public Speaker, and a Leadership Strategist who has inspired thousands of young people to discover their potential, communicate with confidence, and lead with purpose. His dynamic approach to leadership and personal development equips participants with practical tools to influence, innovate, and create lasting impact.',
+    image: '/assets/gwf-facilitator-paa-kwesi-folson.jpg',
   },
 ]
 
