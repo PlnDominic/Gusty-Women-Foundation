@@ -150,7 +150,7 @@ export async function POST(req: NextRequest) {
               Welcome to the Gutsy family!<br>
               …..<br><br>
               <strong>Gutsy Women Foundation</strong><br>
-              <em style="color:#6b7280">Leveling the Playing Field</em>
+              <em style="color:#6b7280">Levelling the Playing Field</em>
             </p>
             ${screenshotAttachment ? `
             <div style="border-top:1px solid #e5e7eb;padding-top:24px;margin-top:8px">
@@ -159,7 +159,7 @@ export async function POST(req: NextRequest) {
             </div>` : ''}
           </div>
           <div style="padding:16px 32px;background:#f9fafb;color:#9ca3af;font-size:12px">
-            © 2026 Gutsy Women Foundation · Leveling the Playing Field<br>
+            © 2026 Gutsy Women Foundation · Levelling the Playing Field<br>
             Yota East, Legon · Accra, Ghana · <a href="mailto:gutsywomenfoundation@gmail.com" style="color:#9ca3af">gutsywomenfoundation@gmail.com</a>
           </div>
         </div>

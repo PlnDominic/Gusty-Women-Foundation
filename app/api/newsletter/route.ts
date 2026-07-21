@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
               Gutsy Women Foundation
             </h1>
             <p style="color:#c9a84c;margin:10px 0 0;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em">
-              Leveling the Playing Field
+              Levelling the Playing Field
             </p>
           </div>
           <div style="padding:36px 32px;border:1px solid #e5e7eb;border-top:none">
@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
             </p>
           </div>
           <div style="padding:16px 32px;background:#f9fafb;color:#9ca3af;font-size:12px">
-            © 2026 Gutsy Women Foundation · Leveling the Playing Field<br>
+            © 2026 Gutsy Women Foundation · Levelling the Playing Field<br>
             Yota East, Legon · Accra, Ghana · <a href="mailto:gutsywomenfoundation@gmail.com" style="color:#9ca3af">gutsywomenfoundation@gmail.com</a>
           </div>
         </div>

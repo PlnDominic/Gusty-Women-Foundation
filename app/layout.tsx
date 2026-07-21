@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     default: 'Gutsy Women Foundation',
     template: '%s | Gutsy Women Foundation',
   },
-  description: 'Leveling the playing field for young women in Ghana through mentorship, training and community.',
+  description: 'Levelling the playing field for young women in Ghana through mentorship, training and community.',
   keywords: ['NGO', 'Ghana', 'women empowerment', 'mentorship', 'masterclass'],
   alternates: {
     canonical: SITE_URL,
@@ -38,20 +38,20 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: 'Gutsy Women Foundation',
     title: 'Gutsy Women Foundation',
-    description: 'Leveling the playing field for young women in Ghana through mentorship, training and community.',
+    description: 'Levelling the playing field for young women in Ghana through mentorship, training and community.',
     images: [
       {
         url: OG_IMAGE,
         width: 1500,
         height: 1500,
-        alt: 'Gutsy Women Foundation — Leveling the Playing Field',
+        alt: 'Gutsy Women Foundation — Levelling the Playing Field',
       },
     ],
   },
   twitter: {
     card: 'summary',
     title: 'Gutsy Women Foundation',
-    description: 'Leveling the playing field for young women in Ghana through mentorship, training and community.',
+    description: 'Levelling the playing field for young women in Ghana through mentorship, training and community.',
     images: [OG_IMAGE],
   },
 }
@@ -63,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     name: 'Gutsy Women Foundation',
     url: 'https://www.gutsywomenfoundation.org',
     logo: 'https://www.gutsywomenfoundation.org/assets/gwf-logo-official.jpg',
-    description: 'Leveling the playing field for young women in Ghana through mentorship, training and community.',
+    description: 'Levelling the playing field for young women in Ghana through mentorship, training and community.',
     email: 'gutsywomenfoundation@gmail.com',
     address: {
       '@type': 'PostalAddress',

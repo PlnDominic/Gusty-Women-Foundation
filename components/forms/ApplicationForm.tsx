@@ -337,7 +337,7 @@ function Success({ name, onReset }: { name: string; onReset: () => void }) {
         </div>
         <Button variant="primary" onClick={onReset}>Back to Home</Button>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--gwf-ink-muted)', margin: '18px 0 0' }}>
-          Gutsy Women Foundation · Leveling the Playing Field
+          Gutsy Women Foundation · Levelling the Playing Field
         </p>
       </div>
     </div>
