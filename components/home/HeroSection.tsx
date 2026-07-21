@@ -1,10 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Capsule } from '@/components/ui/Capsule'
 import { Icon } from '@/components/ui/Icon'
 import { APPLICATIONS_OPEN } from '@/lib/data'
+import { HeroSlider } from '@/components/home/HeroSlider'
 
 export function HeroSection() {
   return (
@@ -107,44 +107,15 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Right column — photos */}
-        <div style={{ position: 'relative', minHeight: 380 }} className="hero-photos">
-          <Photo
-            src="/assets/gwf-group-photo.jpg"
-            alt="GWF community group"
-            style={{ position: 'absolute', top: 0, right: 28, width: '74%', height: 250, transform: 'rotate(2.5deg)', zIndex: 2 }}
-          />
-          <Photo
-            src="/assets/gwf-cake-cutting.jpg"
-            alt="GWF celebration"
-            style={{ position: 'absolute', bottom: 0, left: 0, width: '62%', height: 220, transform: 'rotate(-3deg)', zIndex: 3 }}
-          />
-          <div style={{ position: 'absolute', bottom: 26, right: 0, zIndex: 4 }}>
-            <Capsule tone="magenta" size="lg" iconLeft={<Icon name="map-pin" size={16} />}>
-              Yota East, Legon
-            </Capsule>
-          </div>
+        {/* Right column — photo slider */}
+        <div className="hero-photos">
+          <HeroSlider />
         </div>
       </div>
     </section>
   )
 }
 
-function Photo({ src, alt, style }: { src: string; alt: string; style: React.CSSProperties }) {
-  return (
-    <div
-      style={{
-        borderRadius: 'var(--radius-xl)',
-        overflow: 'hidden',
-        boxShadow: 'var(--shadow-pop)',
-        border: '4px solid rgba(255,255,255,.85)',
-        ...style,
-      }}
-    >
-      <img src={src} alt={alt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-    </div>
-  )
-}
 
 function MiniStat({ n, l }: { n: string; l: string }) {
   return (
