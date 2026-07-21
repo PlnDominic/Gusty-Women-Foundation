@@ -314,36 +314,7 @@ Together, we are breaking barriers, restoring hope, and raising a generation tha
   },
 ]
 
-export const mentors: Mentor[] = [
-  {
-    name: 'Abena Asante',
-    role: 'Founder, Asante Supply Co.',
-    expertise: 'Operations & supply chains',
-    bio: 'Abena helps emerging founders turn early traction into repeatable systems, with a focus on logistics, hiring and customer delivery.',
-    image: '/assets/gwf-podium.jpg',
-  },
-  {
-    name: 'Naa Korkoi Mensah',
-    role: 'Investment Readiness Advisor',
-    expertise: 'Pitching & finance',
-    bio: 'Naa supports participants with financial storytelling, pitch structure and practical funding preparation for early-stage businesses.',
-    image: '/assets/gwf-speaker-mic.jpg',
-  },
-  {
-    name: 'Efua Boateng',
-    role: 'Leadership Coach',
-    expertise: 'Leadership & confidence',
-    bio: 'Efua works with young women to build executive presence, decision-making confidence and personal leadership routines.',
-    image: '/assets/gwf-purple-mic.jpg',
-  },
-  {
-    name: 'Akosua Danquah',
-    role: 'Brand Strategist',
-    expertise: 'Brand & go-to-market',
-    bio: 'Akosua guides founders through customer positioning, digital launch plans and building brands that communities trust.',
-    image: '/assets/ceo-raynelle.jpg',
-  },
-]
+export const mentors: Mentor[] = []
 
 export const facilitators: Facilitator[] = [
   {
@@ -366,6 +337,27 @@ export const facilitators: Facilitator[] = [
     focus: 'Personal Brand & Influence',
     bio: 'One of Ghana’s most respected journalists and the builder of a global media brand, Natalie shares the blueprint for building a powerful personal brand, communicating with confidence, and leading with purpose.',
     image: '/assets/gwf-facilitator-natalie-fort.jpg',
+  },
+  {
+    name: 'Dr. Rahmat Quaigrane Duker',
+    title: 'Lecturer, UESD · Country Coordinator, BlueRRP Institute',
+    focus: 'Leadership & Sustainable Development',
+    bio: 'Dr. Rahmat Quaigrane Duker brings a wealth of experience in academia, leadership, and sustainable development. Passionate about developing the next generation of ethical, resilient, and purpose-driven leaders, she equips participants with practical insights to think critically, lead confidently, and create meaningful impact in their careers and communities.',
+    image: '/assets/gwf-facilitator-rahmat-duker.jpg',
+  },
+  {
+    name: 'Barbara Quashigah',
+    title: 'International Business Consultant, Entrepreneur & Philanthropist',
+    focus: 'Business Strategy & Entrepreneurship',
+    bio: 'Barbara Quashigah has dedicated her career to helping individuals and businesses unlock opportunities, build sustainable ventures, and create lasting impact. Her session challenges participants to think beyond limitations, embrace innovation, and position themselves for success in today\'s competitive world.',
+    image: '/assets/gwf-facilitator-barbara-quashigah.jpg',
+  },
+  {
+    name: 'Paa Kwesi Folson',
+    title: 'Founder, Revolead Solutions · Award-Winning Public Speaker',
+    focus: 'Leadership & Personal Development',
+    bio: 'Paa Kwesi Folson has inspired thousands of young people to discover their potential, communicate with confidence, and lead with purpose. His dynamic approach to leadership equips participants with practical tools to influence, innovate, and create lasting impact — proving that your future is shaped not by your age, but by your courage to lead.',
+    image: '/assets/gwf-facilitator-paa-kwesi-folson.jpg',
   },
 ]
 
