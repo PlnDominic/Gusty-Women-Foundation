@@ -11,6 +11,7 @@ const NAV = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Programs', href: '/programs' },
+  { label: 'Facilitators', href: '/programs/masterclass#facilitators' },
   { label: 'Alumni', href: '/alumni' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },

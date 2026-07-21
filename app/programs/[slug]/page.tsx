@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/Badge'
 import { Capsule } from '@/components/ui/Capsule'
 import { Icon } from '@/components/ui/Icon'
 import { Newsletter } from '@/components/home/Newsletter'
-import { programs, getProgram, mentors } from '@/lib/data'
+import { programs, getProgram, facilitators } from '@/lib/data'
 
 export async function generateStaticParams() {
   return programs.map((p) => ({ slug: p.slug }))
@@ -128,26 +128,25 @@ export default function ProgramDetailPage({ params }: { params: { slug: string }
       </section>
 
       {program.slug === 'masterclass' && (
-        <section style={{ padding: 'clamp(56px,7vw,96px) clamp(16px,4vw,40px)', background: '#fff' }}>
+        <section id="facilitators" style={{ padding: 'clamp(48px,7vw,88px) clamp(16px,4vw,40px)', background: '#fff', scrollMarginTop: 90 }}>
           <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: 48 }}>
-              <span style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--gwf-magenta-600)' }}>Cohort 2 · 5–7 Aug 2026</span>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(24px,2.5vw,36px)', color: 'var(--gwf-ink)', margin: '10px 0 14px' }}>Meet Our Facilitators</h2>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', maxWidth: 580, margin: '0 auto' }}>
-                World-class leaders, entrepreneurs, and academics bringing real-world expertise to every session.
-              </p>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 28 }}>
-              {mentors.map((m) => (
-                <div key={m.name} style={{ background: '#fff', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-md)', overflow: 'hidden' }}>
-                  <div style={{ height: 300, overflow: 'hidden', background: 'var(--gwf-purple-100)' }}>
-                    <img src={m.image} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(22px,2.5vw,32px)', color: 'var(--gwf-ink)', margin: '0 0 12px', textAlign: 'center' }}>Meet the Facilitators</h2>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', maxWidth: 560, margin: '0 auto 40px', textAlign: 'center' }}>
+              Cohort 2 brings together lawyers, media leaders and brand strategists to help you ignite your confidence, build your voice, and scale your impact.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: 28 }}>
+              {facilitators.map((f) => (
+                <div key={f.name} style={{ background: '#fff', borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: 'var(--shadow-md)', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ height: 300, overflow: 'hidden' }}>
+                    <img src={f.image} alt={f.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
                   </div>
-                  <div style={{ padding: '24px 24px 28px' }}>
-                    <span style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gwf-magenta-600)' }}>Facilitator</span>
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 18, color: 'var(--gwf-ink)', margin: '6px 0 8px', lineHeight: 1.2 }}>{m.name}</h3>
-                    <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 600, color: 'var(--gwf-purple-600)', margin: '0 0 14px', lineHeight: 1.4 }}>{m.role}</p>
-                    <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.7, color: 'var(--gwf-ink-soft)', margin: 0 }}>{m.bio}</p>
+                  <div style={{ padding: '22px 24px 26px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 20, lineHeight: 1.1, color: 'var(--gwf-ink)', margin: 0 }}>{f.name}</h3>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                      <Capsule tone="magenta" size="sm">{f.title}</Capsule>
+                      <Capsule tone="outline-ink" size="sm">{f.focus}</Capsule>
+                    </div>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: 14.5, lineHeight: 1.6, color: 'var(--gwf-ink-soft)', margin: '4px 0 0' }}>{f.bio}</p>
                   </div>
                 </div>
               ))}

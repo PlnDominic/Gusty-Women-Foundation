@@ -32,6 +32,14 @@ export interface Mentor {
   image: string
 }
 
+export interface Facilitator {
+  name: string
+  title: string
+  focus: string
+  bio: string
+  image: string
+}
+
 export interface AlumniStory {
   name: string
   cohort: string
@@ -57,6 +65,10 @@ export interface TeamMember {
   image: string
 }
 
+// Single source of truth for whether Cohort 2 applications are being accepted.
+// Applications closed after the intake for the 5th–7th August 2026 masterclass ended.
+export const APPLICATIONS_OPEN = false
+
 export const programs: Program[] = [
   {
     slug: 'masterclass',
@@ -65,9 +77,9 @@ export const programs: Program[] = [
     theme: 'Ignite • Build • Scale: Turning Dreams Into Reality',
     description: 'A 3-day intensive masterclass connecting ambitious young women with experienced mentors, business builders, and industry leaders.',
     longDescription: 'The Gutsy Women Foundation Mentorship Program Masterclass is a transformative 3-day immersive experience designed for young women who are ready to move beyond dreaming and start building. Through expert-led sessions, one-on-one mentorship, and peer collaboration, you will leave with a concrete plan, a powerful network, and the confidence to execute your goals.',
-    status: 'open',
-    statusLabel: 'Applications Open',
-    image: '/assets/gwf-cake-cutting.jpg',
+    status: 'closed',
+    statusLabel: 'Applications Closed',
+    image: '/assets/gwf-masterclass-audience.jpg',
     dates: '5th - 7th August 2026',
     time: '8:00AM Each Day',
     location: 'Yota East, Legon, Accra',
@@ -302,26 +314,49 @@ Together, we are breaking barriers, restoring hope, and raising a generation tha
   },
 ]
 
-export const mentors: Mentor[] = [
+export const mentors: Mentor[] = []
+
+export const facilitators: Facilitator[] = [
+  {
+    name: 'Fatimatu Abubakar, Esq.',
+    title: 'Lawyer',
+    focus: 'Public Speaking & Communication',
+    bio: 'A distinguished lawyer with over a decade of professional excellence, Fatimatu returns to Cohort 2 to lead her Public Speaking and Communication Simulation Exercise — helping participants overcome fear and present themselves with clarity, confidence and authority.',
+    image: '/assets/gwf-facilitator-fatimatu-abubakar.jpg',
+  },
+  {
+    name: 'Prince Okoampah',
+    title: 'Founder, TET Africa',
+    focus: 'Mindset & Personal Branding',
+    bio: 'Award-winning speaker, business innovation strategist and brand coach, Prince helps participants develop a winning mindset, build a personal brand that opens doors, and turn their ideas into impact and income.',
+    image: '/assets/gwf-facilitator-prince-okoampah.jpg',
+  },
+  {
+    name: 'Natalie Fort',
+    title: 'Journalist & Media Entrepreneur',
+    focus: 'Personal Brand & Influence',
+    bio: 'One of Ghana’s most respected journalists and the builder of a global media brand, Natalie shares the blueprint for building a powerful personal brand, communicating with confidence, and leading with purpose.',
+    image: '/assets/gwf-facilitator-natalie-fort.jpg',
+  },
   {
     name: 'Dr. Rahmat Quaigrane Duker',
-    role: 'Lecturer, UESD · Country Coordinator, BlueRRP Institute',
-    expertise: 'Academic leadership & sustainable development',
-    bio: 'Dr. Rahmat Quaigrane Duker is a Lecturer at the University of Environment and Sustainable Development (UESD) and Country Coordinator for the BlueRRP Institute. Passionate about developing the next generation of ethical, resilient, and purpose-driven leaders, she brings a wealth of experience in academia, leadership, and sustainable development — equipping participants with practical insights to think critically, lead confidently, and create meaningful impact.',
+    title: 'Lecturer, UESD · Country Coordinator, BlueRRP Institute',
+    focus: 'Leadership & Sustainable Development',
+    bio: 'Dr. Rahmat Quaigrane Duker brings a wealth of experience in academia, leadership, and sustainable development. Passionate about developing the next generation of ethical, resilient, and purpose-driven leaders, she equips participants with practical insights to think critically, lead confidently, and create meaningful impact in their careers and communities.',
     image: '/assets/gwf-facilitator-rahmat-duker.jpg',
   },
   {
     name: 'Barbara Quashigah',
-    role: 'International Business Consultant, Entrepreneur & Philanthropist',
-    expertise: 'Business strategy & entrepreneurship',
-    bio: 'Barbara Quashigah is an International Business Consultant, Entrepreneur, and Philanthropist who has dedicated her career to helping individuals and businesses unlock opportunities, build sustainable ventures, and create lasting impact. Her session challenges participants to think beyond limitations, embrace innovation, and position themselves for success in today\'s competitive world.',
+    title: 'International Business Consultant, Entrepreneur & Philanthropist',
+    focus: 'Business Strategy & Entrepreneurship',
+    bio: 'Barbara Quashigah has dedicated her career to helping individuals and businesses unlock opportunities, build sustainable ventures, and create lasting impact. Her session challenges participants to think beyond limitations, embrace innovation, and position themselves for success in today\'s competitive world.',
     image: '/assets/gwf-facilitator-barbara-quashigah.jpg',
   },
   {
-    name: 'Mr. Paa Kwesi Folson',
-    role: 'Founder, Revolead Solutions · Award-Winning Public Speaker & Leadership Strategist',
-    expertise: 'Leadership & public speaking',
-    bio: 'Paa Kwesi Folson is the Founder of Revolead Solutions, an Award-Winning Public Speaker, and a Leadership Strategist who has inspired thousands of young people to discover their potential, communicate with confidence, and lead with purpose. His dynamic approach to leadership and personal development equips participants with practical tools to influence, innovate, and create lasting impact.',
+    name: 'Paa Kwesi Folson',
+    title: 'Founder, Revolead Solutions · Award-Winning Public Speaker',
+    focus: 'Leadership & Personal Development',
+    bio: 'Paa Kwesi Folson has inspired thousands of young people to discover their potential, communicate with confidence, and lead with purpose. His dynamic approach to leadership equips participants with practical tools to influence, innovate, and create lasting impact — proving that your future is shaped not by your age, but by your courage to lead.',
     image: '/assets/gwf-facilitator-paa-kwesi-folson.jpg',
   },
 ]
