@@ -359,6 +359,34 @@ export const facilitators: Facilitator[] = [
     bio: 'Paa Kwesi Folson has inspired thousands of young people to discover their potential, communicate with confidence, and lead with purpose. His dynamic approach to leadership equips participants with practical tools to influence, innovate, and create lasting impact — proving that your future is shaped not by your age, but by your courage to lead.',
     image: '/assets/gwf-facilitator-paa-kwesi-folson.jpg',
   },
+  {
+    name: 'Peggy Saanuo',
+    title: 'Marketing Maven · Brand Consigliere · Health Professional',
+    focus: 'Marketing & Brand Strategy',
+    bio: 'Peggy Saanuo brings a wealth of experience in branding, marketing, and professional development. Her session challenges participants to think bigger, build a powerful personal brand, and confidently position themselves for opportunities in today\'s competitive world — mastering strategic positioning, developing confidence that attracts opportunities, and learning practical strategies for career and business growth.',
+    image: '/assets/gwf-facilitator-peggy-saanuo.jpg',
+  },
+  {
+    name: 'Josephine Worlali Adatsi',
+    title: 'Founder, JWA Initiative · Communications Strategist',
+    focus: 'Communications & Strategic Storytelling',
+    bio: 'Josephine Worlali Adatsi is the Founder of JWA Initiative and an accomplished Communications Strategist passionate about empowering individuals to find their voice, communicate with confidence, and lead with purpose. Her session equips participants with practical tools to communicate clearly, build a strong and authentic personal brand, increase their influence and visibility, and lead with lasting impact.',
+    image: '/assets/gwf-facilitator-josephine-adatsi.jpg',
+  },
+  {
+    name: 'Lawrencia Akosua Pomaa',
+    title: 'Programme Manager, Konrad-Adenauer-Stiftung',
+    focus: 'Leadership Development & Youth Empowerment',
+    bio: 'Lawrencia Akosua Pomaa is the Programme Manager at the Konrad-Adenauer-Stiftung with extensive experience in programme management, leadership development, and youth empowerment. Her session equips participants with practical insights on developing leadership capacity, building confidence to seize opportunities, creating sustainable impact in their careers and communities, and leading with purpose, integrity, and vision.',
+    image: '/assets/gwf-facilitator-lawrencia-pomaa.jpg',
+  },
+  {
+    name: 'Mariam Majeed',
+    title: 'Growth-Driven Brand Strategist · Speaker · Mentor · Marketing Consultant',
+    focus: 'Brand Strategy & Growth',
+    bio: 'Returning from Cohort 1, Mariam Majeed brings her signature energy and expertise back to the Cohort 2 Masterclass. A Growth-Driven Brand Strategist, Speaker, Mentor, and Marketing Consultant, her session is where confidence meets strategy — helping participants build brands that open doors, position themselves for opportunities, grow their influence with intention, and turn their passion into impact.',
+    image: '/assets/gwf-facilitator-mariam-majeed.jpg',
+  },
 ]
 
 export const alumniStories: AlumniStory[] = [
