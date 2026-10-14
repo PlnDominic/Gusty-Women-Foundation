@@ -85,7 +85,7 @@ export function Navbar() {
             <Button variant="gold" size="sm">Donate</Button>
           </Link>
           <Link href={CTA.href}>
-            <Button variant="primary" size="sm">{CTA.label}</Button>
+            <Button variant="primary" size="sm" style={{ whiteSpace: 'nowrap' }}>{CTA.label}</Button>
           </Link>
         </div>
 
