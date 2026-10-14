@@ -699,98 +699,6 @@ button {
 }
 .rr-statement-sub strong { color: var(--gwf-purple-900); }
 
-/* Imagine */
-.rr-imagine-title {
-  margin: 14px 0 0;
-  font-family: var(--font-serif), Georgia, serif;
-  font-style: italic;
-  font-weight: 800;
-  font-size: clamp(40px, 5vw, 64px);
-  line-height: 1.05;
-  color: var(--gwf-purple-900);
-}
-.rr-imagine-grid {
-  list-style: none;
-  margin: 32px 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--rr-hairline);
-  border-left: 1px solid var(--rr-hairline);
-}
-.rr-imagine-item {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding: 28px 26px 32px;
-  border-right: 1px solid var(--rr-hairline);
-  border-bottom: 1px solid var(--rr-hairline);
-  transition: background var(--dur-base) var(--ease-out);
-}
-.rr-imagine-item:hover { background: #fff; }
-.rr-imagine-num {
-  font-family: var(--font-serif), Georgia, serif;
-  font-style: italic;
-  font-weight: 800;
-  font-size: 28px;
-  line-height: 1;
-  color: var(--gwf-gold-600);
-}
-.rr-imagine-text {
-  font: 600 17px/1.35 var(--font-body);
-  color: var(--gwf-purple-900);
-}
-
-/* Theme + who card */
-.rr-theme-card {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  background: #22102F;
-  color: #fff;
-}
-.rr-theme-card-main,
-.rr-theme-card-side { padding: clamp(32px, 5vw, 64px); }
-.rr-theme-card-main { display: flex; flex-direction: column; justify-content: center; }
-.rr-theme-card-side { border-left: 1px solid rgba(255, 255, 255, 0.12); }
-.rr-theme-card-label {
-  margin: 0;
-  font: 700 11px/1.3 var(--font-body);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gwf-gold-500);
-}
-.rr-theme-card-quote {
-  margin: 16px 0 0;
-  font-family: var(--font-serif), Georgia, serif;
-  font-style: italic;
-  font-weight: 800;
-  font-size: clamp(30px, 3.6vw, 48px);
-  line-height: 1.18;
-  color: #fff;
-}
-.rr-theme-card .rr-tagline { margin-top: 22px; }
-.rr-theme-card-heading {
-  margin: 14px 0 0;
-  font: 800 clamp(20px, 2vw, 24px)/1.15 var(--font-display);
-  text-transform: uppercase;
-  color: #fff;
-}
-.rr-theme-card-text {
-  margin: 12px 0 0;
-  font: 400 16px/1.65 var(--font-body);
-  color: rgba(255, 255, 255, 0.78);
-}
-.rr-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
-.rr-chip {
-  padding: 7px 12px;
-  font: 600 13px/1.2 var(--font-body);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-}
-
 /* Ticket cards */
 .rr-tickets-grid {
   display: grid;
@@ -891,15 +799,8 @@ button {
 
 @media (max-width: 860px) {
   .rr-lede { grid-template-columns: 1fr; align-items: start; }
-  .rr-imagine-grid { grid-template-columns: 1fr 1fr; }
-  .rr-theme-card { grid-template-columns: 1fr; }
-  .rr-theme-card-side { border-left: none; border-top: 1px solid rgba(255, 255, 255, 0.12); }
   .rr-tickets-grid { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
 }
 @media (max-width: 520px) {
   .rr-invite-eyebrow--center .rr-invite-eyebrow-line { display: none; }
-}
-@media (max-width: 480px) {
-  .rr-imagine-item { padding: 22px 18px 24px; gap: 12px; }
-  .rr-imagine-text { font-size: 15.5px; }
 }

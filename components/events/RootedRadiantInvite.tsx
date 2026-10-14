@@ -5,22 +5,7 @@ import { Icon } from '@/components/ui/Icon'
 import { eventSerif } from '@/components/events/fonts'
 import { rootedRadiant, ticketTiers, formatCedis } from '@/lib/events'
 
-const IMAGINE = [
-  'A beautiful garden',
-  'Gorgeous women',
-  'Meaningful conversations',
-  'Laughter that heals',
-  'New connections',
-  'Exciting activities',
-  'Beautiful memories',
-  'The energy every woman deserves',
-]
-
-const FOR_WHO = ['Students', 'Young Professionals', 'Entrepreneurs', 'Creatives', 'Every woman who needs sunshine & sisterhood']
-
 export function RootedRadiantInvite({ showTiers = false }: { showTiers?: boolean }) {
-  const taglineWords = rootedRadiant.tagline.replace(/\./g, '').split(' ')
-
   return (
     <section id="invite" className={`rr-invite ${eventSerif.variable}`}>
       <div className="rr-invite-inner">
@@ -54,50 +39,6 @@ export function RootedRadiantInvite({ showTiers = false }: { showTiers?: boolean
           <p className="rr-statement-sub">
             Welcome to <strong>{rootedRadiant.title}</strong> &mdash; a beautiful celebration of womanhood, sisterhood, growth, joy, and the unapologetic power of being yourself.
           </p>
-        </div>
-
-        {/* Imagine */}
-        <div className="rr-imagine">
-          <p className="rr-invite-eyebrow">
-            <span className="rr-invite-eyebrow-line" />
-            The experience
-          </p>
-          <h3 className="rr-imagine-title">Imagine&hellip;</h3>
-          <ol className="rr-imagine-grid">
-            {IMAGINE.map((text, i) => (
-              <li key={text} className="rr-imagine-item">
-                <span className="rr-imagine-num">{String(i + 1).padStart(2, '0')}</span>
-                <span className="rr-imagine-text">{text}</span>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        {/* Theme + who it's for */}
-        <div className="rr-theme-card">
-          <div className="rr-hero-grain" aria-hidden="true" />
-          <div className="rr-theme-card-main">
-            <p className="rr-theme-card-label">Our Theme</p>
-            <p className="rr-theme-card-quote">&ldquo;{rootedRadiant.theme}&rdquo;</p>
-            <p className="rr-tagline">
-              {taglineWords.map((w, i) => (
-                <React.Fragment key={w}>
-                  {i > 0 && <span className="rr-diamond" aria-hidden="true" />}
-                  {w}
-                </React.Fragment>
-              ))}
-            </p>
-          </div>
-          <div className="rr-theme-card-side">
-            <p className="rr-theme-card-label">Who It&rsquo;s For</p>
-            <p className="rr-theme-card-heading">Your spot is waiting</p>
-            <p className="rr-theme-card-text">
-              Whether you&rsquo;re a student, a young professional, an entrepreneur, a creative, or simply a woman who needs a little sunshine and sisterhood.
-            </p>
-            <div className="rr-chips">
-              {FOR_WHO.map((w) => <span key={w} className="rr-chip">{w}</span>)}
-            </div>
-          </div>
         </div>
 
         {showTiers && <TicketTierCards />}
