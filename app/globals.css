@@ -566,7 +566,12 @@ button {
 }
 
 @media (max-width: 860px) {
-  .rr-glass { max-width: none; }
+  /* Mobile: flatten the copy column so the event-details panel can sit below the flyer,
+     while the title and "Get Your Ticket" stay above it. */
+  .rr-hero-grid { row-gap: 0 !important; }
+  .rr-hero-copy { display: contents; }
+  .rr-stage { order: 1; margin-top: 28px; }
+  .rr-glass { order: 2; margin-top: 12px; max-width: none; }
   .rr-stage { padding: 30px 22px 66px 26px; }
   .rr-flyer-wrap { max-width: 320px; }
   .rr-badge { top: -26px; right: -20px; width: 94px; height: 94px; }

@@ -53,7 +53,7 @@ export function RootedRadiantHero({ ticketsHref, detailsHref, headingLevel = 'h1
           alignItems: 'center',
           position: 'relative',
         }}
-        className="hero-grid"
+        className="hero-grid rr-hero-grid"
       >
         {/* Left column */}
         <div className="rr-hero-copy">
