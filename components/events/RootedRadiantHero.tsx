@@ -1,19 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
-import { Playfair_Display } from 'next/font/google'
 import { Button } from '@/components/ui/Button'
 import { Icon } from '@/components/ui/Icon'
 import { EventCountdown } from '@/components/events/EventCountdown'
+import { eventSerif } from '@/components/events/fonts'
 import { rootedRadiant, ticketTiers, formatCedis } from '@/lib/events'
-
-// Editorial serif accent for the event hero only — echoes the flyer's script lettering.
-const serif = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['700', '800'],
-  style: ['italic'],
-  variable: '--font-serif',
-  display: 'swap',
-})
 
 const FACTS = [
   { label: 'Date', text: rootedRadiant.dateShort },
@@ -43,7 +34,7 @@ export function RootedRadiantHero({ ticketsHref, detailsHref, headingLevel = 'h1
   const taglineWords = rootedRadiant.tagline.replace(/\./g, '').split(' ')
 
   return (
-    <section className={`rr-hero ${serif.variable}`}>
+    <section className={`rr-hero ${eventSerif.variable}`}>
       <div className="rr-hero-grain" aria-hidden="true" />
       {SPARKS.map((s, i) => (
         <span key={i} className="rr-spark" aria-hidden="true" style={{ top: s.top, left: s.left, animationDelay: s.delay }}>
@@ -107,11 +98,7 @@ export function RootedRadiantHero({ ticketsHref, detailsHref, headingLevel = 'h1
                 variant="gold"
                 size="lg"
                 iconRight={<Icon name="arrow-right" size={18} />}
-                style={{
-                  background: 'linear-gradient(135deg,#FFE58A 0%,#F5C518 45%,#D9A70F 100%)',
-                  borderColor: 'transparent',
-                  boxShadow: '0 12px 32px rgba(245,197,24,.32), inset 0 1px 0 rgba(255,255,255,.55)',
-                }}
+                style={{ boxShadow: '0 12px 30px rgba(245,197,24,.22)' }}
               >
                 Get Your Ticket
               </Button>
