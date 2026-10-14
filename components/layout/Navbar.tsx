@@ -6,6 +6,12 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { Icon } from '@/components/ui/Icon'
+import { rootedRadiant, TICKET_SALES_OPEN } from '@/lib/events'
+
+// While Rooted & Radiant tickets are on sale, the primary nav CTA sells tickets instead of applications.
+const CTA = TICKET_SALES_OPEN
+  ? { label: 'Get Tickets', href: `${rootedRadiant.path}#tickets` }
+  : { label: 'Apply Now', href: '/apply' }
 
 const NAV = [
   { label: 'Home', href: '/' },
@@ -78,8 +84,8 @@ export function Navbar() {
           <Link href="/donate">
             <Button variant="gold" size="sm">Donate</Button>
           </Link>
-          <Link href="/apply">
-            <Button variant="primary" size="sm">Apply Now</Button>
+          <Link href={CTA.href}>
+            <Button variant="primary" size="sm">{CTA.label}</Button>
           </Link>
         </div>
 
@@ -154,8 +160,8 @@ export function Navbar() {
               <Link href="/donate" onClick={() => setOpen(false)}>
                 <Button variant="gold" size="lg">Donate</Button>
               </Link>
-              <Link href="/apply" onClick={() => setOpen(false)}>
-                <Button variant="outline-light" size="lg">Apply Now</Button>
+              <Link href={CTA.href} onClick={() => setOpen(false)}>
+                <Button variant="outline-light" size="lg">{CTA.label}</Button>
               </Link>
             </div>
           </nav>

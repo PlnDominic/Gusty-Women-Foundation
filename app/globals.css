@@ -192,3 +192,9 @@ button {
 @media (max-width: 640px) {
   .pillar-grid > * { border-right: none !important; }
 }
+
+/* Event ticket tiers — stack on mobile; keep the flyer readable in the stacked hero */
+@media (max-width: 860px) {
+  .tier-grid { grid-template-columns: 1fr !important; }
+  .event-flyer > a { max-width: 340px !important; }
+}

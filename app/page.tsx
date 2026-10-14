@@ -8,11 +8,21 @@ import { PhotoGallery } from '@/components/home/PhotoGallery'
 import { Partners } from '@/components/home/Partners'
 import { OurBankers } from '@/components/home/OurBankers'
 import { Newsletter } from '@/components/home/Newsletter'
+import { RootedRadiantHero } from '@/components/events/RootedRadiantHero'
+import { RootedRadiantInvite } from '@/components/events/RootedRadiantInvite'
+import { rootedRadiant, TICKET_SALES_OPEN } from '@/lib/events'
 
 export default function HomePage() {
   return (
     <main>
-      <HeroSection />
+      {TICKET_SALES_OPEN ? (
+        <>
+          <RootedRadiantHero ticketsHref={`${rootedRadiant.path}#tickets`} detailsHref={rootedRadiant.path} />
+          <RootedRadiantInvite showTiers />
+        </>
+      ) : (
+        <HeroSection />
+      )}
       <CEOSection />
       <FeaturedProgram />
       <WhatWeDo />
