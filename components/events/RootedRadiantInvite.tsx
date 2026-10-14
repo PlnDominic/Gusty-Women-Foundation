@@ -9,28 +9,6 @@ export function RootedRadiantInvite({ showTiers = false }: { showTiers?: boolean
   return (
     <section id="invite" className={`rr-invite ${eventSerif.variable}`}>
       <div className="rr-invite-inner">
-        {/* Lede */}
-        <div className="rr-lede">
-          <div>
-            <p className="rr-invite-eyebrow">
-              <span className="rr-invite-eyebrow-line" />
-              An invitation &middot; {rootedRadiant.dateShort}
-            </p>
-            <h2 className="rr-invite-title">
-              <span className="rr-invite-title-sans">Girl, you deserve</span>
-              <span className="rr-invite-title-serif">a moment to breathe.</span>
-            </h2>
-          </div>
-          <div className="rr-lede-copy">
-            <p>
-              Sis, when was the last time you took a break from the pressure of life, celebrated how far you&rsquo;ve come, and simply enjoyed being <em>you</em>?
-            </p>
-            <p>
-              The deadlines, the career pressure, the endless responsibilities, the expectations to have it all figured out&hellip;
-            </p>
-          </div>
-        </div>
-
         {/* Statement */}
         <div className="rr-statement">
           <p className="rr-statement-text">
