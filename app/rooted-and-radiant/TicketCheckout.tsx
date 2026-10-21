@@ -5,11 +5,15 @@ import { Icon } from '@/components/ui/Icon'
 import { isValidEmail, isValidPhone } from '@/lib/validation'
 import { rootedRadiant, ticketTiers, getTicketTier, formatCedis, MAX_TICKETS_PER_ORDER, MAX_PROOF_BYTES, MOMO, type TicketTier } from '@/lib/events'
 
-interface Booking {
+interface IssuedTicket {
   code: string
-  tier: string
   colorName: string
   colorHex: string
+}
+
+interface Booking {
+  tickets: IssuedTicket[]
+  tier: string
   quantity: number
   amount: number
   emailed: boolean
@@ -178,20 +182,28 @@ export function TicketCheckout() {
           Thank you{name ? `, ${name.trim().split(' ')[0]}` : ''}. We&rsquo;ve received your payment screenshot for <strong>{booking.quantity} × {booking.tier}</strong> ({formatCedis(booking.amount)}).
         </p>
 
-        <div style={{ border: `2px solid ${booking.colorHex}`, padding: '20px 16px', maxWidth: 420, margin: '0 auto' }}>
-          <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--gwf-ink-muted)', margin: 0 }}>Your ticket code</p>
-          <p style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(24px,6vw,32px)', letterSpacing: '0.08em', color: 'var(--gwf-purple-900)', margin: '8px 0 10px', wordBreak: 'break-all' }}>{booking.code}</p>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 14, color: booking.colorHex }}>
-            <span style={{ width: 14, height: 14, background: booking.colorHex, display: 'inline-block' }} />
-            {booking.colorName} &middot; {booking.tier}
-          </div>
-          <div style={{ marginTop: 14 }}><CopyButton value={booking.code} text="Copy code" /></div>
+        <div style={{ display: 'grid', gap: 14, maxWidth: 420, margin: '0 auto' }}>
+          {booking.tickets.map((t, i) => (
+            <div key={t.code} style={{ border: `2px solid ${t.colorHex}` }}>
+              <div style={{ background: t.colorHex, color: '#fff', padding: '8px 12px', fontFamily: 'var(--font-body)', fontWeight: 800, fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+                {booking.tickets.length > 1 ? `Ticket ${i + 1} of ${booking.tickets.length} · ` : ''}Team {t.colorName}
+              </div>
+              <div style={{ padding: '16px 12px' }}>
+                <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--gwf-ink-muted)', margin: 0 }}>Ticket code</p>
+                <p style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(22px,6vw,30px)', letterSpacing: '0.08em', color: 'var(--gwf-purple-900)', margin: '6px 0 12px', wordBreak: 'break-all' }}>{t.code}</p>
+                <CopyButton value={t.code} text="Copy code" />
+              </div>
+            </div>
+          ))}
         </div>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.6, color: 'var(--gwf-ink-soft)', margin: '18px auto 0', maxWidth: 420 }}>
+          Take note of your <strong>team colour</strong> &mdash; it&rsquo;s unique to your ticket and used for team activities on the day. Please don&rsquo;t switch teams.
+        </p>
 
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--gwf-ink-muted)', margin: '22px 0 8px', lineHeight: 1.6 }}>
           {booking.emailed
-            ? <>A confirmation with your ticket code has been sent to <strong>{email}</strong>. Our team will verify your payment and get in touch if anything needs sorting.</>
-            : <>We couldn&rsquo;t send your confirmation email, so please <strong>screenshot this page</strong> and keep your code. Our team will verify your payment and contact you.</>}
+            ? <>Your ticket{booking.tickets.length > 1 ? 's have' : ' has'} been sent to <strong>{email}</strong>. Our team will verify your payment and get in touch if anything needs sorting.</>
+            : <>We couldn&rsquo;t send your confirmation email, so please <strong>screenshot this page</strong> and keep your code{booking.tickets.length > 1 ? 's' : ''}. Our team will verify your payment and contact you.</>}
         </p>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--gwf-ink-muted)', margin: 0 }}>
           {rootedRadiant.date} &middot; {rootedRadiant.time} &middot; {rootedRadiant.venue}

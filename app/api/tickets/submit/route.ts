@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { randomBytes } from 'crypto'
+import { randomBytes, randomInt } from 'crypto'
 import { getTransporter, GWF_EMAIL } from '@/lib/mailer'
 import { isValidEmail, isValidPhone } from '@/lib/validation'
-import { rootedRadiant, getTicketTier, formatCedis, MAX_TICKETS_PER_ORDER, MAX_PROOF_BYTES, MOMO } from '@/lib/events'
+import { rootedRadiant, getTicketTier, formatCedis, MAX_TICKETS_PER_ORDER, MAX_PROOF_BYTES, MOMO, TEAM_COLORS } from '@/lib/events'
 
 export const runtime = 'nodejs'
 
@@ -14,6 +14,24 @@ function makeTicketCode(prefix: string) {
   let suffix = ''
   for (let i = 0; i < bytes.length; i++) suffix += CODE_ALPHABET[bytes[i] % CODE_ALPHABET.length]
   return `${prefix.toUpperCase()}-${suffix}`
+}
+
+interface Ticket {
+  code: string
+  colorName: string
+  colorHex: string
+}
+
+// Every ticket gets its own randomly allocated team colour; the ticket code starts with it.
+function allocateTickets(quantity: number): Ticket[] {
+  const tickets: Ticket[] = []
+  while (tickets.length < quantity) {
+    const color = TEAM_COLORS[randomInt(TEAM_COLORS.length)]
+    const code = makeTicketCode(color.name)
+    if (tickets.some((t) => t.code === code)) continue
+    tickets.push({ code, colorName: color.name, colorHex: color.hex })
+  }
+  return tickets
 }
 
 function escapeHtml(value: string) {
@@ -38,8 +56,82 @@ function fail(error: string, status = 400) {
   return NextResponse.json({ error }, { status })
 }
 
+function confirmationEmail(tickets: Ticket[], tierLabel: string) {
+  const many = tickets.length > 1
+  const ticketBlocks = tickets
+    .map(
+      (t, i) => `
+      <div style="border:2px solid ${t.colorHex};margin:0 0 14px;text-align:center">
+        <div style="background:${t.colorHex};color:#fff;padding:8px 12px;font-size:12px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase">
+          ${many ? `Ticket ${i + 1} of ${tickets.length} &middot; ` : ''}Team ${escapeHtml(t.colorName)}
+        </div>
+        <div style="padding:16px 12px">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#6b7280">Ticket code</div>
+          <div style="margin-top:6px;font-size:28px;font-weight:800;letter-spacing:0.1em;color:#2E1247">${t.code}</div>
+          <div style="margin-top:8px;font-size:13px;color:#41415A">${escapeHtml(tierLabel)}</div>
+        </div>
+      </div>`
+    )
+    .join('')
+
+  const p = 'margin:0 0 16px;font-size:15px;line-height:1.7;color:#1A1A2E'
+  const html = `
+    <div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto">
+      <div style="background:#4a1a6e;padding:28px 32px">
+        <p style="color:#F5C518;margin:0 0 6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em">Gutsy Women Foundation</p>
+        <h1 style="color:#fff;margin:0;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:0.03em">${rootedRadiant.title}</h1>
+        <p style="color:#FBE3ED;margin:8px 0 0;font-size:15px;font-style:italic">${rootedRadiant.theme}</p>
+      </div>
+      <div style="padding:32px;border:1px solid #e5e7eb;border-top:none">
+        <p style="${p}">Dear Radiant,</p>
+        <p style="${p}">Thank you for securing your spot at ${escapeHtml(rootedRadiant.title)}, Gutsy Women Foundation&rsquo;s exciting gathering happening on ${escapeHtml(rootedRadiant.dateShort)} at ${escapeHtml(rootedRadiant.arrivalTime)} at ${escapeHtml(rootedRadiant.venue)}.</p>
+        <p style="${p}">Your ticket${many ? 's are' : ' is'} included below. Kindly check ${many ? 'them' : 'it'} and take note of your allocated team colour${many ? 's' : ''}, which ${many ? 'are' : 'is'} important for team-based activities on the day.</p>
+        ${ticketBlocks}
+        <p style="margin:22px 0 8px;font-size:15px;font-weight:700;color:#1A1A2E">Please keep in mind:</p>
+        <ul style="margin:0 0 16px;padding-left:20px;font-size:15px;line-height:1.7;color:#1A1A2E">
+          <li>Do not delete this email or misplace your ticket. Your ticket is required for entry and team assignments.</li>
+          <li>Your team colour is unique to your ticket. For a smooth and enjoyable experience, avoid switching teams.</li>
+        </ul>
+        <p style="${p}">Come ready for a day filled with board games, food, drinks, talk, vibes, and awards, and of course, plenty of fun!</p>
+        <p style="${p}">If you have any questions, please don&rsquo;t hesitate to contact us at <a href="mailto:${GWF_EMAIL}" style="color:#4a1a6e;font-weight:700">${GWF_EMAIL}</a>.</p>
+        <p style="${p}">See you soon &ndash; let&rsquo;s make it unforgettable!</p>
+        <p style="margin:0;font-size:15px;line-height:1.7;color:#1A1A2E">Warm regards,<br /><strong>The Gutsy Women Foundation Team.</strong></p>
+      </div>
+      <div style="padding:14px 32px;background:#f9fafb;color:#6b7280;font-size:12px;line-height:1.5">
+        Tickets are confirmed once our team has verified your Mobile Money payment.
+      </div>
+    </div>`
+
+  const text = [
+    'Dear Radiant,',
+    '',
+    `Thank you for securing your spot at ${rootedRadiant.title}, Gutsy Women Foundation's exciting gathering happening on ${rootedRadiant.dateShort} at ${rootedRadiant.arrivalTime} at ${rootedRadiant.venue}.`,
+    '',
+    `Your ticket${many ? 's are' : ' is'} included below. Kindly check ${many ? 'them' : 'it'} and take note of your allocated team colour${many ? 's' : ''}, which ${many ? 'are' : 'is'} important for team-based activities on the day.`,
+    '',
+    ...tickets.map((t, i) => `${many ? `Ticket ${i + 1} of ${tickets.length}: ` : 'Ticket: '}${t.code} (Team ${t.colorName}, ${tierLabel})`),
+    '',
+    'Please keep in mind:',
+    '- Do not delete this email or misplace your ticket. Your ticket is required for entry and team assignments.',
+    '- Your team colour is unique to your ticket. For a smooth and enjoyable experience, avoid switching teams.',
+    '',
+    'Come ready for a day filled with board games, food, drinks, talk, vibes, and awards, and of course, plenty of fun!',
+    '',
+    `If you have any questions, please don't hesitate to contact us at ${GWF_EMAIL}.`,
+    '',
+    "See you soon - let's make it unforgettable!",
+    '',
+    'Warm regards,',
+    'The Gutsy Women Foundation Team.',
+    '',
+    'Tickets are confirmed once our team has verified your Mobile Money payment.',
+  ].join('\n')
+
+  return { html, text }
+}
+
 // Receives a Mobile Money ticket order with a payment screenshot, emails the NGO the proof
-// for verification, and emails the buyer their ticket code.
+// for verification, and emails the buyer their tickets with their team colours.
 export async function POST(req: NextRequest) {
   let form: FormData
   try {
@@ -73,19 +165,11 @@ export async function POST(req: NextRequest) {
   // The amount is always worked out here from the configured price — never taken from the browser.
   const amount = tier.price * quantity
   const total = formatCedis(amount)
-  const code = makeTicketCode(tier.color.name)
+  const tickets = allocateTickets(quantity)
   const ticketLine = `${quantity} × ${tier.label}`
-  const when = `${rootedRadiant.date}, ${rootedRadiant.time}`
 
-  const row = (label: string, value: string, strong = true) =>
-    `<tr><td style="padding:8px 0;color:#6b7280;width:130px;vertical-align:top;font-size:14px">${label}</td><td style="padding:8px 0;color:#111;font-size:14px;${strong ? 'font-weight:600' : ''}">${value}</td></tr>`
-
-  const orderRows = [
-    row('Name', escapeHtml(name)),
-    row('Tickets', escapeHtml(ticketLine)),
-    row('Amount', escapeHtml(total)),
-    row('Ticket code', `<span style="letter-spacing:0.08em">${code}</span>`),
-  ].join('')
+  const row = (label: string, value: string) =>
+    `<tr><td style="padding:8px 0;color:#6b7280;width:130px;vertical-align:top;font-size:14px">${label}</td><td style="padding:8px 0;color:#111;font-size:14px;font-weight:600">${value}</td></tr>`
 
   const transporter = (() => {
     try { return getTransporter() } catch (err) { console.error('[tickets] Mail not configured:', err); return null }
@@ -95,12 +179,15 @@ export async function POST(req: NextRequest) {
   }
 
   // 1. The NGO must get the proof — if this fails, the buyer must not see a success screen.
+  const ticketList = tickets
+    .map((t) => `<div style="margin:0 0 4px"><span style="display:inline-block;width:10px;height:10px;background:${t.colorHex};margin-right:8px"></span>${t.code} &middot; Team ${escapeHtml(t.colorName)}</div>`)
+    .join('')
   try {
     await transporter.sendMail({
       from: `"GWF Website" <${GWF_EMAIL}>`,
       to: GWF_EMAIL,
       replyTo: email,
-      subject: `New ticket booking: ${ticketLine} — ${name} — ${code}`,
+      subject: `New ticket booking: ${ticketLine} — ${name} — ${tickets[0].code}${quantity > 1 ? ` (+${quantity - 1})` : ''}`,
       html: `
         <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
           <div style="background:#4a1a6e;padding:24px 32px">
@@ -112,20 +199,22 @@ export async function POST(req: NextRequest) {
               Check that <strong>${escapeHtml(total)}</strong> arrived on <strong>${MOMO.number}</strong> (${MOMO.accountName}), then compare with the screenshot below.
             </p>
             <table style="width:100%;border-collapse:collapse">
-              ${orderRows}
-              ${row('Ticket colour', `${escapeHtml(tier.color.name)}`)}
+              ${row('Name', escapeHtml(name))}
+              ${row('Tickets', escapeHtml(ticketLine))}
+              ${row('Amount', escapeHtml(total))}
               ${row('Email', `<a href="mailto:${escapeHtml(email)}" style="color:#4a1a6e">${escapeHtml(email)}</a>`)}
               ${row('Phone', escapeHtml(phone))}
+              ${row(quantity > 1 ? 'Tickets issued' : 'Ticket issued', ticketList)}
             </table>
             <p style="margin:22px 0 8px;font-size:13px;color:#6b7280;text-transform:uppercase;letter-spacing:0.1em;font-weight:700">Payment screenshot</p>
             <img src="cid:payment-proof" alt="Payment screenshot" style="max-width:100%;border:1px solid #e5e7eb" />
           </div>
           <div style="padding:16px 32px;background:#f9fafb;color:#9ca3af;font-size:12px">
-            The buyer has been emailed this ticket code. Reply to this email to reach ${escapeHtml(name)}.
+            The buyer has been emailed these ticket codes and team colours. Reply to this email to reach ${escapeHtml(name)}.
           </div>
         </div>
       `,
-      attachments: [{ filename: `payment-${code}.${image.ext}`, content: buf, contentType: image.mime, cid: 'payment-proof' }],
+      attachments: [{ filename: `payment-${tickets[0].code}.${image.ext}`, content: buf, contentType: image.mime, cid: 'payment-proof' }],
     })
   } catch (err) {
     console.error('[tickets] Could not email the payment proof:', err)
@@ -135,57 +224,19 @@ export async function POST(req: NextRequest) {
   // 2. The buyer's confirmation. The NGO already has the proof, so a failure here is reported, not fatal.
   let emailed = true
   try {
+    const { html, text } = confirmationEmail(tickets, tier.label)
     await transporter.sendMail({
       from: `"Gutsy Women Foundation" <${GWF_EMAIL}>`,
       to: email,
       replyTo: GWF_EMAIL,
-      subject: `Your ${rootedRadiant.title} ticket code: ${code}`,
-      html: `
-        <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
-          <div style="background:#4a1a6e;padding:28px 32px">
-            <p style="color:#F5C518;margin:0 0 6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em">Booking received</p>
-            <h1 style="color:#fff;margin:0;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:0.03em">${rootedRadiant.title}</h1>
-            <p style="color:#FBE3ED;margin:8px 0 0;font-size:15px;font-style:italic">${rootedRadiant.theme}</p>
-          </div>
-          <div style="height:10px;background:${tier.color.hex}"></div>
-          <div style="padding:32px;border:1px solid #e5e7eb;border-top:none">
-            <p style="font-size:16px;color:#111;margin:0 0 20px;line-height:1.6">
-              Hi ${escapeHtml(name.split(' ')[0])}, thank you! We've received your Mobile Money payment screenshot. Our team will check it against our account and get in touch if anything needs sorting.
-            </p>
-            <div style="border:2px solid ${tier.color.hex};padding:18px 20px;margin:0 0 22px;text-align:center">
-              <p style="margin:0;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#6b7280">Your ticket code</p>
-              <p style="margin:8px 0 0;font-size:30px;font-weight:800;letter-spacing:0.1em;color:#2E1247">${code}</p>
-              <p style="margin:10px 0 0;font-size:14px;font-weight:700;color:${tier.color.hex}">${escapeHtml(tier.color.name)} &middot; ${escapeHtml(tier.label)}</p>
-            </div>
-            <table style="width:100%;border-collapse:collapse">
-              ${row('Tickets', escapeHtml(ticketLine))}
-              ${row('Amount paid', escapeHtml(total))}
-              ${row('Date', escapeHtml(when), false)}
-              ${row('Venue', escapeHtml(rootedRadiant.venue), false)}
-            </table>
-            <p style="font-size:14px;color:#41415A;line-height:1.6;margin:22px 0 0">
-              Keep this email and show your ticket code at the entrance${quantity > 1 ? ` &mdash; it admits ${quantity} guests` : ''}. Gather your girls, pick your outfit, and come ready to laugh, connect and glow. December 4th, we are outside!
-            </p>
-          </div>
-          <div style="padding:16px 32px;background:#f9fafb;color:#6b7280;font-size:12px">
-            Questions? Call or WhatsApp ${rootedRadiant.enquiryPhone}, or reply to this email.
-          </div>
-        </div>
-      `,
+      subject: quantity > 1 ? `Your ${rootedRadiant.title} tickets` : `Your ${rootedRadiant.title} ticket: ${tickets[0].code}`,
+      html,
+      text,
     })
   } catch (err) {
     console.error('[tickets] Could not email the buyer:', err)
     emailed = false
   }
 
-  return NextResponse.json({
-    ok: true,
-    code,
-    tier: tier.label,
-    colorName: tier.color.name,
-    colorHex: tier.color.hex,
-    quantity,
-    amount,
-    emailed,
-  })
+  return NextResponse.json({ ok: true, tickets, tier: tier.label, quantity, amount, emailed })
 }

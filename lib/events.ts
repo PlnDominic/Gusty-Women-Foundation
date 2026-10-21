@@ -7,9 +7,6 @@ export interface TicketTier {
   label: string
   price: number
   blurb: string
-  // Colour code shown on the buyer's ticket and used as the prefix of their ticket code.
-  // Matches the colours of the price tags on the flyer (250 blue, 350 purple, 500 pink).
-  color: { name: string; hex: string }
   // Set to false to stop selling a tier (e.g. when early bird ends) without removing it.
   available: boolean
 }
@@ -18,6 +15,15 @@ export interface TicketTier {
 export const TICKET_SALES_OPEN = true
 
 export const MAX_TICKETS_PER_ORDER = 10
+
+// Team colours for the day's team-based activities. Every ticket is randomly allocated one of
+// these and its ticket code starts with the colour (e.g. PINK-7K3F2Q). Matches the colours of the
+// price tags on the flyer. Don't change this list once tickets are sold — guests keep their team.
+export const TEAM_COLORS = [
+  { name: 'Blue', hex: '#2F6BFF' },
+  { name: 'Purple', hex: '#6F3DA6' },
+  { name: 'Pink', hex: '#E0457F' },
+]
 
 // Tickets are paid for by Mobile Money. Buyers send the amount here, then upload a screenshot.
 export const MOMO = {
@@ -37,6 +43,8 @@ export const rootedRadiant = {
   date: 'Friday, 4th December 2026',
   dateShort: '4th December 2026',
   time: '11:00 AM',
+  // Time quoted to guests in their confirmation email (arrival), ahead of the 11:00 AM start.
+  arrivalTime: '10 AM',
   startISO: '2026-12-04T11:00:00+00:00',
   venue: 'Aburi Botanical Garden',
   venueLocality: 'Aburi, Eastern Region',
@@ -48,9 +56,9 @@ export const rootedRadiant = {
 }
 
 export const ticketTiers: TicketTier[] = [
-  { id: 'early-bird', label: 'Regular Early Bird', price: 250, blurb: 'Lock in the lowest price before early bird ends.', color: { name: 'Blue', hex: '#2F6BFF' }, available: true },
-  { id: 'regular', label: 'Regular', price: 350, blurb: 'Full access to the Rooted & Radiant experience.', color: { name: 'Purple', hex: '#6F3DA6' }, available: true },
-  { id: 'vip', label: 'VIP', price: 500, blurb: 'The premium Rooted & Radiant experience.', color: { name: 'Pink', hex: '#E0457F' }, available: true },
+  { id: 'early-bird', label: 'Regular Early Bird', price: 250, blurb: 'Lock in the lowest price before early bird ends.', available: true },
+  { id: 'regular', label: 'Regular', price: 350, blurb: 'Full access to the Rooted & Radiant experience.', available: true },
+  { id: 'vip', label: 'VIP', price: 500, blurb: 'The premium Rooted & Radiant experience.', available: true },
 ]
 
 export function getTicketTier(id: unknown): TicketTier | undefined {
