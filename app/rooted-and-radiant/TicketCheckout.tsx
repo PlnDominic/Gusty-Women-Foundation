@@ -3,37 +3,89 @@
 import React from 'react'
 import { Icon } from '@/components/ui/Icon'
 import { isValidEmail, isValidPhone } from '@/lib/validation'
-import { rootedRadiant, ticketTiers, getTicketTier, formatCedis, MAX_TICKETS_PER_ORDER, type TicketTier } from '@/lib/events'
+import { rootedRadiant, ticketTiers, getTicketTier, formatCedis, MAX_TICKETS_PER_ORDER, MAX_PROOF_BYTES, MOMO, type TicketTier } from '@/lib/events'
 
-function loadPaystack(): Promise<void> {
-  return new Promise((resolve) => {
-    if ((window as any).PaystackPop) { resolve(); return }
-    let s = document.getElementById('paystack-inline') as HTMLScriptElement | null
-    if (!s) {
-      s = document.createElement('script')
-      s.id = 'paystack-inline'
-      s.src = 'https://js.paystack.co/v1/inline.js'
-      document.head.appendChild(s)
-    }
-    s.addEventListener('load', () => resolve())
-    s.addEventListener('error', () => resolve())
-    // Don't hang the button if the script already failed earlier; the caller checks PaystackPop.
-    setTimeout(resolve, 10000)
-  })
-}
-
-interface Confirmation {
-  reference: string
+interface Booking {
+  code: string
   tier: string
+  colorName: string
+  colorHex: string
   quantity: number
   amount: number
-  verified: boolean
   emailed: boolean
 }
 
 const label: React.CSSProperties = { fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 13, color: 'var(--gwf-ink)', display: 'block', marginBottom: 6 }
 const input: React.CSSProperties = { width: '100%', padding: '11px 14px', border: '1.5px solid var(--border-subtle)', fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--gwf-ink)', outline: 'none', boxSizing: 'border-box', background: '#fff' }
 const required = <span style={{ color: 'var(--gwf-magenta-600)' }}>*</span>
+const eyebrow: React.CSSProperties = { fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gwf-ink-muted)', margin: '0 0 18px' }
+
+// Phone screenshots and photos can be several MB. Shrink them in the browser so the upload is
+// quick on mobile data and always under the server's limit. Falls back to the original file.
+function loadImage(file: File): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file)
+    const img = new Image()
+    img.onload = () => { URL.revokeObjectURL(url); resolve(img) }
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('unreadable')) }
+    img.src = url
+  })
+}
+
+async function prepareProof(file: File): Promise<File> {
+  try {
+    const img = await loadImage(file)
+    const scale = Math.min(1, 1800 / Math.max(img.naturalWidth, img.naturalHeight))
+    const canvas = document.createElement('canvas')
+    canvas.width = Math.max(1, Math.round(img.naturalWidth * scale))
+    canvas.height = Math.max(1, Math.round(img.naturalHeight * scale))
+    const ctx = canvas.getContext('2d')
+    if (ctx) {
+      ctx.fillStyle = '#fff'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+      for (const quality of [0.85, 0.7, 0.55]) {
+        const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/jpeg', quality))
+        if (blob && blob.size <= MAX_PROOF_BYTES) return new File([blob], 'payment-screenshot.jpg', { type: 'image/jpeg' })
+      }
+    }
+  } catch {}
+  if (file.size <= MAX_PROOF_BYTES && /^image\/(jpeg|png|webp)$/.test(file.type)) return file
+  throw new Error('unsupported')
+}
+
+function CopyButton({ value, text = 'Copy' }: { value: string; text?: string }) {
+  const [copied, setCopied] = React.useState(false)
+  function copy() {
+    navigator.clipboard?.writeText(value).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }).catch(() => {})
+  }
+  return (
+    <button
+      type="button"
+      onClick={copy}
+      style={{
+        background: copied ? 'var(--gwf-purple-600)' : '#fff',
+        color: copied ? '#fff' : 'var(--gwf-purple-600)',
+        border: '1.5px solid var(--gwf-purple-200)',
+        padding: '6px 10px',
+        fontFamily: 'var(--font-body)',
+        fontSize: 12,
+        fontWeight: 700,
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 5,
+        flexShrink: 0,
+        transition: 'all 0.15s',
+      }}
+    >
+      <Icon name={copied ? 'check' : 'copy'} size={13} />
+      {copied ? 'Copied' : text}
+    </button>
+  )
+}
 
 export function TicketCheckout() {
   const firstAvailable = ticketTiers.find((t) => t.available)
@@ -42,112 +94,116 @@ export function TicketCheckout() {
   const [name, setName] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [phone, setPhone] = React.useState('')
-  const [loading, setLoading] = React.useState(false)
+  const [company, setCompany] = React.useState('') // honeypot — real visitors never see or fill this
+  const [proof, setProof] = React.useState<File | null>(null)
+  const [preview, setPreview] = React.useState<string | null>(null)
+  const [preparing, setPreparing] = React.useState(false)
+  const [submitting, setSubmitting] = React.useState(false)
   const [error, setError] = React.useState('')
-  const [confirmation, setConfirmation] = React.useState<Confirmation | null>(null)
+  const [booking, setBooking] = React.useState<Booking | null>(null)
 
   // Pre-select the tier chosen on the home page (?tier=vip)
   React.useEffect(() => {
     const t = getTicketTier(new URLSearchParams(window.location.search).get('tier'))
     if (t?.available) setTierId(t.id)
-    loadPaystack()
   }, [])
+
+  React.useEffect(() => {
+    if (!proof) { setPreview(null); return }
+    const url = URL.createObjectURL(proof)
+    setPreview(url)
+    return () => URL.revokeObjectURL(url)
+  }, [proof])
 
   const tier = getTicketTier(tierId)
   const total = tier ? tier.price * quantity : 0
 
-  async function confirmPayment(reference: string, chosen: TicketTier, qty: number) {
-    setLoading(true)
+  async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+    setError('')
+    setPreparing(true)
     try {
-      const res = await fetch('/api/tickets/verify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ reference }),
-      })
-      const data = await res.json()
-      if (res.ok && data.status === 'success') {
-        setConfirmation({ reference, tier: data.tier, quantity: data.quantity, amount: data.amount, verified: true, emailed: data.emailed })
-        return
-      }
-    } catch {}
-    finally { setLoading(false) }
-    // Paystack reported success but our check failed — still show the reference so the buyer can follow up.
-    setConfirmation({ reference, tier: chosen.label, quantity: qty, amount: chosen.price * qty, verified: false, emailed: false })
+      setProof(await prepareProof(file))
+    } catch {
+      setProof(null)
+      setError('We could not read that file. Please upload your payment screenshot as a JPG or PNG image.')
+    } finally {
+      setPreparing(false)
+    }
   }
 
-  async function handleCheckout() {
+  async function handleSubmit() {
     if (!tier || !tier.available) { setError('Please choose a ticket.'); return }
     if (!name.trim()) { setError('Please enter your full name.'); return }
-    if (!isValidEmail(email)) { setError('Please enter a valid email address — your ticket will be sent there.'); return }
     if (!phone.trim() || !isValidPhone(phone)) { setError('Please enter a valid phone number.'); return }
+    if (!isValidEmail(email)) { setError('Please enter a valid email address — your ticket code will be sent there.'); return }
+    if (!proof) { setError('Please attach a screenshot of your Mobile Money payment.'); return }
     setError('')
-    setLoading(true)
-    await loadPaystack()
-    setLoading(false)
-
-    const key = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY
-    if (!key || !(window as any).PaystackPop) {
-      setError(`Online payment is temporarily unavailable. Please call or WhatsApp ${rootedRadiant.enquiryPhone} to get your ticket.`)
-      return
+    setSubmitting(true)
+    try {
+      const body = new FormData()
+      body.set('tier', tier.id)
+      body.set('quantity', String(quantity))
+      body.set('name', name.trim())
+      body.set('email', email.trim())
+      body.set('phone', phone.trim())
+      body.set('company', company)
+      body.set('screenshot', proof)
+      const res = await fetch('/api/tickets/submit', { method: 'POST', body })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.ok) {
+        setError(data.error || `Something went wrong. Please try again or WhatsApp your screenshot to ${rootedRadiant.enquiryPhone}.`)
+        return
+      }
+      setBooking(data)
+    } catch {
+      setError('We could not reach the server. Please check your connection and try again.')
+    } finally {
+      setSubmitting(false)
     }
-
-    const chosen = tier
-    const qty = quantity
-    const handler = (window as any).PaystackPop.setup({
-      key,
-      email: email.trim(),
-      amount: chosen.price * qty * 100,
-      currency: 'GHS',
-      ref: `gwf_rr2_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
-      metadata: {
-        event: rootedRadiant.id,
-        tier: chosen.id,
-        quantity: qty,
-        buyer_name: name.trim(),
-        phone: phone.trim(),
-        custom_fields: [
-          { display_name: 'Event', variable_name: 'event', value: rootedRadiant.title },
-          { display_name: 'Ticket', variable_name: 'ticket', value: `${qty} × ${chosen.label}` },
-          { display_name: 'Name', variable_name: 'buyer_name', value: name.trim() },
-          { display_name: 'Phone', variable_name: 'phone', value: phone.trim() },
-        ],
-      },
-      callback: (res: { reference: string }) => { confirmPayment(res.reference, chosen, qty) },
-      onClose: () => {},
-    })
-    handler.openIframe()
   }
 
-  if (confirmation) {
+  if (booking) {
     return (
-      <div style={{ background: '#fff', border: '1px solid var(--border-subtle)', padding: 'clamp(32px,5vw,56px)', textAlign: 'center', boxShadow: 'var(--shadow-md)' }}>
+      <div style={{ padding: 'clamp(8px,3vw,36px) 0', textAlign: 'center' }}>
         <div style={{ width: 72, height: 72, background: 'var(--gwf-gold-100)', color: 'var(--gwf-gold-600)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
           <Icon name="check" size={36} />
         </div>
         <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, textTransform: 'uppercase', fontSize: 'clamp(22px,2.8vw,30px)', color: 'var(--gwf-ink)', margin: '20px 0 10px' }}>
-          You&rsquo;re In, Sis!
+          Booking Received!
         </h3>
-        <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.6, color: 'var(--gwf-ink-soft)', margin: '0 0 6px' }}>
-          Thank you{name ? `, ${name.trim().split(' ')[0]}` : ''}. Your <strong>{confirmation.quantity} × {confirmation.tier}</strong> ticket{confirmation.quantity > 1 ? 's' : ''} for <strong>{rootedRadiant.title}</strong> ({formatCedis(confirmation.amount)}) {confirmation.quantity > 1 ? 'are' : 'is'} secured.
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.6, color: 'var(--gwf-ink-soft)', margin: '0 0 22px' }}>
+          Thank you{name ? `, ${name.trim().split(' ')[0]}` : ''}. We&rsquo;ve received your payment screenshot for <strong>{booking.quantity} × {booking.tier}</strong> ({formatCedis(booking.amount)}).
         </p>
-        <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--gwf-ink-muted)', margin: '0 0 6px' }}>
+
+        <div style={{ border: `2px solid ${booking.colorHex}`, padding: '20px 16px', maxWidth: 420, margin: '0 auto' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--gwf-ink-muted)', margin: 0 }}>Your ticket code</p>
+          <p style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(24px,6vw,32px)', letterSpacing: '0.08em', color: 'var(--gwf-purple-900)', margin: '8px 0 10px', wordBreak: 'break-all' }}>{booking.code}</p>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 14, color: booking.colorHex }}>
+            <span style={{ width: 14, height: 14, background: booking.colorHex, display: 'inline-block' }} />
+            {booking.colorName} &middot; {booking.tier}
+          </div>
+          <div style={{ marginTop: 14 }}><CopyButton value={booking.code} text="Copy code" /></div>
+        </div>
+
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--gwf-ink-muted)', margin: '22px 0 8px', lineHeight: 1.6 }}>
+          {booking.emailed
+            ? <>A confirmation with your ticket code has been sent to <strong>{email}</strong>. Our team will verify your payment and get in touch if anything needs sorting.</>
+            : <>We couldn&rsquo;t send your confirmation email, so please <strong>screenshot this page</strong> and keep your code. Our team will verify your payment and contact you.</>}
+        </p>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--gwf-ink-muted)', margin: 0 }}>
           {rootedRadiant.date} &middot; {rootedRadiant.time} &middot; {rootedRadiant.venue}
         </p>
-        {confirmation.verified && confirmation.emailed ? (
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--gwf-ink-muted)', margin: '12px 0 8px' }}>
-            A confirmation has been sent to <strong>{email}</strong>. Please show it, or your reference below, at the entrance.
-          </p>
-        ) : (
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--gwf-ink-muted)', margin: '12px 0 8px', lineHeight: 1.6 }}>
-            Please screenshot this page and keep your reference. If you don&rsquo;t receive a confirmation email, call or WhatsApp <strong>{rootedRadiant.enquiryPhone}</strong> with your reference.
-          </p>
-        )}
-        <p style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 15, color: 'var(--gwf-purple-700)', margin: '10px 0 0', letterSpacing: '0.03em', wordBreak: 'break-all' }}>
-          Ref: {confirmation.reference}
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', margin: '10px 0 0' }}>
+          Questions? Call or WhatsApp <strong>{rootedRadiant.enquiryPhone}</strong>.
         </p>
       </div>
     )
   }
+
+  const busy = submitting || preparing
 
   return (
     <div>
@@ -194,9 +250,7 @@ export function TicketCheckout() {
 
       {/* Buyer details */}
       <div style={{ background: 'var(--gwf-purple-100)', padding: 'clamp(22px,4vw,32px)', marginBottom: 22 }}>
-        <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gwf-ink-muted)', margin: '0 0 18px' }}>
-          Your details
-        </p>
+        <p style={eyebrow}>1 &middot; Your details</p>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }} className="apply-grid">
           <div>
             <label htmlFor="rr-name" style={label}>Full Name {required}</label>
@@ -221,9 +275,58 @@ export function TicketCheckout() {
             </div>
           </div>
         </div>
+        {/* Honeypot: hidden from people, tempting to bots */}
+        <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+          <label>Company<input type="text" tabIndex={-1} autoComplete="off" value={company} onChange={(e) => setCompany(e.target.value)} /></label>
+        </div>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', margin: '14px 0 0', lineHeight: 1.5 }}>
-          Coming with your girls? Buy up to {MAX_TICKETS_PER_ORDER} tickets in one order &mdash; your confirmation is sent to the email above.
+          Coming with your girls? Buy up to {MAX_TICKETS_PER_ORDER} tickets in one order. Use the number you&rsquo;ll pay from if you can, so we can match your payment.
         </p>
+      </div>
+
+      {/* Pay by Mobile Money */}
+      <div style={{ border: '1.5px solid var(--gwf-gold-300)', background: 'var(--gwf-gold-100)', padding: 'clamp(22px,4vw,32px)', marginBottom: 22 }}>
+        <p style={eyebrow}>2 &middot; Pay with Mobile Money</p>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.6, color: 'var(--gwf-ink-soft)', margin: '0 0 16px' }}>
+          Send <strong style={{ color: 'var(--gwf-ink)' }}>{formatCedis(total)}</strong> by Mobile Money to the number below.
+        </p>
+        <div style={{ background: '#fff', border: '1px solid var(--gwf-gold-300)', padding: '14px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+          <div>
+            <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--gwf-ink-muted)', margin: 0 }}>MoMo number</p>
+            <p style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, letterSpacing: '0.06em', color: 'var(--gwf-ink)', margin: '2px 0 0' }}>{MOMO.number}</p>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', margin: '2px 0 0' }}>{MOMO.accountName}</p>
+          </div>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <CopyButton value={MOMO.number} text="Copy number" />
+            <CopyButton value={String(total)} text="Copy amount" />
+          </div>
+        </div>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, lineHeight: 1.6, color: 'var(--gwf-ink-soft)', margin: '14px 0 0' }}>
+          Once the payment goes through, take a <strong>screenshot of the confirmation</strong> and upload it below.
+        </p>
+      </div>
+
+      {/* Screenshot upload */}
+      <div style={{ border: '1.5px dashed var(--gwf-purple-300)', padding: 'clamp(18px,3vw,26px)', marginBottom: 22 }}>
+        <p style={eyebrow}>3 &middot; Upload your payment screenshot {required}</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+          {preview && (
+            <img src={preview} alt="Your payment screenshot" style={{ width: 84, height: 112, objectFit: 'cover', border: '1px solid var(--border-subtle)', flexShrink: 0 }} />
+          )}
+          <div style={{ minWidth: 0 }}>
+            <label
+              htmlFor="rr-proof"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 18px', background: 'var(--gwf-purple-100)', color: 'var(--gwf-purple-700)', border: '1.5px solid var(--gwf-purple-200)', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 14, cursor: busy ? 'wait' : 'pointer' }}
+            >
+              <Icon name="upload" size={16} />
+              {preparing ? 'Preparing…' : proof ? 'Change screenshot' : 'Choose screenshot'}
+            </label>
+            <input id="rr-proof" type="file" accept="image/*" onChange={handleFile} disabled={busy} style={{ position: 'absolute', width: 1, height: 1, opacity: 0, overflow: 'hidden' }} />
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--gwf-ink-muted)', margin: '8px 0 0' }}>
+              {proof ? 'Screenshot attached.' : 'A JPG or PNG of your MoMo confirmation message.'}
+            </p>
+          </div>
+        </div>
       </div>
 
       {error && (
@@ -232,7 +335,7 @@ export function TicketCheckout() {
         </div>
       )}
 
-      {/* Total + pay */}
+      {/* Total + submit */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 18, flexWrap: 'wrap', borderTop: '1px solid var(--border-subtle)', paddingTop: 22 }}>
         <div>
           <p style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gwf-ink-muted)', margin: 0 }}>
@@ -243,8 +346,8 @@ export function TicketCheckout() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8 }}>
           <button
             type="button"
-            onClick={handleCheckout}
-            disabled={loading || !tier}
+            onClick={handleSubmit}
+            disabled={busy || !tier}
             style={{
               padding: '15px 30px',
               background: 'var(--gwf-purple-600)',
@@ -255,19 +358,19 @@ export function TicketCheckout() {
               fontSize: 16,
               textTransform: 'uppercase',
               letterSpacing: '0.04em',
-              cursor: loading ? 'wait' : 'pointer',
+              cursor: busy ? 'wait' : 'pointer',
               display: 'inline-flex',
               alignItems: 'center',
               gap: 10,
-              opacity: loading ? 0.7 : 1,
+              opacity: busy ? 0.7 : 1,
             }}
           >
-            {loading ? 'Please wait…' : `Pay ${formatCedis(total)}`}
-            {!loading && <Icon name="arrow-right" size={18} />}
+            {submitting ? 'Submitting…' : 'Submit Payment Proof'}
+            {!busy && <Icon name="arrow-right" size={18} />}
           </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--gwf-ink-muted)', fontFamily: 'var(--font-body)', fontSize: 13 }}>
-            <Icon name="shield" size={15} />
-            Mobile Money or card &middot; Secured by Paystack
+            <Icon name="mail" size={15} />
+            Your ticket code is emailed to you
           </div>
         </div>
       </div>
