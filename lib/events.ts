@@ -16,15 +16,6 @@ export const TICKET_SALES_OPEN = true
 
 export const MAX_TICKETS_PER_ORDER = 10
 
-// Team colours for the day's team-based activities. Every ticket is randomly allocated one of
-// these and its ticket code starts with the colour (e.g. PINK-7K3F2Q). Matches the colours of the
-// price tags on the flyer. Don't change this list once tickets are sold — guests keep their team.
-export const TEAM_COLORS = [
-  { name: 'Blue', hex: '#2F6BFF' },
-  { name: 'Purple', hex: '#6F3DA6' },
-  { name: 'Pink', hex: '#E0457F' },
-]
-
 // Tickets are paid for by Mobile Money. Buyers send the amount here, then upload a screenshot.
 export const MOMO = {
   number: '0530505645',

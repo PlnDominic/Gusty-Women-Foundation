@@ -79,7 +79,7 @@ export default function RootedRadiantPage() {
               Secure Your Spot
             </h2>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.6, color: 'var(--gwf-ink-soft)', margin: '0 auto', maxWidth: 560 }}>
-              Pick your ticket, send the Mobile Money payment, upload your screenshot, and get your ticket code by email.
+              Pick your ticket, send the Mobile Money payment, upload your screenshot, and get your ticket by email.
             </p>
           </div>
 

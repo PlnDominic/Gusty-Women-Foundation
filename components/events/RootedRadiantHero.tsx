@@ -111,7 +111,7 @@ export function RootedRadiantHero({ ticketsHref, detailsHref, headingLevel = 'h1
           </div>
           <p className="rr-pay-note">
             <Icon name="shield" size={14} />
-            Pay with Mobile Money &middot; get your ticket code by email
+            Pay with Mobile Money &middot; get your ticket by email
           </p>
         </div>
 
